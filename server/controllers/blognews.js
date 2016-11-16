@@ -5,7 +5,6 @@ const Blognews = require('../models/blognews.js');
 module.exports.init = function* (router) {
     yield seed;
     router.get('/blognews', loadBlognews);
-    router.patch('/blognews', modify);
 }
 
 /**

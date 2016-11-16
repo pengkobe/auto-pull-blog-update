@@ -1,37 +1,51 @@
 "use strict"
+
+/**
+ * NBA实时比分拉取
+ */
+
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 const NBANewsSchema = new Schema({
-    title: String,
-    visits: {
+    // 比赛开始时间
+    time: {
+        type: Date
+    },
+    // 阶段( 0 : 未开始 )
+    state: {
         type: Number,
         default: 0
     },
-    tags: [{
-        type: Schema.Types.ObjectId,
-        ref: 'tag'
-    }],
-    createTime: {
-        type: Date
-    },
+
+    // 客队
+    guestTeam: String,
+
+    // 比分
+    score: String,
+
+    // 主队
+    homeTeam: String,
+
+    // 集锦
+    vedioCollection: String,
+
+    // 数据
+    gameData: String,
+
+    // 前瞻/战报
+    preView: String,
+
+    // 直播/回放 （URL）
+    live: String,
+
     lastEditTime: {
         type: Date,
         default: Date.now
     },
-    hidden: Boolean,
-    excerpt: String,
-    content: String,
-    comments: [{
-        type: Schema.Types.ObjectId,
-        ref: 'comment'
-    }]
 }, { versionKey: false });
 NBANewsSchema.set('toJSON', { getters: true, virtuals: true });
 NBANewsSchema.set('toObject', { getters: true, virtuals: true });
-NBANewsSchema.path('createTime').get(function (v) {
-    return new Date(v).format('yyyy-MM-dd hh:mm:ss');
-});
-NBANewsSchema.path('lastEditTime').get(function (v) {
+NBANewsSchema.path('time').get(function (v) {
     return new Date(v).format('yyyy-MM-dd hh:mm:ss');
 });
 const nbanews = mongoose.model('nbanews', NBANewsSchema);

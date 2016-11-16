@@ -2,7 +2,7 @@
 const path = require('path'),
   serverRoot = path.dirname(__dirname),
   root = path.resolve(serverRoot,'../'),
-  staticDir = path.join(root, 'static'),
+  staticDir = path.join(root, 'public'),
   dev = require('./dev.js'),
   fs = require('fs'),
   _ = require('lodash');

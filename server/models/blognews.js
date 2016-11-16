@@ -1,7 +1,7 @@
 "use strict"
 
 /**
- * 博客新闻爬虫
+ * 博客新闻
  */
 const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
@@ -12,6 +12,11 @@ const BlogNewsSchema = new Schema({
     title: String,
     // 拉取时间
     pullTime: {
+        type: Date,
+        default: Date.now
+    },
+    // 发表时间
+    publishTime: {
         type: Date,
         default: Date.now
     },
@@ -30,7 +35,7 @@ BlogNewsSchema.set('toObject', { getters: true, virtuals: true });
 BlogNewsSchema.path('pullTime').get(function (v) {
     return new Date(v).format('yyyy-MM-dd hh:mm:ss');
 });
-BlogNewsSchema.path('lastEditTime').get(function (v) {
+BlogNewsSchema.path('publishTime').get(function (v) {
     return new Date(v).format('yyyy-MM-dd hh:mm:ss');
 });
 const blognews = mongoose.model('blognews', BlogNewsSchema);
