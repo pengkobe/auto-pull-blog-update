@@ -23,6 +23,16 @@ app.use(views(__dirname + '/views', {
   extension: 'jade'
 }));
 
+const config = require('./config/index'),
+mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+mongoose.connect(config.mongoConfig.url, config.mongoConfig.opts);
+/**
+ * 将config注入中间件的ctx
+ * */
+app.context.config = config
+
+
 // logger
 app.use(async (ctx, next) => {
   const start = new Date();
@@ -31,7 +41,7 @@ app.use(async (ctx, next) => {
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
 });
 
-//await controllers.init(router);
+controllers.init(router);
 router.use('/', index.routes(), index.allowedMethods());
 router.use('/users', users.routes(), users.allowedMethods());
 

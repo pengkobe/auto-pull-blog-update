@@ -10,12 +10,13 @@ module.exports.init = router => {
 }
 
 
-async function create(){
-  const name = this.request.body.name,
+async function create(ctx, next){
+  console.log("aaa",ctx.request);
+  const name = ctx.request.body.name,
     createTime = new Date(),
-    url = this.request.body.url;
+    url = ctx.request.body.url;
   if(name === ''){
-    this.throw(400,'博主姓名不能为空！')
+    ctx.throw(400,'博主姓名不能为空！')
   }
   let blogger = new Blogger({
     name,
@@ -24,11 +25,11 @@ async function create(){
   });
   blogger = await blogger.save().catch(err => {
     utils.logger.error(err);
-    this.throw(500,'内部错误')
+    ctx.throw(500,'内部错误')
   });
   utils.print(blogger);
-  this.status = 200;
-  this.body = {
+  ctx.status = 200;
+  ctx.body = {
     success:true,
     data:blogger
   }
@@ -67,7 +68,7 @@ async function bloggerList(){
 
 async function modify(){
   const id = this.params.id;
-  const modifyOption = this.request.body;
+  const modifyOption = ctx.request.body;
   modifyOption.lastEditTime = new Date();
   modifyOption.bloggerPublished = false;
   let result = await Blogger.findByIdAndUpdate(id,{$set:modifyOption},{new:true}).populate('url').exec()
