@@ -1,5 +1,7 @@
 "use strict"
 const blognews = require('./blognews');
-module.exports.init = function* (router) {
-    yield blognews.init(router)
+const blogger = require('./blogger');
+module.exports.init = async function (router) {
+    await blognews.init(router);
+    blogger.init(router);
 }

@@ -1,7 +1,7 @@
 "use strict"
 const Logger = require('mini-logger'),
     validator = require('validator'),
-    config = require('../configs/index.js'),
+    config = require('../config/index.js'),
     print = require('debug')('crawler'),
     utils = {};
 module.exports = utils;
