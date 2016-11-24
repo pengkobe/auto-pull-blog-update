@@ -14,6 +14,15 @@ ko2/await/async
    - validator
    - mongoose
 
+### Problems
+不知道以下两种方式有何差异，方式2会导致请求404是怎么回事?(但是请求根目录并不会)
+```javascript 
+// 方式1
+index.init(router);
+// 方式2
+router.use('/', index.routes(), index.allowedMethods());
+```
+
 ### DOC
 https://github.com/koajs/koa/blob/v2.x/Readme.md
 

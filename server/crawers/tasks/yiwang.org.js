@@ -1,22 +1,45 @@
 /**
 * 抓取 yinwang.org
 */
-var cheerio = require('cheerio');
-var superagent = require('superagent');
+const cheerio = require('cheerio');
+const superagent = require('superagent');
+const schedule = require('node-schedule');
 
-var eventproxy = require('eventproxy');
-var evtProxyObj = eventproxy();
+const eventproxy = require('eventproxy');
+const evtProxyObj = eventproxy();
 
 const utils = require('../../utils/index');
 const Blogger = require('../../models/blogger');
 const Blognews_2 = require('../../models/blognews');
 
-module.exports = async function() {
-    // 地址
-    var page = 'http://yinwang.org';
+const page = 'http://yinwang.org';
 
-    return new Promise((resolve, reject) => {
-        superagent.get(page).end(async function(err, sres) {
+// 计时器
+let schedule_task = null;
+// github: https://github.com/node-schedule/node-schedule
+// *    *    *    *    *    *
+// ┬    ┬    ┬    ┬    ┬    ┬
+// │    │    │    │    │    |
+// │    │    │    │    │    └ day of week (0 - 7) (0 or 7 is Sun)
+// │    │    │    │    └───── month (1 - 12)
+// │    │    │    └────────── day of month (1 - 31)
+// │    │    └─────────────── hour (0 - 23)
+// │    └──────────────────── minute (0 - 59)
+// └───────────────────────── second (0 - 59, OPTIONAL)
+
+module.exports = async function () {
+    if (schedule_task) {
+        schedule_task.cancel();
+    }
+    schedule_task = schedule.scheduleJob('0 0 23 * * *', function () {
+        runTask(function (param) {
+            console.log('完美运行一次:', new Date());
+        }, function (param) { })
+    });
+
+    // 地址
+    async function runTask(resolve, reject) {
+        superagent.get(page).end(async function (err, sres) {
 
             // 获取最新博文时间
             let blogmodel = await Blogger.find({ name: 'yiwang' })
@@ -36,7 +59,7 @@ module.exports = async function() {
             let newsArray = [];
 
             // 获取欧文
-            $('.list-group-item').each(function(i, ele) {
+            $('.list-group-item').each(function (i, ele) {
                 let title = $('a', ele).text();
                 let link = $('a', ele).attr('href');
 
@@ -49,7 +72,10 @@ module.exports = async function() {
                 let date = patt.exec(link)[0];
 
                 // 时间对比 (todo)
-                if (new Date(date) > new Date('2016/11/15')) {
+                if (blogmodel.length > 0) {
+                    console.log('blogmodel.lastUpdateTime:', blogmodel[0].lastUpdateTime);
+                }
+                if (new Date(date) > blogmodel.lastUpdateTime) {
                     newsArray.push({
                         from: blogmodel[0]._id,
                         pullTime: new Date(),
@@ -62,7 +88,7 @@ module.exports = async function() {
             });
 
             // 存入数据库 (todo)
-            Blognews_2.create(newsArray, function(err) {
+            Blognews_2.create(newsArray, function (err) {
                 if (err) {
                     return;
                 }
@@ -73,6 +99,9 @@ module.exports = async function() {
 
             evtProxyObj.emit('yiwang_indexpage_finished', 'get yinwang.org successful');
         });
-    });
+    }
 
+    return new Promise((resolve, reject) => {
+        runTask(resolve, reject);
+    });
 }
