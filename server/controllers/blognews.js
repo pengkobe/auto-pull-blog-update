@@ -1,6 +1,5 @@
 "use strict"
 
-
 const utils = require('../utils/index');
 const Blognews = require('../models/blognews');
 module.exports.init = async function (router) {

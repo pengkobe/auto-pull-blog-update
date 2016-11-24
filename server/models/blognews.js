@@ -7,7 +7,7 @@ const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 const BlogNewsSchema = new Schema({
     // 博主编号
-    from: { type: Schema.Types.ObjectId },
+    from: { type: Schema.Types.ObjectId, ref: 'blogger' },
     // 标题
     title: String,
     // 拉取时间
@@ -21,10 +21,15 @@ const BlogNewsSchema = new Schema({
         default: Date.now
     },
     // 内容
-    content: String,
-    comments: [{
-        type: Schema.Types.ObjectId,
-    }]
+    content: {
+        type: String,
+        default: ''
+    },
+    comments: [],
+    hasRead: {
+        type: Boolean,
+        default: false
+    }
 },
     {
         versionKey: false

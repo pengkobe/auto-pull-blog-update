@@ -6,16 +6,29 @@ const mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 const BloggerSchema = new Schema({
     // 名字
-    name: String,
+    name: {
+        type: String,
+        unique: true
+    },
     // 博客地址
-    url: String,
+    url: {
+        type: String,
+        default: ''
+    },
+    // 任务js
+    taskjs: {
+        type: String,
+        default: ''
+    },
     // 创建时间
     createTime: {
-        type: Date
+        type: Date,
+        default: new Date()
     },
     // 最近一次更新
     lastUpdateTime: {
-        type: Date
+        type: Date,
+        default: new Date()
     }
 },
     { versionKey: false });

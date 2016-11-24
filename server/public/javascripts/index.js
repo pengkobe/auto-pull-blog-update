@@ -5,17 +5,13 @@ addBox.addEventListener('add-item', function (e) {
     todoList.addItem(e.detail);
 });
 
-// var addBloggerTst = document.getElementById("addBlogger");
-// addBloggerTst.addEventListener('click', function (e) {
-
-// });
 
 $("#addBlogger").on('click', function (e) {
     $.ajax({
         type: 'POST',
         url: "bloggers",
         dataType: 'json',
-        data: { name: 'byvoid', url: 'http://byvoid.com' },
+        data: { name: 'yiwang', url: 'http://yiwang.org', taskjs: 'yiwang.org.js' },
         success: function (data) {
             debugger;
         },
@@ -25,3 +21,23 @@ $("#addBlogger").on('click', function (e) {
     });
 
 });
+
+
+$("#beginTasks").on('click', function (e) {
+    $.ajax({
+        type: 'GET',
+        url: "begintasks",
+        dataType: 'json',
+        success: function (data) {
+            debugger;
+        },
+        error: function (err) {
+            debugger;
+        }
+    });
+});
+
+
+
+
+

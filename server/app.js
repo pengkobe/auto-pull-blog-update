@@ -10,7 +10,6 @@ const bodyparser = require('koa-bodyparser')();
 const logger = require('koa-logger');
 
 const index = require('./routes/index');
-const users = require('./routes/users');
 const controllers = require('./controllers/index.js');
 
 // middlewares
@@ -30,7 +29,7 @@ mongoose.connect(config.mongoConfig.url, config.mongoConfig.opts);
 /**
  * 将config注入中间件的ctx
  * */
-app.context.config = config
+app.context.config = config;
 
 
 // logger
@@ -40,10 +39,9 @@ app.use(async (ctx, next) => {
   const ms = new Date() - start;
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
 });
-
+index.init(router);
+//router.use('/', index.routes(), index.allowedMethods());
 controllers.init(router);
-router.use('/', index.routes(), index.allowedMethods());
-router.use('/users', users.routes(), users.allowedMethods());
 
 app.use(router.routes(), router.allowedMethods());
 // response
