@@ -11,7 +11,6 @@ module.exports.init = router => {
 
 
 async function create(ctx, next){
-  console.log("aaa",ctx.request);
   const name = ctx.request.body.name,
     createTime = new Date(),
     url = ctx.request.body.url;

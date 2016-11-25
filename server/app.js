@@ -26,11 +26,11 @@ const config = require('./config/index'),
 mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect(config.mongoConfig.url, config.mongoConfig.opts);
+
 /**
  * 将config注入中间件的ctx
  * */
 app.context.config = config;
-
 
 // logger
 app.use(async (ctx, next) => {
@@ -39,11 +39,12 @@ app.use(async (ctx, next) => {
   const ms = new Date() - start;
   console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
 });
-index.init(router);
-//router.use('/', index.routes(), index.allowedMethods());
-controllers.init(router);
 
+index.init(router);
+controllers.init(router);
 app.use(router.routes(), router.allowedMethods());
+
+//router.use('/', index.routes(), index.allowedMethods());
 // response
 
 app.on('error', function (err, ctx) {

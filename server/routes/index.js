@@ -2,7 +2,7 @@
 
 var crawers = require('../crawers/index.js');
 
-module.exports.init = async function (router) {
+module.exports.init = function (router) {
 
   /**
   * 渲染首页

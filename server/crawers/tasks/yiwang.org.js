@@ -27,14 +27,15 @@ let schedule_task = null;
 // │    └──────────────────── minute (0 - 59)
 // └───────────────────────── second (0 - 59, OPTIONAL)
 
+
 module.exports = async function () {
     if (schedule_task) {
         schedule_task.cancel();
     }
-    schedule_task = schedule.scheduleJob('0 0 23 * * *', function () {
+    schedule_task = schedule.scheduleJob('55 55 23 * * *', function () {
         runTask(function (param) {
             console.log('完美运行一次:', new Date());
-        }, function (param) { })
+        }, function (param) { console.log('失败运行一次:', new Date()); })
     });
 
     // 地址
@@ -51,6 +52,7 @@ module.exports = async function () {
             // 常规的错误处理
             if (err) {
                 console.log('get yinwang.org err!\n', err);
+                reject([]);
                 return next(err);
             }
 
@@ -62,20 +64,23 @@ module.exports = async function () {
             $('.list-group-item').each(function (i, ele) {
                 let title = $('a', ele).text();
                 let link = $('a', ele).attr('href');
+                let patt = /\d{4}\/\d{1,2}\/\d{0,2}/g;
+                let date = patt.exec(link)[0];
 
                 // for test
                 // let link = "http://yinwang.org/blog-cn/2016/10/12/compiler-bug";
                 // let patt = /blog-cn\/(\d{4}\/\d{1,2}\/\d{0,2})/g;
                 // let date = patt.exec(link)[1];
 
-                let patt = /\d{4}\/\d{1,2}\/\d{0,2}/g;
-                let date = patt.exec(link)[0];
-
-                // 时间对比 (todo)
-                if (blogmodel.length > 0) {
-                    console.log('blogmodel.lastUpdateTime:', blogmodel[0].lastUpdateTime);
+                if (!blogmodel.length || blogmodel.length == 0) {
+                    reject([]);
+                    return next(err);
+                } else {
+                    // console.log('blogmodel.lastUpdateTime:', new Date(date) > blogmodel[0].lastUpdateTime);
                 }
-                if (new Date(date) > blogmodel.lastUpdateTime) {
+
+                // 时间对比
+                if (new Date(date) > blogmodel[0].lastUpdateTime) {
                     newsArray.push({
                         from: blogmodel[0]._id,
                         pullTime: new Date(),
@@ -87,17 +92,27 @@ module.exports = async function () {
                 }
             });
 
-            // 存入数据库 (todo)
+            // 存入数据库 
             Blognews_2.create(newsArray, function (err) {
                 if (err) {
-                    return;
+                    reject([]);
+                    return next(err);
                 }
                 var docs = Array.prototype.slice.call(arguments, 1);
                 resolve(docs);
-                // docs 就是才创建的所有记录
             });
 
-            evtProxyObj.emit('yiwang_indexpage_finished', 'get yinwang.org successful');
+            // 更新最后拉取时间 
+            blogmodel[0].lastUpdateTime = new Date();
+            await Blogger.update({ _id: blogmodel[0]._id }, blogmodel[0])
+                .exec().catch(err => {
+                    utils.logger.error(err);
+                    this.throw(500, 'Blogger.update错误');
+                });
+
+            // ===== 用于抓取内容（TODO）
+            // evtProxyObj.emit('yiwang_indexpage_finished', 'get yinwang.org successful');
+            // =====
         });
     }
 
