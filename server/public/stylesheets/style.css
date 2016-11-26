@@ -60,18 +60,24 @@ button[disabled] {
 /*
 add blogger
 */
-div.formblock{
+
+div.formblock {
     width: 400px;
-    background-color:honeydew;
+    background-color: honeydew;
     position: fixed;
     bottom: 100px;
     right: 10px;
-    
 }
-#crawlerCode{
+
+#crawlerCode {
     color: limegreen;
-    width:100%;
+    width: 100%;
 }
+
+.mdl-card__actions {
+    text-align: center;
+}
+
 .addblogger {
     position: fixed;
     z-index: 3;
@@ -97,6 +103,7 @@ bw-action-add {
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
 }
-.icon-add:before{
+
+.icon-add:before {
     content: "";
 }
