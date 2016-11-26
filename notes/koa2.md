@@ -6,7 +6,7 @@ ko2/await/async
 
 ### Using now
 1. nodemon + runkoa (support async/await，don't need to worry about babel)
-2. express-style middlewares
+2. middlewares
    - koa-router
    - koa-bodyparser 
    - koa-logger
@@ -22,6 +22,9 @@ index.init(router);
 // 方式2
 router.use('/', index.routes(), index.allowedMethods());
 ```
+
+### Jade/Plug
+http://naltatis.github.io/jade-syntax-docs/
 
 ### DOC
 https://github.com/koajs/koa/blob/v2.x/Readme.md

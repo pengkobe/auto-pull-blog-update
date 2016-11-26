@@ -5,15 +5,30 @@ block content
   p Welcome to #{title}
 
   #wrapper
-    h1 Todo List
     add-box(value="bug fixing")
     todo-list
-  
   #TestApi1
     button#addBlogger addBlogger
   #TestApi2
     button#beginTasks beginTasks
-  #blognews
-   
+  #blognews 
+  
+  
+  .formblock.mdl-card.mdl-shadow--2dp   
+      form#form
+          .mdl-textfield.mdl-js-textfield
+              textarea#crawlerCode.mdl-textfield__input(rows="10")
+              label.mdl-textfield__label(for="crawlerCode")  填入你的抓取代码...        
+          .bw-new-picker
+              div.mdl-selectfield   
+                  label 选择抓取周期
+                  select.browser-default
+                    each type, i in ['天','小时','分钟']
+                        option(value=i) #{type}
+              .mdl-card__actions.mdl-card--border
+                  input.mdl-button.mdl-js-button.mdl-js-ripple-effect.mdl-button--raised.mdl-button--colored(type="submit", value="添加")
 
 
+  .addblogger
+    .addblogger-button.bw-action-add.icon-add.mdl-button.mdl-js-button.mdl-button--fab
+      i.material-icons add
