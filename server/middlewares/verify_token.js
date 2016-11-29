@@ -11,7 +11,7 @@ module.exports = async function(ctx, next) {
     
     let tokenContent;
     try {
-        tokenContent = await jwt.co_verify(token, config.jwt.cert);
+        tokenContent = await jwt.co_verify(token, config.jwt.cert)();
         console.log("Authorization tokenContent", tokenContent);
     } catch (err) {
         if ('TokenExpiredError' === err.name) {
@@ -21,5 +21,5 @@ module.exports = async function(ctx, next) {
     }
     utils.print('鉴权通过');
     ctx.token = tokenContent;
-    return await next;
+    return await next();
 };
