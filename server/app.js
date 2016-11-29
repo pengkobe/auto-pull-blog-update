@@ -8,6 +8,7 @@ const json = require('koa-json');
 const onerror = require('koa-onerror');
 const bodyparser = require('koa-bodyparser')();
 const logger = require('koa-logger');
+const jwt = require("jsonwebtoken");
 
 const index = require('./routes/index');
 const controllers = require('./controllers/index.js');
@@ -31,6 +32,15 @@ mongoose.connect(config.mongoConfig.url, config.mongoConfig.opts);
  * 将config注入中间件的ctx
  * */
 app.context.config = config;
+
+/**
+ * 鉴权
+ */
+jwt.co_verify = function(jwtString, secretOrPublicKey, options){
+  return function(cb){
+    jwt.verify(jwtString, secretOrPublicKey, options,cb);
+  }
+}
 
 // logger
 app.use(async (ctx, next) => {

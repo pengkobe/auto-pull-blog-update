@@ -5,7 +5,7 @@
 ### for the one who have no JS programming experience
 you can submit your requirement to me.($5 per one).
 
-### for the who knows JS
+### for the one who knows JS
 you can simply submit your code to me.   
 crawling yinwang.org for example：
 

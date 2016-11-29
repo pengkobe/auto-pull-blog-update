@@ -11,7 +11,6 @@ module.exports.init = function (router) {
     ctx.state = {
       title: 'yipeng crawler'
     };
-
     await ctx.render('index', {
     });
   });
