@@ -26,6 +26,9 @@ router.use('/', index.routes(), index.allowedMethods());
 ### Jade/Plug
 http://naltatis.github.io/jade-syntax-docs/
 
+### 如何优雅的处理错误
+http://taobaofed.org/blog/2016/03/18/error-handling-in-koa/  
+
 ### DOC
 https://github.com/koajs/koa/blob/v2.x/Readme.md
 

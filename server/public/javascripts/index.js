@@ -20,7 +20,7 @@ $("#createJwt").on('click', function (e) {
         dataType: 'json',
         data: { username: 'py', password: '123' },
         success: function (data) {
-            token= data.data.token;
+            token = data.data.token;
         },
         error: function (err) {
             debugger;
@@ -38,7 +38,7 @@ $("#verifyJwt").on('click', function (e) {
         url: "/tokens/check",
         dataType: 'json',
         beforeSend: function (XMLHttpRequest) {
-            XMLHttpRequest.setRequestHeader("Authorization", 'dsd '+token);
+            XMLHttpRequest.setRequestHeader("Authorization", 'dsd ' + token);
         },
         success: function (data) {
             debugger;
@@ -99,7 +99,7 @@ function loadBlognews() {
             var data = data.data;
             for (var i = 0; i < data.length; i++) {
                 var from = data[i].from.name;
-                $("#blognews").append("<div>" + from + ":" + data[i].title + "</div>");
+                $("#blognewslist").append("<div>" + from + ":" + data[i].title + "</div>");
             }
         },
         error: function (err) {
@@ -109,6 +109,28 @@ function loadBlognews() {
 
 }
 
+
+$("#blognews").on('click', function (e) {
+    $.ajax({
+        type: 'GET',
+        url: "blognews",
+        dataType: 'json',
+        beforeSend: function (XMLHttpRequest) {
+            XMLHttpRequest.setRequestHeader("Authorization", 'dsd ' + token);
+        },
+        success: function (data) {
+            debugger;
+            var data = data.data;
+            for (var i = 0; i < data.length; i++) {
+                var from = data[i].from.name;
+                $("#blognewslist").append("<div>" + from + ":" + data[i].title + "</div>");
+            }
+        },
+        error: function (err) {
+            debugger;
+        }
+    });
+});
 
 
 

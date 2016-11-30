@@ -2,8 +2,9 @@
 
 const utils = require('../utils/index');
 const Blognews = require('../models/blognews');
+const mw = require('../middlewares/index.js');
 module.exports.init = function (router) {
-    router.get('/blognews', loadBlognews);
+    router.get('/blognews', mw.verify_token, loadBlognews);
 }
 
 /**

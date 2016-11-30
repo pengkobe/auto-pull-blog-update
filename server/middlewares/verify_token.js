@@ -14,6 +14,7 @@ module.exports = async function(ctx, next) {
         tokenContent = await jwt.co_verify(token, config.jwt.cert)();
         console.log("Authorization tokenContent", tokenContent);
     } catch (err) {
+        ctx.status = 401;
         if ('TokenExpiredError' === err.name) {
             ctx.throw(401, 'token expired');
         }

@@ -24,7 +24,7 @@ app.use(views(__dirname + '/views', {
 }));
 
 const config = require('./config/index'),
-mongoose = require('mongoose');
+  mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect(config.mongoConfig.url, config.mongoConfig.opts);
 
@@ -36,9 +36,9 @@ app.context.config = config;
 /**
  * 鉴权
  */
-jwt.co_verify = function(jwtString, secretOrPublicKey, options){
-  return function(cb){
-    jwt.verify(jwtString, secretOrPublicKey, options,cb);
+jwt.co_verify = function (jwtString, secretOrPublicKey, options) {
+  return function (cb) {
+    jwt.verify(jwtString, secretOrPublicKey, options, cb);
   }
 }
 
@@ -55,10 +55,9 @@ controllers.init(router);
 app.use(router.routes(), router.allowedMethods());
 
 //router.use('/', index.routes(), index.allowedMethods());
-// response
-
+onerror(app);
 app.on('error', function (err, ctx) {
-  console.log(err)
+  console.log(err);
   logger.error('server error', err, ctx);
 });
 

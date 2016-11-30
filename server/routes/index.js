@@ -28,6 +28,7 @@ module.exports.init = function (router) {
       data: info
     };
   });
+  
 
 }
 

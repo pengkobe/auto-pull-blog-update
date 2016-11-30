@@ -11,7 +11,6 @@ let config = {
   app: {
     name:'crawler',
     port: 3000,
-    adminPath: '/api' // 后台路径
   },
   debug:false,
   env:'production',
@@ -40,8 +39,8 @@ if(process.env.NODE_ENV === 'development'){
 }
 // 私有配置
 if(process.env.NODE_ENV === 'production'){
-  if(fs.existsSync(__dirname+'/private.js')){
-    config = _.merge(config,require('./private.js'));
+  if(fs.existsSync(__dirname+'/pub.js')){
+    config = _.merge(config,require('./pub.js'));
   }
 }
 

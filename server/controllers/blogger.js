@@ -1,8 +1,9 @@
 "use strict"
 const utils = require('../utils/index');
 const Blogger = require('../models/blogger.js');
+const mw = require('../middlewares/index.js');
 module.exports.init = router => {
-  router.post('/bloggers',  create);
+  router.post('/bloggers', create);
   router.patch('/bloggers/:id',  modify)
   router.get('/bloggers',  bloggerList);
   router.get('/bloggers/:id',  bloggerDetail)
