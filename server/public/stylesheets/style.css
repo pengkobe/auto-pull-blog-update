@@ -62,6 +62,7 @@ add blogger
 */
 
 div.formblock {
+    display: none;
     width: 400px;
     background-color: honeydew;
     position: fixed;

@@ -35,6 +35,7 @@ const BlogNewsSchema = new Schema({
         versionKey: false
     }
 );
+
 BlogNewsSchema.set('toJSON', { getters: true, virtuals: true });
 BlogNewsSchema.set('toObject', { getters: true, virtuals: true });
 BlogNewsSchema.path('pullTime').get(function (v) {

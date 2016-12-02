@@ -32,6 +32,7 @@ const BloggerSchema = new Schema({
     }
 },
     { versionKey: false });
+    
 BloggerSchema.set('toJSON', { getters: true, virtuals: true });
 BloggerSchema.set('toObject', { getters: true, virtuals: true });
 BloggerSchema.path('createTime').get(function (v) {
