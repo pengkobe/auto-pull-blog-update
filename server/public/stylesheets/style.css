@@ -62,12 +62,6 @@ add blogger
 */
 
 div.formblock {
-    display: none;
-    width: 400px;
-    background-color: honeydew;
-    position: fixed;
-    bottom: 100px;
-    right: 10px;
 }
 
 #crawlerCode {
