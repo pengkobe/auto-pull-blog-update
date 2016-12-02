@@ -145,6 +145,10 @@ x-product::shadow .product-name {
    
 ```
 
+### 后话
+开始是想着使用web-conponents手写这个项目，但是自己又没有设计细胞，想着去找相关的框架，结果搜遍github只
+找到一个叫做[brick](https://github.com/mozbrick/brick)的框架，在两年前就停止维护了，难道用jquery写么！
+天啊，这工作量有点大啊。又想着react\vue\angular1.x都有使用在玩的项目，于是决定拿angular2.x试试，祝我好运吧！
 
 ### 参考
 http://blog.teamtreehouse.com/create-custom-html-elements-2
