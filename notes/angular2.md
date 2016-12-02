@@ -5,6 +5,10 @@
 脚手架：https://github.com/AngularClass/angular2-webpack-starter
 
 
+## material2
+地址: https://github.com/angular/material2  
+
 ## 错误
 1. node_modules\typescript\lib 未指向有效的 tsserver 安装。将禁用 TypeScript 语言功能。
    方案: http://www.cnblogs.com/junxian_chen/p/5914012.html
+2. webpack出现一系列报错
