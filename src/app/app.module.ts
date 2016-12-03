@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { removeNgStyles, createNewHosts, createInputTransfer } from '@angularclass/hmr';
+import { MaterialModule } from '@angular/material';
 
 /*
  * Platform and Environment providers/directives/pipes
@@ -35,7 +36,7 @@ type StoreType = {
  * `AppModule` is the main entry point into Angular2's bootstraping process
  */
 @NgModule({
-  bootstrap: [ AppComponent ],
+  bootstrap: [AppComponent],
   declarations: [
     AppComponent,
     AboutComponent,
@@ -47,7 +48,8 @@ type StoreType = {
     BrowserModule,
     FormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(ROUTES, { useHash: true, preloadingStrategy: PreloadAllModules }),
+    MaterialModule.forRoot()
   ],
   providers: [ // expose our Services and Providers into Angular's dependency injection
     ENV_PROVIDERS,
@@ -55,7 +57,7 @@ type StoreType = {
   ]
 })
 export class AppModule {
-  constructor(public appRef: ApplicationRef, public appState: AppState) {}
+  constructor(public appRef: ApplicationRef, public appState: AppState) { }
 
   hmrOnInit(store: StoreType) {
     if (!store || !store.state) return;
@@ -81,7 +83,7 @@ export class AppModule {
     // recreate root elements
     store.disposeOldHosts = createNewHosts(cmpLocation);
     // save input values
-    store.restoreInputValues  = createInputTransfer();
+    store.restoreInputValues = createInputTransfer();
     // remove styles
     removeNgStyles();
   }

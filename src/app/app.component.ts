@@ -47,7 +47,7 @@ import { AppState } from './app.service';
     </main>
 
     <pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
-
+    <md-checkbox>Unchecked</md-checkbox>
     <footer>
       <span>WebPack Angular 2 Starter by <a [href]="url">@AngularClass</a></span>
       <div>
