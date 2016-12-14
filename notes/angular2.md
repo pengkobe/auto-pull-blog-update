@@ -10,7 +10,21 @@
 官网: https://material.angular.io/  
 
 ##　@ 家族
-* @NgModule
+* @NgModule  
+ 利用一个元数据对象来告诉Angular如何去编译和运行代码。
+ 一个模块内部可以包含组件、指令、管道，每个Angular2的应用都至少有一个模块即跟模块。
+  - declarations：模块内部Components/Directives/Pipes的列表，声明一下这个模块内部成员
+  - providers：指定应用程序的根级别需要使用的service。
+    (Angular2中没有模块级别的service，所有在NgModule中声明的Provider都是注册在根级别的Dependency Injector中)
+  - imports：导入其他module，其它module暴露的出的Components、Directives、Pipes等可以在本module的组件中被使用。
+    比如导入CommonModule后就可以使用NgIf、NgFor等指令。
+  - exports：用来控制将哪些内部成员暴露给外部使用。导入一个module并不意味着会自动导入这个module内部导入的module所暴露出的公共成员。
+    除非导入的这个module把它内部导入的module写到exports中。
+  - bootstrap：通常是app启动的根组件，一般只有一个component。bootstrap中的组件会自动被放入到entryComponents中。
+  - entryCompoenents: 不会再模板中被引用到的组件。这个属性一般情况下只有ng自己使用，
+    一般是bootstrap组件或者路由组件，ng会自动把bootstrap、路由组件放入其中。 除非不通过路由动态将component加入到dom中，
+    否则不会用到这个属性。
+　　
   ```typescript
   @NgModule({
   bootstrap: [ AppComponent ],
@@ -40,6 +54,11 @@
 ## 路由
 本案例使用 @angular/router  
 
+## Angular Core
+* ApplicationRef  
+  其作用是用来监听ngZone中的onTurnDone事件，不论何时只要触发这个事件，那么将会执行一个tick()方法用来告诉Angular去执行变化监测。  
+  参考:https://toutiao.io/posts/6qc4md/preview
+
 ## 发现问题
 1. 怎么引入第三方模块
 
@@ -47,7 +66,7 @@
 ## 我所遇见的不同
 1. 强类型/强约束
 2. 不在纠结样式文件
-3. 和市场对接，webpack/state/[hmr](https://github.com/AngularClass/angular2-hmr)
+3. 和市场对接，webpack/state/[hmr-Hot Module Replacement](https://github.com/AngularClass/angular2-hmr)
 
 ## 错误
 1. node_modules\typescript\lib 未指向有效的 tsserver 安装。将禁用 TypeScript 语言功能。
