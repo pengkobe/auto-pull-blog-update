@@ -1,7 +1,8 @@
 # angular2
 
 ## 第一步
-文档 https://angular.io/docs/ts/latest/quickstart.html
+文档 https://angular.io/docs/ts/latest/quickstart.html   
+文档(中文翻译) http://www.cnblogs.com/haogj/p/5059170.html  
 脚手架：https://github.com/AngularClass/angular2-webpack-starter
 
 
@@ -14,7 +15,7 @@
  利用一个元数据对象来告诉Angular如何去编译和运行代码。
  一个模块内部可以包含组件、指令、管道，每个Angular2的应用都至少有一个模块即跟模块。
   - declarations：模块内部Components/Directives/Pipes的列表，声明一下这个模块内部成员
-  - providers：指定应用程序的根级别需要使用的service。
+  - providers：指定应用程序的根级别需要使用的service。( 注意区分angular1.x的provider )
     (Angular2中没有模块级别的service，所有在NgModule中声明的Provider都是注册在根级别的Dependency Injector中)
   - imports：导入其他module，其它module暴露的出的Components、Directives、Pipes等可以在本module的组件中被使用。
     比如导入CommonModule后就可以使用NgIf、NgFor等指令。
@@ -66,7 +67,15 @@
 ## 我所遇见的不同
 1. 强类型/强约束
 2. 不在纠结样式文件
-3. 和市场对接，webpack/state/[hmr-Hot Module Replacement](https://github.com/AngularClass/angular2-hmr)
+3. 和市场对接，webpack/state/[hmr-Hot Module Replacement](https://github.com/AngularClass/angular2-hmr)  
+
+
+## 开始
+* 创建开发环境
+* 为我们的应用编写 root component
+* 启动 root component 控制主页面
+* 编写主页面 (index.html)
+
 
 ## 错误
 1. node_modules\typescript\lib 未指向有效的 tsserver 安装。将禁用 TypeScript 语言功能。
