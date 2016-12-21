@@ -8,7 +8,7 @@ module.exports = async function(ctx, next) {
         ctx.throw(401, 'no token detected in http header \'Authorization\'');
     }
     const token = authorization.split(' ')[1];
-    
+    console.log("before Authorization token", token);
     let tokenContent;
     try {
         tokenContent = await jwt.co_verify(token, config.jwt.cert)();

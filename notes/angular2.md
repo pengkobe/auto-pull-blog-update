@@ -76,6 +76,9 @@
 * 启动 root component 控制主页面
 * 编写主页面 (index.html)
 
+### 试用列表
+1. [HTTP](https://angular.io/docs/ts/latest/guide/server-communication.html#!#http-client)
+
 
 ## 错误
 1. node_modules\typescript\lib 未指向有效的 tsserver 安装。将禁用 TypeScript 语言功能。

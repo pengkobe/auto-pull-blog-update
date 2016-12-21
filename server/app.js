@@ -8,7 +8,9 @@ const json = require('koa-json');
 const onerror = require('koa-onerror');
 const bodyparser = require('koa-bodyparser')();
 const logger = require('koa-logger');
+
 const jwt = require("jsonwebtoken");
+var cors = require('koa-cors');
 
 const index = require('./routes/index');
 const controllers = require('./controllers/index.js');
@@ -41,7 +43,8 @@ jwt.co_verify = function (jwtString, secretOrPublicKey, options) {
     jwt.verify(jwtString, secretOrPublicKey, options, cb);
   }
 }
-
+// 允许跨域访问
+app.use(cors());
 // logger
 app.use(async (ctx, next) => {
   const start = new Date();

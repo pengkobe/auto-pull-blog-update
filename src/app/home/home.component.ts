@@ -14,13 +14,14 @@ import { XLarge } from './x-large';
     Title
   ],
   // Our list of styles in our component. We may add more to compose many styles together
-  styleUrls: [ './home.component.css' ],
+  styleUrls: ['./home.component.css'],
   // Every Angular template is first compiled by the browser before Angular runs it's compiler
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
   // Set our default values
   localState = { value: '' };
+  token = null;
   // TypeScript public modifiers
   constructor(public appState: AppState, public title: Title) {
 
@@ -28,7 +29,15 @@ export class HomeComponent {
 
   ngOnInit() {
     console.log('hello `Home` component');
-    // this.title.getData().subscribe(data => this.data = data);
+    // 加载博客新闻
+    this.title.getData().subscribe(data => {
+      this.token = data.data.token;
+      console.log(data.data.token);
+      this.title.getBloggerNews(this.token).subscribe(data => {
+        debugger;
+        console.log(data);
+      });
+    });
   }
 
   submitState(value: string) {
