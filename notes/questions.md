@@ -6,3 +6,13 @@
 4. webpack  
    - http://pinkyjie.com/2016/03/05/webpack-tips/
 5. karma + webpack  
+6. 持续集成( TravisCI vs Jenkins )
+   - codecov:可以部署到 github 上
+ - http://pinkyjie.com/2016/02/27/continuous-integration-with-travis-ci/  
+ - ruanyf repo：JS-Training
+ 7. 测试
+    - e2e ( [Sauce Labs](https://saucelabs.com/) )
+    - jasmine
+    - mocha
+    - protractor ( PageObject )
+    - PhantomJS

@@ -37,7 +37,7 @@ module.exports = function(config) {
     webpack: testWebpackConfig,
 
     coverageReporter: {
-      type: 'in-memory'
+      type: 'in-memory' // 也可以生成放到文件里边 
     },
 
     remapCoverageReporter: {
@@ -77,7 +77,7 @@ module.exports = function(config) {
      * available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
      */
     browsers: [
-      'Chrome'
+      'Chrome' // 据说Travis上没有谷歌浏览器
     ],
 
     customLaunchers: {

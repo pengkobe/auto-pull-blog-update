@@ -21,7 +21,7 @@
     "clean:start": "npm start",
     "clean": "npm cache clean && npm run rimraf -- node_modules doc coverage dist",
     "docker": "docker",
-    "docs": "npm run typedoc -- --options typedoc.json --exclude '**/*.spec.ts' ./src/",
+    "docs": "npm run typedoc -- --options typedoc.json --exclude '**/*.spec.ts' ./src/ ./notes/ ./server/",
     "e2e:live": "npm run e2e -- --elementExplorer",
     "e2e": "npm run protractor",
     "github-deploy:dev": "webpack --config config/webpack.github-deploy.js --progress --profile --env.githubDev",
