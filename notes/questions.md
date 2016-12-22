@@ -8,6 +8,8 @@
 5. karma + webpack  
 6. 持续集成( TravisCI vs Jenkins )
    - codecov:可以部署到 github 上
+   - 错误日志
+     + [Property 'map' does not exist on type 'Observable<Response>](http://stackoverflow.com/questions/37208801/property-map-does-not-exist-on-type-observableresponse)
  - http://pinkyjie.com/2016/02/27/continuous-integration-with-travis-ci/  
  - ruanyf repo：JS-Training
  7. 测试

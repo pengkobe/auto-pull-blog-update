@@ -1,4 +1,5 @@
-# auto-pull-blog-update
+# auto-pull-blog-update  
+![travis-ci](https://travis-ci.org/pengkobe/my-web-crawler.svg?branch=master)
 > auto pull blog update from blogger you care about. 
 
 ## How to use

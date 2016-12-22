@@ -29,4 +29,4 @@ script:
   - npm run build:prod
   - npm run server:prod:ci &
   - sleep 3
-  - npm run e2e
+  #- npm run e2e

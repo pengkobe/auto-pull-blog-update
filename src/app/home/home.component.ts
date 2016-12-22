@@ -33,9 +33,8 @@ export class HomeComponent {
     this.title.getData().subscribe(data => {
       this.token = data.data.token;
       console.log(data.data.token);
-      this.title.getBloggerNews(this.token).subscribe(data => {
-        debugger;
-        console.log(data);
+      this.title.getBloggerNews(this.token).subscribe(bloggernews => {
+        console.log(bloggernews);
       });
     });
   }
