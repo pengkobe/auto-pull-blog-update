@@ -5,9 +5,10 @@
 ## 关键词
 1. merge/combineLatest
 2. map/flatmap
-3. startWith/just/create
+3. startWith/just/create/of
 
 ## Observable
+Doc : http://reactivex.io/rxjs/class/es6/Observable.js~Observable.html
 1. 创建
 2. 订阅
 3. 执行
