@@ -1,17 +1,17 @@
 # angular2
 
 ## 第一步
-文档 https://angular.io/docs/ts/latest/quickstart.html   
-文档(中文翻译) http://www.cnblogs.com/haogj/p/5059170.html  
+文档 https://angular.io/docs/ts/latest/quickstart.html
+文档(中文翻译) http://www.cnblogs.com/haogj/p/5059170.html
 脚手架：https://github.com/AngularClass/angular2-webpack-starter
 
 
 ## material2
-地址: https://github.com/angular/material2    
-官网: https://material.angular.io/  
+地址: https://github.com/angular/material2
+官网: https://material.angular.io/
 
 ##　@ 家族
-* @NgModule  
+* @NgModule
  利用一个元数据对象来告诉Angular如何去编译和运行代码。
  一个模块内部可以包含组件、指令、管道，每个Angular2的应用都至少有一个模块即跟模块。
   - declarations：模块内部Components/Directives/Pipes的列表，声明一下这个模块内部成员
@@ -53,11 +53,11 @@
 
 
 ## 路由
-本案例使用 @angular/router  
+本案例使用 @angular/router
 
 ## Angular Core
-* ApplicationRef  
-  其作用是用来监听ngZone中的onTurnDone事件，不论何时只要触发这个事件，那么将会执行一个tick()方法用来告诉Angular去执行变化监测。  
+* ApplicationRef
+  其作用是用来监听ngZone中的onTurnDone事件，不论何时只要触发这个事件，那么将会执行一个tick()方法用来告诉Angular去执行变化监测。
   参考:https://toutiao.io/posts/6qc4md/preview
 
 ## 发现问题
@@ -66,8 +66,9 @@
 
 ## 我所遇见的不同
 1. 强类型/强约束
-2. 不在纠结样式文件
-3. 和市场对接，webpack/state/[hmr-Hot Module Replacement](https://github.com/AngularClass/angular2-hmr)  
+2. 不再纠结样式文件
+3. 和市场对接，webpack/state
+4. [hmr-Hot Module Replacement](https://github.com/AngularClass/angular2-hmr)，可以实现动态刷新而不丢失store
 
 
 ## 开始
