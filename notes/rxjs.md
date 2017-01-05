@@ -110,5 +110,6 @@ suggestion1Stream.subscribe(function(suggestion) {
 
 
 ## 参考
-[RxJS 教程](https://segmentfault.com/a/1190000004293922) by  caolixiang
-https://gist.github.com/staltz/868e7e9bc2a7b8c1f754
+* [RxJS 教程](https://segmentfault.com/a/1190000004293922) by  caolixiang
+https://gist.github.com/staltz/868e7e9bc2a7b8c1f754  
+* [Rx--隐藏在Angular 2.x中利剑](https://gold.xitu.io/post/5860f4f461ff4b006ce9255f)

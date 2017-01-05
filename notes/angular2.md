@@ -85,3 +85,9 @@
 1. node_modules\typescript\lib 未指向有效的 tsserver 安装。将禁用 TypeScript 语言功能。
    方案: http://www.cnblogs.com/junxian_chen/p/5914012.html
 2. webpack出现一系列报错
+
+
+
+## 学习资料
+《Angular 2.x 从0到1》
+https://gold.xitu.io/user/578e6f3c0a2b580068609665
