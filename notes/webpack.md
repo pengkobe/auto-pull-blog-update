@@ -20,6 +20,21 @@
 * Webpack 的配置提供了 resolve 和 resolveLoader 参数来设置模块解析的处理细节，resolve 用来配置应用层的模块（要被打包的模块）解析，resolveLoader 用来配置 loader 模块的解析。
 
 
+### 项目 webpack 文件
+* webpack.common.js,公用部分
+
+* webpack.dev.js,开发
+
+* webpack.github-deploy.js,github部署
+
+* webpack.prod.js,发布
+
+* webpack.test.js,测试
+
+
+### 项目使用插件列表
+
+
 ### devDependencies & dependencies
 前者用来声明一些build过程中需要用的到一些构建工具，而后者用来声明开发使用到的前端库。
 
