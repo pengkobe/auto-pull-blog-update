@@ -3,6 +3,20 @@
 它不是一个构建工具，而是module bundler，webpack就是根据module文件间的依赖将所有module打包（bundle）起来。
 其有点是使用loader的概念让配置更加容易，再也不用和一堆文件路径打交道了。
 
+## 项目 webpack 文件
+* webpack.common.js,公用部分  
+  
+* webpack.dev.js,开发  
+  
+* webpack.github-deploy.js,github部署  
+  
+* webpack.prod.js,发布    
+  
+* webpack.test.js,测试    
+
+## 项目使用插件列表
+  
+
 
 ### devDependencies & dependencies
 前者用来声明一些build过程中需要用的到一些构建工具，而后者用来声明开发使用到的前端库。
