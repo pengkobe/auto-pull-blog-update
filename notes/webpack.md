@@ -3,6 +3,22 @@
 它不是一个构建工具，而是module bundler，webpack就是根据module文件间的依赖将所有module打包（bundle）起来。
 其有点是使用loader的概念让配置更加容易，再也不用和一堆文件路径打交道了。
 
+### Why webpack
+* 将依赖树拆分成按需加载的块
+* 初始化加载的耗时尽量少
+* 各种静态资源都可以视作模块
+* 将第三方库整合成模块的能力
+* 可以自定义打包逻辑的能力
+* 适合大项目，无论是单页还是多页的 Web 应用
+
+### 开发环境
+* webpack-dev-server
+  > 它将在 localhost:8080 启动一个 express 静态资源 web 服务器，并且会以监听模式自动运行 webpack，在浏览器打开 http://localhost:8080/ 或 http://localhost:8080/webpack-dev-server/ 可以浏览项目中的页面和编译后的资源输出，并且通过一个 socket.io 服务实时监听它们的变化并自动刷新页面。
+
+### 错误处理
+* 打印 ```webpack --display-error-details```
+* Webpack 的配置提供了 resolve 和 resolveLoader 参数来设置模块解析的处理细节，resolve 用来配置应用层的模块（要被打包的模块）解析，resolveLoader 用来配置 loader 模块的解析。
+
 
 ### devDependencies & dependencies
 前者用来声明一些build过程中需要用的到一些构建工具，而后者用来声明开发使用到的前端库。
@@ -77,4 +93,5 @@ new webpack.optimize.CommonsChunkPlugin('vendor', isProd ? 'vendor.[hash].js' : 
 个人有使用webpack结合vue开发了一个项目:[my-twitter-system](https://github.com/pengkobe/my-twitter-system) ,欢迎start。
 
 ###  参考
-http://pinkyjie.com/2016/03/05/webpack-tips/
+* http://pinkyjie.com/2016/03/05/webpack-tips/
+* 腾讯高级前端工程师赵达:http://webpackdoc.com/
