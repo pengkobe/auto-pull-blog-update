@@ -141,4 +141,5 @@ new webpack.optimize.CommonsChunkPlugin('vendor', isProd ? 'vendor.[hash].js' : 
 
 ###  参考
 * http://pinkyjie.com/2016/03/05/webpack-tips/
-* 腾讯高级前端工程师赵达:http://webpackdoc.com/
+* 腾讯高级前端工程师赵达 : http://webpackdoc.com/
+* 常用 loader 与 plugin : https://segmentfault.com/a/1190000005106383
