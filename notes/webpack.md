@@ -1,7 +1,7 @@
 **最近有个项目需要用到webpack，在这里记录一些难点与一些概念性的知识。**
->  webpack其实和grunt/gulp根本不是一种东西，
-它不是一个构建工具，而是module bundler，webpack就是根据module文件间的依赖将所有module打包（bundle）起来。
-其有点是使用loader的概念让配置更加容易，再也不用和一堆文件路径打交道了。
+>  webpack其实和 grunt/gulp 根本不是一种东西，
+它不是一个构建工具，而是 module bundler，webpack 就是根据 module 文件间的依赖将所有module打包（bundle）起来。
+其有点是使用 loader 的概念让配置更加容易，再也不用和一堆文件路径打交道了。
 
 ### Why webpack
 * 将依赖树拆分成按需加载的块
@@ -33,6 +33,38 @@
 
 
 ### 项目使用插件列表
+1. common
+    * assets-webpack-plugin，[link](https://github.com/kossnocorp/assets-webpack-plugin)
+      Webpack plugin that emits a json file with assets paths.
+    * NormalModuleReplacementPlugin,匹配resourceRegExp，替换为newResource
+    * ContextReplacementPlugin,替换上下文的插件
+    * CommonsChunkPlugin,多个 html共用一个js文件(chunk)
+    * copy-webpack-plugin
+    * awesome-typescript-loader
+      - ForkCheckerPlugin
+    * html-webpack-plugin
+    * LoaderOptionsPlugin
+    * script-ext-html-webpack-plugin,Enhances html-webpack-plugin functionality with async and defer attributes for script elements
+2. dev
+    * NamedModulesPlugin  ( 暂时无用 )
+    * LoaderOptionsPlugin ( Repeat )
+    * DefinePlugin
+3. prod
+   * DedupePlugin，去重插件
+   * DefinePlugin ( Repeat )
+   * IgnorePlugin  ( 暂时无用 )
+   * LoaderOptionsPlugin ( Repeat )
+   * NormalModuleReplacementPlugin ( Repeat )
+   * ProvidePlugin，使得 jquery 可暴露到全局
+   * UglifyJsPlugin，压缩
+   * WebpackMd5Hash
+   * V8LazyParseWebpackPlugin
+     > This is a webpack plugin designed to exploit the V8 engines treatment of functions with parens wrapped around them. This lazy loads the parsing decreasing initial load time.
+4. test
+   * ProvidePlugin ( Repeat )
+   * DefinePlugin ( Repeat )
+   * LoaderOptionsPlugin ( Repeat )
+   * ContextReplacementPlugin ( Repeat )
 
 
 ### devDependencies & dependencies
