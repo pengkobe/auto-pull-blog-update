@@ -48,7 +48,7 @@ module.exports = function (config) {
         captureTimeout: 60000,
         singleRun: false,
 
-        // 代码覆盖率
+        // 代码覆盖率配置项
         reporters: ['progress','coverage'],
         preprocessors : {'src.js': 'coverage'},
         coverageReporter: {

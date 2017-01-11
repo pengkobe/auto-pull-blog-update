@@ -1,7 +1,11 @@
 **最近有个项目需要用到webpack，在这里记录一些难点与一些概念性的知识。**
 >  webpack其实和 grunt/gulp 根本不是一种东西，
 它不是一个构建工具，而是 module bundler，webpack 就是根据 module 文件间的依赖将所有module打包（bundle）起来。
-其有点是使用 loader 的概念让配置更加容易，再也不用和一堆文件路径打交道了。
+其有点是使用 loader 的概念让配置更加容易，再也不用和一堆文件路径打交道了。  
+
+Doc:https://webpack.github.io/docs/configuration.html  
+
+对我来说，以前还需要用 bower 装前端插件，现在都可以使用 npm 进行管理了 
 
 ### Why webpack
 * 将依赖树拆分成按需加载的块
@@ -65,6 +69,9 @@
    * DefinePlugin ( Repeat )
    * LoaderOptionsPlugin ( Repeat )
    * ContextReplacementPlugin ( Repeat )
+
+#### 其它插件
+* webpack-vendor-chunk-plugin：Removes the runtime code from a webpack chunk.
 
 
 ### devDependencies & dependencies
