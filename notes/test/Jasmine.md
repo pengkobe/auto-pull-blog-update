@@ -13,7 +13,7 @@ Jasmine为 BDD(行为驱动开发)
 * ```and.callFake()```,指定一个假的自定义函数来执行
 * ```and.throwError()```,模拟异常抛出
 
-其他追踪属性： 
+其他追踪属性：
 
 calls：对于被Spy的函数的调用，都可以在calls属性中跟踪。
 
@@ -41,10 +41,16 @@ jasmine.clock()
 * ngModel.$setViewValue
 
 ## 问题
-Angualar 怎么调试 & 绑定的方法
+Angualar 怎么调试 & 绑定的方法,看了一篇文章后找到了答案
+
+```javascript
+ expect(elm.isolateScope().isOverMin()).toBeFalsy();
+```
+原文地址: [AngularJs directive 的单元测试方法](https://segmentfault.com/a/1190000000486421)
+源代码地址:https://github.com/revolunet/angular-stepper/blob/master/src/angular-stepper.spec.js
 
 
 ## 一些教程
-* 官网：http://jasmine.github.io/2.3/introduction.html  
+* 官网：http://jasmine.github.io/2.3/introduction.html
 * Jasmine 使用教程:http://www.jianshu.com/p/a8ee7fb47512  ( 非常简单的流水账 )
 * Jasmine入门(下):http://www.cnblogs.com/wushangjue/p/4575826.html  ( Api搬过来而已 )
