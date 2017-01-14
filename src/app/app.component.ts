@@ -40,6 +40,12 @@ import { AppState } from './app.service';
           About
         </a>
       </span>
+      |
+      <span>
+        <a [routerLink]=" ['./md'] ">
+          MDTEST
+        </a>
+      </span>
     </nav>
 
     <main>
