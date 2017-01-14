@@ -36,6 +36,7 @@ module.exports = async function () {
     schedule_task = schedule.scheduleJob('55 * * * * *', function () {
         runTask(function (param) {
             console.log('完美运行一次:', new Date());
+            console.log('docs:', param);
         }, function (param) {
             console.log('失败运行一次:', new Date());
             console.log('失败原因:', param);
@@ -80,7 +81,7 @@ module.exports = async function () {
                     reject("no blogger!");
                     return next(err);
                 } else {
-                    // console.log('blogmodel.lastUpdateTime:', new Date(date) > blogmodel[0].lastUpdateTime);
+                     //console.log('blogmodel.lastUpdateTime:', new Date(date) > blogmodel[0].lastUpdateTime);
                 }
 
                 // 时间对比

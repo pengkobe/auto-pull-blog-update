@@ -20,6 +20,11 @@ const BlogNewsSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    // 链接
+    link: {
+        type: String,
+        default: ''
+    },
     // 内容
     content: {
         type: String,

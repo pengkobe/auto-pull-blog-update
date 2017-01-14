@@ -14,6 +14,14 @@ import { XLarge } from './x-large';
   templateUrl: './task.component.html'
 })
 export class TaskComponent {
+  news = [
+    {
+      from: {name : 'test'},
+      title: 'test title',
+      publishTime: new Date('1/1/16'),
+    },
+  ];
+
   // TypeScript public modifiers
   constructor(public taskservice: TaskService, public bloggerservice: BloggerService) {
 
@@ -34,6 +42,13 @@ export class TaskComponent {
     console.log("startTasks!!!!");
     this.taskservice.startTasks().subscribe(data => {
       console.log("startTasks:",data.data);
+    });
+  }
+
+  loadBloggerNews(){
+    this.bloggerservice.getBloggerNews().subscribe(data => {
+      console.log('getBloggerNews:',data.data);
+      this.news=data.data;
     });
   }
 }

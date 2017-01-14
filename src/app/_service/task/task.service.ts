@@ -29,16 +29,4 @@ export class TaskService {
     return this.http.get('http://localhost:3001/begintasks').map(res => res.json());
   }
 
-   /**
-   * 获取新闻列表
-   */
-  getBloggerNews(token) {
-    return this.http.get('http://localhost:3001/blognews').map(res => res.text());
-
-    // let headers = new Headers();
-    // headers.append('Authorization', 'dsd ' + token);
-    // return this.http.get('http://localhost:3001/blognews', {
-    //   headers: headers
-    // }).map(res => res.text());   // 2
-  }
 }

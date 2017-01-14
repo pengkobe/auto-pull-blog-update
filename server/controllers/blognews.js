@@ -15,7 +15,7 @@ async function loadBlognews(ctx, next) {
     let blognews = await Blognews.find()
         .populate('from')
         .sort({ pullTime: -1 })
-        .select('from title pullTime publishTime hasRead')
+        .select('from title link pullTime publishTime hasRead')
         .limit(10)
         .skip(0)
         .exec().catch(err => {
