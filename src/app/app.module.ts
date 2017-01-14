@@ -22,6 +22,7 @@ import { XLarge } from './home/x-large';
 
 // -----
 import { MDComponent } from './md';
+import { TaskComponent } from './task';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -46,7 +47,8 @@ type StoreType = {
     HomeComponent,
     NoContentComponent,
     XLarge,
-    MDComponent
+    MDComponent,
+    TaskComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,
