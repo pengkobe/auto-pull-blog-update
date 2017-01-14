@@ -32,10 +32,14 @@ module.exports = async function () {
     if (schedule_task) {
         schedule_task.cancel();
     }
-    schedule_task = schedule.scheduleJob('55 55 23 * * *', function () {
+    // 55 55 23
+    schedule_task = schedule.scheduleJob('55 * * * * *', function () {
         runTask(function (param) {
             console.log('完美运行一次:', new Date());
-        }, function (param) { console.log('失败运行一次:', new Date()); })
+        }, function (param) {
+            console.log('失败运行一次:', new Date());
+            console.log('失败原因:', param);
+        })
     });
 
     // 地址
@@ -43,7 +47,7 @@ module.exports = async function () {
         superagent.get(page).end(async function (err, sres) {
 
             // 获取最新博文时间
-            let blogmodel = await Blogger.find({ name: 'yiwang' })
+            let blogmodel = await Blogger.find({ name: 'yinwang' })
                 .exec().catch(err => {
                     utils.logger.error(err);
                     this.throw(500, '内部错误')
@@ -52,7 +56,7 @@ module.exports = async function () {
             // 常规的错误处理
             if (err) {
                 console.log('get yinwang.org err!\n', err);
-                reject([]);
+                reject(err);
                 return next(err);
             }
 
@@ -73,7 +77,7 @@ module.exports = async function () {
                 // let date = patt.exec(link)[1];
 
                 if (!blogmodel.length || blogmodel.length == 0) {
-                    reject([]);
+                    reject("no blogger!");
                     return next(err);
                 } else {
                     // console.log('blogmodel.lastUpdateTime:', new Date(date) > blogmodel[0].lastUpdateTime);
@@ -92,17 +96,17 @@ module.exports = async function () {
                 }
             });
 
-            // 存入数据库 
+            // 存入数据库
             Blognews_2.create(newsArray, function (err) {
                 if (err) {
-                    reject([]);
+                    reject("store article err！");
                     return next(err);
                 }
                 var docs = Array.prototype.slice.call(arguments, 1);
                 resolve(docs);
             });
 
-            // 更新最后拉取时间 
+            // 更新最后拉取时间
             blogmodel[0].lastUpdateTime = new Date();
             await Blogger.update({ _id: blogmodel[0]._id }, blogmodel[0])
                 .exec().catch(err => {

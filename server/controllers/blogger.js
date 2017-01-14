@@ -103,7 +103,7 @@ async function deleteBlogger(){
   if(null === blogger){
     this.throw(400,'id不存在');
   }
-  
+
   const result = await Blogger.remove({_id:id}).exec().catch(err => {
     utils.logger.error(err);
     this.throw(500,'内部错误')

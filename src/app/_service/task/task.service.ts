@@ -33,10 +33,12 @@ export class TaskService {
    * 获取新闻列表
    */
   getBloggerNews(token) {
-    let headers = new Headers();
-    headers.append('Authorization', 'dsd ' + token);
-    return this.http.get('http://localhost:3001/blognews', {
-      headers: headers
-    }).map(res => res.text());   // 2
+    return this.http.get('http://localhost:3001/blognews').map(res => res.text());
+
+    // let headers = new Headers();
+    // headers.append('Authorization', 'dsd ' + token);
+    // return this.http.get('http://localhost:3001/blognews', {
+    //   headers: headers
+    // }).map(res => res.text());   // 2
   }
 }
