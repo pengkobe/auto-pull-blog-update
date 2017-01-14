@@ -1,0 +1,35 @@
+<button md-icon-button [mdMenuTriggerFor]="menu">
+    <md-icon>more_vert</md-icon>
+</button>
+
+<!-- 菜单导航 -->
+<md-menu #menu="mdMenu">
+    <a [routerLink]=" ['./'] " md-menu-item>
+        <md-icon>home</md-icon>Index</a>
+    <a [routerLink]=" ['./home'] " md-menu-item>
+        <md-icon>home</md-icon>Home</a>
+    <a [routerLink]=" ['./detail'] " md-menu-item>
+        <md-icon>notifications_off</md-icon>Details
+    </a>
+    <a [routerLink]=" ['./about'] " md-menu-item>
+        About
+    </a>
+    <a [routerLink]=" ['./md'] " md-menu-item>
+        MDTEST
+    </a>
+</md-menu>
+
+
+<!-- 内容加载区域 -->
+<main>
+    <router-outlet></router-outlet>
+</main>
+<pre class="app-state">this.appState.state = {{ appState.state | json }}</pre>
+<footer>
+    <div>
+        <span>create by <a [href]="url">kobepeng</a> built with:</span>
+        <a [href]="url">
+            <img [src]="angularclassLogo" width="30px">
+        </a>
+    </div>
+</footer>

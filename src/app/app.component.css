@@ -7,3 +7,9 @@ html, body{
 span.active {
   background-color: gray;
 }
+footer{
+  position: fixed;
+  bottom: 0px;
+  text-align: center;
+  width: 100%;
+}
