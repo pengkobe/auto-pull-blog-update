@@ -68,10 +68,71 @@
 
 
 ## 我所遇见的不同
-1. 强类型/强约束
-2. 不再纠结样式文件
-3. 和市场对接，webpack/state
-4. [hmr-Hot Module Replacement](https://github.com/AngularClass/angular2-hmr)，可以实现动态刷新而不丢失store
+### 强类型/强约束
+### 不再纠结样式文件
+### 和市场对接，webpack/state
+### hmr
+其可以实现可以实现动态刷新而不丢失store，本项目在 webpack.common.js 中添加如下配置
+```
+{
+    test: /\.ts$/,
+    use: [
+      '@angularclass/hmr-loader?pretty=' + !isProd + '&prod=' + isProd
+      'awesome-typescript-loader',
+      'angular2-template-loader',
+      'angular2-router-loader'
+    ]
+     exclude: [/\.(spec|e2e)\.ts$/]
+}
+```
+main.browser.ts 中做初始化加载启动模块
+app.module.ts 中配置加载逻辑
+
+```javascript
+export class AppModule {
+  constructor(public appRef: ApplicationRef, public appState: AppState) { }
+
+  hmrOnInit(store: StoreType) {
+    if (!store || !store.state) return;
+    console.log('HMR store', JSON.stringify(store, null, 2));
+    // set state
+    this.appState._state = store.state;
+    // set input values
+    if ('restoreInputValues' in store) {
+      let restoreInputValues = store.restoreInputValues;
+      setTimeout(restoreInputValues);
+    }
+
+    this.appRef.tick();
+    delete store.state;
+    delete store.restoreInputValues;
+  }
+
+  hmrOnDestroy(store: StoreType) {
+    const cmpLocation = this.appRef.components.map(cmp => cmp.location.nativeElement);
+    // save state
+    const state = this.appState._state;
+    store.state = state;
+    // recreate root elements
+    store.disposeOldHosts = createNewHosts(cmpLocation);
+    // save input values
+    store.restoreInputValues = createInputTransfer();
+    // remove styles
+    removeNgStyles();
+  }
+
+  hmrAfterDestroy(store: StoreType) {
+    // display new elements
+    store.disposeOldHosts();
+    delete store.disposeOldHosts;
+  }
+
+}
+```
+
+* github地址:[hmr-Hot Module Replacement](https://github.com/AngularClass/angular2-hmr)
+* 教程:[[译] Webpack 用来做模块热替换(hot module replacement) by 题叶](https://segmentfault.com/a/1190000003872635)
+
 
 
 ## 开始

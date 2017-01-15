@@ -2,6 +2,7 @@
 > 界面设计打算简单的引入谷歌的 Material Design
 
 本项目使用:https://github.com/angular/material2
+组件演示地址:https://material.angular.io
 
 ## 怎么使用
 1. 在 css 文件中引入样式```@import '~@angular/material/core/theming/prebuilt/deeppurple-amber.css';```
