@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { MdDialog,MdDialogRef } from '@angular/material';
 
 import { TaskService } from '../_service/task';
 import { BloggerService } from '../_service/blogger';
-import { XLarge } from './x-large';
+import { AddFriendDialogComponent } from './addfriend';
+
 
 @Component({
   selector: 'task',
@@ -23,7 +25,8 @@ export class TaskComponent {
   ];
 
   // TypeScript public modifiers
-  constructor(public taskservice: TaskService, public bloggerservice: BloggerService) {
+  constructor(public taskservice: TaskService, public bloggerservice: BloggerService,
+    public dialog: MdDialog) {
 
   }
 
@@ -33,8 +36,13 @@ export class TaskComponent {
 
   addBlogger(){
     console.log("addBlogger!!!!");
-    this.bloggerservice.addBlogger().subscribe(data => {
-      console.log('addBlogger:',data.data);
+    // this.bloggerservice.addBlogger().subscribe(data => {
+    //   console.log('addBlogger:',data.data);
+    // });
+
+    this.dialog.open(AddFriendDialogComponent, {
+      height: '400px',
+      width: '400px',
     });
   }
 
@@ -52,3 +60,5 @@ export class TaskComponent {
     });
   }
 }
+
+

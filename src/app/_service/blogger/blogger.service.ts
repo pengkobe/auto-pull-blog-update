@@ -25,7 +25,7 @@ export class BloggerService {
    /**
    * 获取新闻列表
    */
-  getBloggerNews(token) {
+  getBloggerNews() {
     return this.http.get('http://localhost:3001/blognews').map(res => res.json());
 
     // let headers = new Headers();
