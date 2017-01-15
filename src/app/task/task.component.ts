@@ -36,11 +36,13 @@ export class TaskComponent {
 
   addBlogger(){
     console.log("addBlogger!!!!");
+    // 模拟数据
     // this.bloggerservice.addBlogger().subscribe(data => {
     //   console.log('addBlogger:',data.data);
     // });
-
-    this.dialog.open(AddFriendDialogComponent);
+    let dialogRef = this.dialog.open(AddFriendDialogComponent);
+    // dialogRef.afterClosed().subscribe(result => {
+    // });
   }
 
   startTasks() {
