@@ -40,10 +40,7 @@ export class TaskComponent {
     //   console.log('addBlogger:',data.data);
     // });
 
-    this.dialog.open(AddFriendDialogComponent, {
-      height: '400px',
-      width: '400px',
-    });
+    this.dialog.open(AddFriendDialogComponent);
   }
 
   startTasks() {

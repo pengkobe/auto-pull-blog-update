@@ -1,16 +1,16 @@
 <h1 md-dialog-title>添加博主</h1>
 <div md-dialog-content>
   <md-input-container>
-    <input md-input placeholder="博主姓名" value="">
+    <input md-input placeholder="博主姓名" [value]="model.name">
   </md-input-container>
   <md-input-container>
-    <input md-input placeholder="URL" value="">
+    <input md-input placeholder="URL" [value]="model.url">
   </md-input-container>
   <md-input-container>
-    <input md-input placeholder="任务JS" value="">
+    <input md-input placeholder="任务JS" [value]="model.taskJS">
   </md-input-container>
 </div>
-<div md-dialog-actions>
-  <button md-button (click)="dialogRef.close('Option 1')">Option 1</button>
-  <button md-button (click)="dialogRef.close('Option 2')">Option 2</button>
+<div class="submit-botton-group" md-dialog-actions>
+  <button md-raised-button (click)="dialogRef.close('1')">提交</button>
+  <button md-button (click)="dialogRef.close('0')">取消</button>
 </div>
