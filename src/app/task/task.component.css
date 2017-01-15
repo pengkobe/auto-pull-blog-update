@@ -1,0 +1,9 @@
+.task-nav-menu{
+  position: fixed;
+  left: 125px;
+  top:10px;
+}
+.task-new-title{
+  font-size: 30px;
+  margin-top:5px;
+}

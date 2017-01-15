@@ -4,11 +4,13 @@
   <div>
     <h4>Local State</h4>
     <form (ngSubmit)="submitState(localState.value)" autocomplete="off">
-      <input
+    <md-input-container>
+      <input md-input
         [value]="localState.value"
         (input)="localState.value = $event.target.value"
         placeholder="Submit Local State to App State"
         autofocus>
+      </md-input-container>
       <button md-raised-button color="primary">Submit Value</button>
     </form>
 

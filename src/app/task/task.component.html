@@ -1,4 +1,4 @@
-  <div>
+  <div class="task-nav-menu">
     <button (click)="addBlogger()" color="accent"
       md-raised-button>模拟添加博主</button>
      <button (click)="startTasks()"  color="warn"
@@ -8,7 +8,7 @@
  </div>
 
 <md-list>
-  <h3 md-subheader>新闻列表</h3>
+  <h3 md-subheader class="task-new-title">新闻列表</h3>
   <md-list-item *ngFor="let new of news">
     <md-icon md-list-avatar>folder</md-icon>
     <h4 md-line>{{new.title}}  <a md-line href="{{new.link}}">地址</a></h4>
