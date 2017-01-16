@@ -23,7 +23,7 @@ export class AddFriendDialogComponent {
 
    postBlogger(){
      return;
-     this.service.postBlogger(this.model);
+     //this.service.postBlogger(this.model);
    }
 
    ngOnInit() {

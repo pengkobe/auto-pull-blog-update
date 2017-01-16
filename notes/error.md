@@ -15,3 +15,12 @@
 3. 然后才可以用
 4. 注意:在 app.routes.ts 中已经加过的模块就不定要放在 entryComponents 中了？
 5. 一定要在入口模块中添加？在引用组件中添加行不通？
+
+## 版本问题
+现在最新版为: 2.0.0-beta.1,而我之前装的是 2.0.0-alpha.10 
+### Can't bind to 'mdMenuTriggerFor' since it isn't a known property of 'button'
+github ISSUE:https://github.com/angular/material2/issues/2478  
+
+
+### 'md-input-container' is not a known element:
+github ISSUE:https://github.com/angular/material2/issues/2267
