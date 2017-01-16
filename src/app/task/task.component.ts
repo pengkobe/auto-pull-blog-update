@@ -40,6 +40,7 @@ export class TaskComponent {
     // this.bloggerservice.addBlogger().subscribe(data => {
     //   console.log('addBlogger:',data.data);
     // });
+    
     let dialogRef = this.dialog.open(AddFriendDialogComponent);
     // dialogRef.afterClosed().subscribe(result => {
     // });

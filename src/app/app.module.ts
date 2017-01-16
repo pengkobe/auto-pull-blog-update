@@ -21,7 +21,6 @@ import { NoContentComponent } from './no-content';
 import { XLarge } from './home/x-large';
 
 // -----
-import { MDComponent } from './md';
 import { TaskComponent } from './task';
 import { AddFriendDialogComponent } from './task/addfriend';
 
@@ -51,7 +50,6 @@ type StoreType = {
     HomeComponent,
     NoContentComponent,
     XLarge,
-    MDComponent,
     TaskComponent,
     AddFriendDialogComponent
   ],
