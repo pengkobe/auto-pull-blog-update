@@ -3,19 +3,8 @@
       md-raised-button>模拟添加博主</button>
      <button (click)="startTasks()"  color="warn"
       md-raised-button>开启任务</button>
-     <button (click)="loadBloggerNews()"
-      md-raised-button>加载博主新闻</button>
  </div>
 
-<md-list>
-  <h3 md-subheader class="task-new-title">新闻列表</h3>
-  <md-list-item *ngFor="let new of news">
-    <md-icon md-list-avatar>folder</md-icon>
-    <h4 md-line>{{new.title}}  <a md-line href="{{new.link}}">地址</a></h4>
-    <p md-line> 作者:{{new.from.name}} </p>
-    <p md-line> 发布时间:{{new.publishTime | date}} </p>
-  </md-list-item>
-  <md-divider></md-divider>
-</md-list>
+
 
 

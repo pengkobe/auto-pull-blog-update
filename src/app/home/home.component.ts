@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { AppState } from '../app.service';
+import { BloggerService } from '../_service/blogger';
 import { Title } from './title';
 import { XLarge } from './x-large';
 
@@ -11,7 +12,8 @@ import { XLarge } from './x-large';
   selector: 'home',  // <home></home>
   // We need to tell Angular's Dependency Injection which providers are in our app.
   providers: [
-    Title
+    Title,
+    BloggerService
   ],
   // Our list of styles in our component. We may add more to compose many styles together
   styleUrls: ['./home.component.css'],
@@ -19,12 +21,19 @@ import { XLarge } from './x-large';
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
+  news = [
+    {
+      from: {name : 'test'},
+      title: 'test title',
+      publishTime: new Date('1/1/16'),
+    },
+  ];
   // Set our default values
   localState = { value: '' };
   token = null;
   // TypeScript public modifiers
-  constructor(public appState: AppState, public title: Title) {
-
+  constructor(public appState: AppState, public title: Title,
+    public bloggerservice: BloggerService) {
   }
 
   ngOnInit() {
@@ -43,5 +52,12 @@ export class HomeComponent {
     console.log('submitState', value);
     this.appState.set('value', value);
     this.localState.value = '';
+  }
+
+   loadBloggerNews(){
+    this.bloggerservice.getBloggerNews().subscribe(data => {
+      console.log('getBloggerNews:',data.data);
+      this.news=data.data;
+    });
   }
 }
