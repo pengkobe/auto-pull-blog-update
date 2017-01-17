@@ -1,19 +1,9 @@
 <div class="card-container">
-  <h1 x-large class="sample-content">Your Content Here</h1>
+  <h1 x-large class="sample-content">首页</h1>
 
   <div>
-    <h4>Local State</h4>
-    <form (ngSubmit)="submitState(localState.value)" autocomplete="off">
-      <md-input-container>
-        <input md-input [value]="localState.value" (input)="localState.value = $event.target.value" placeholder="Submit Local State to App State"
-          autofocus>
-      </md-input-container>
-      <button md-raised-button color="primary">Submit Value</button>
-    </form>
-
     <!-- loadBloggerNews -->
     <button (click)="loadBloggerNews()" md-raised-button>加载博主新闻</button>
-
     <md-list>
       <h3 md-subheader class="task-news-title">新闻列表</h3>
       <md-list-item *ngFor="let new of news">
@@ -21,10 +11,20 @@
         <h4 md-line>{{new.title}} <a md-line href="{{new.link}}">地址</a></h4>
         <p md-line> 作者:{{new.from.name}} </p>
         <p md-line> 发布时间:{{new.publishTime | date}} </p>
+        <md-checkbox [checked]="new.hasRead">已读</md-checkbox>
       </md-list-item>
       <md-divider></md-divider>
     </md-list>
 
+    <!-- test Local State -->
+    <h4>Local </h4>
+    <form (ngSubmit)="submitState(localState.value)" autocomplete="off">
+      <md-input-container>
+        <input md-input [value]="localState.value" (input)="localState.value = $event.target.value" placeholder="Submit Local State to App State"
+          autofocus>
+      </md-input-container>
+      <button md-raised-button color="primary">Submit Value</button>
+    </form>
     <pre>this.localState = {{ localState | json }}</pre>
   </div>
 </div>
@@ -40,5 +40,3 @@
     <p>...</p>
   </md-tab>
 </md-tab-group>
-
-<md-checkbox>Unchecked</md-checkbox>
