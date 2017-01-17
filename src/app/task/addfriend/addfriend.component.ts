@@ -22,8 +22,12 @@ export class AddFriendDialogComponent {
    }
 
    postBlogger(){
-     return;
-     //this.service.postBlogger(this.model);
+     //return;
+     this.service.postBlogger(this.model).subscribe(data => {
+        console.log('postBlogger:',data);
+        this.dialogRef.close('1');
+        alert("提交成功！");
+    });;
    }
 
    ngOnInit() {

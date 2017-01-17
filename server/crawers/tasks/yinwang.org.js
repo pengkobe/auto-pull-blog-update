@@ -33,7 +33,7 @@ module.exports = async function () {
         schedule_task.cancel();
     }
     // 55 55 23
-    schedule_task = schedule.scheduleJob('55 * * * * *', function () {
+    schedule_task = schedule.scheduleJob('55 55 * * * *', function () {
         runTask(function (param) {
             console.log('完美运行一次:', new Date());
             console.log('docs:', param);
@@ -84,7 +84,7 @@ module.exports = async function () {
                      //console.log('blogmodel.lastUpdateTime:', new Date(date) > blogmodel[0].lastUpdateTime);
                 }
 
-                // 时间对比
+                // 时间对比 new Date("2016-11-01")
                 if (new Date(date) > blogmodel[0].lastUpdateTime) {
                     newsArray.push({
                         from: blogmodel[0]._id,
