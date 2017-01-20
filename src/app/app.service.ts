@@ -30,6 +30,7 @@ export class AppState {
 
   set(prop: string, value: any) {
     // internally mutate our state
+    localStorage.setItem(prop,value);
     return this._state[prop] = value;
   }
 
