@@ -13,8 +13,8 @@ async function create(ctx, next) {
     const username = ctx.request.body.username,
         password = ctx.request.body.password;
     let user = {
-        username: 'py',
-        password: '123',
+        username: username,
+        password: password,
     };
     if (user !== null) {
         if (user.password === password) {

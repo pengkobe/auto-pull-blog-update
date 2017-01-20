@@ -5,7 +5,7 @@ const Blognews = require('../models/blognews');
 const mw = require('../middlewares/index.js');
 module.exports.init = function (router) {
     // mw.verify_token,
-    router.get('/blognews',  loadBlognews);
+    router.get('/blognews', loadBlognews);
 }
 
 /**
@@ -33,3 +33,18 @@ async function loadBlognews(ctx, next) {
         ctx.throw(500, '内部错误');
     }
 }
+
+/**
+ * 更新阅读状态
+ */
+async function updateReadState(ctx, next) {
+    const from = ctx.request.body.from;
+    const state = ctx.request.body.state;
+    let result = await Blognews.updateReadState(from, state);
+    ctx.status = 200;
+    ctx.body = {
+        success: true,
+        data: result
+    };
+}
+
