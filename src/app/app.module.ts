@@ -23,6 +23,7 @@ import { XLarge } from './home/x-large';
 // -----
 import { TaskComponent } from './task';
 import { AddFriendDialogComponent } from './task/addfriend';
+import { LoginDialogComponent } from './home/login';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -42,7 +43,8 @@ type StoreType = {
 @NgModule({
   bootstrap: [AppComponent],
   entryComponents: [
-    AddFriendDialogComponent
+    AddFriendDialogComponent,
+    LoginDialogComponent
   ],
   declarations: [
     AppComponent,
@@ -51,7 +53,8 @@ type StoreType = {
     NoContentComponent,
     XLarge,
     TaskComponent,
-    AddFriendDialogComponent
+    AddFriendDialogComponent,
+    LoginDialogComponent
   ],
   imports: [ // import Angular's modules
     BrowserModule,

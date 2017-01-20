@@ -1,0 +1,13 @@
+<h1 md-dialog-title>登录</h1>
+<div md-dialog-content>
+  <md-input-container>
+    <input md-input placeholder="用户名" [(ngModel)]="usermodel.username"> 
+  </md-input-container>
+ <md-input-container>
+    <input md-input placeholder="密码" [(ngModel)]="usermodel.password">
+  </md-input-container>
+</div>
+<div class="submit-botton-group" md-dialog-actions>
+  <button md-raised-button (click)="login()">提交</button>
+  <button md-button (click)="dialogRef.close('0')">取消</button>
+</div>

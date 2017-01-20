@@ -11,22 +11,14 @@ export class Title {
   /**
    * 获取Token
    */
-  getData() {
+  getData(username, password) {
     console.log('Title#getData(): Get Data');
-    let username = 'py';
-    let password = '123';
     let creds = 'username=' + username + '&password=' + password + '&extra=color';
     let headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
     return this.http.post('http://localhost:3001/tokens', creds, {
       headers: headers
     }).map(res => res.json());
-
-    // return this.http.get('/assets/data.json')
-    //   .map(res => res.json());
-    // return {
-    //   value: 'AngularClass'
-    // };
   }
   /**
    * 获取博客新闻

@@ -4,6 +4,8 @@ import { AppState } from '../app.service';
 import { BloggerService } from '../_service/blogger';
 import { Title } from './title';
 import { XLarge } from './x-large';
+import { MdDialog,MdDialogRef } from '@angular/material';
+import { LoginDialogComponent } from './login';
 
 @Component({
   // The selector is what angular internally uses
@@ -33,20 +35,23 @@ export class HomeComponent {
   token = null;
   // TypeScript public modifiers
   constructor(public appState: AppState, public title: Title,
-    public bloggerservice: BloggerService) {
+    public bloggerservice: BloggerService,public dialog: MdDialog) {
   }
 
   ngOnInit() {
     console.log('hello `Home` component');
-    // 加载博客新闻
-    this.title.getData().subscribe(data => {
-      this.token = data.data.token;
-      console.log(data.data.token);
-      this.title.getBloggerNews(this.token).subscribe(bloggernews => {
-        console.log(bloggernews);
-      });
-    });
+    // this.title.getData().subscribe(data => {
+    //   this.token = data.data.token;
+    //   console.log(data.data.token);
+    //   this.title.getBloggerNews(this.token).subscribe(bloggernews => {
+    //     console.log(bloggernews);
+    //   });
+    // });
   }
+
+ OpenLoginDialog(){
+    let dialogRef = this.dialog.open(LoginDialogComponent);
+   }
 
   submitState(value: string) {
     console.log('submitState', value);

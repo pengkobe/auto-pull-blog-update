@@ -10,8 +10,8 @@
 参考链接:https://github.com/angular/angular/issues/11030
 
 新添加的模块必须在 app.module.ts 中进行注册
-1. 在 declarations 中添加该模块
-2. 在 entryComponents 中添加该模块
+1. 在 declarations 中添加该模块(*)
+2. 在 entryComponents 中添加该模块(*)
 3. 然后才可以用
 4. 注意:在 app.routes.ts 中已经加过的模块就不定要放在 entryComponents 中了？
 5. 一定要在入口模块中添加？在引用组件中添加行不通？
