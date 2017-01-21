@@ -35,7 +35,7 @@ describe('Title', () => {
     spyOn(console, 'log');
     expect(console.log).not.toHaveBeenCalled();
 
-    title.getData();
+    // title.getData();
     expect(console.log).toHaveBeenCalled();
     // expect(title.getData()).toEqual({ value: 'AngularClass' });
   }));

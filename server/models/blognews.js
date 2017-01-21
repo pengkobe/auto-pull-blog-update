@@ -57,16 +57,24 @@ BlogNewsSchema.path('publishTime').get(function (v) {
  * @param {Object} state 状态[ 0:未读 | 1:已读 ]
  */
 UserSchema.statics.updateReadState = async function (from, state) {
-    var query = { from: from };
-    var news = await this.findOne(query).exec().catch(err => {
+    var that = this;
+    return new Promise(function (resolve, reject) {
+        var query = { from: from };
+        var news = await that.findOne(query).exec().catch(err => {
             utils.logger.error(err);
-    });
-    console.log("updateReadState", news);
-    news.hasRead = state;
-    news.markModified('hasRead');
-    news.save(err =>{
-        utils.logger.error(err);
-    });
+        });
+        console.log("updateReadState", news);
+        news.hasRead = state;
+        news.markModified('hasRead');
+        news.save((err,doc) => {
+            if(err){
+                utils.logger.error(err);
+                reject(err);
+            }else{
+                resolve(doc);
+            }
+        });
+    })
 }
 
 
