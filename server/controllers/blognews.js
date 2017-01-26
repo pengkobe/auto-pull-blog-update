@@ -6,6 +6,7 @@ const mw = require('../middlewares/index.js');
 module.exports.init = function (router) {
     // mw.verify_token,
     router.get('/blognews', loadBlognews);
+    router.post('/updateReadState',updateReadState);
 }
 
 /**

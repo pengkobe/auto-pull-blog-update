@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 
 import { AppState } from '../app.service';
 import { BloggerService } from '../_service/blogger';
+import { NewsService } from '../_service/news';
 import { Title } from './title';
 import { XLarge } from './x-large';
 import { MdDialog,MdDialogRef } from '@angular/material';
@@ -15,7 +16,8 @@ import { LoginDialogComponent } from './login';
   // We need to tell Angular's Dependency Injection which providers are in our app.
   providers: [
     Title,
-    BloggerService
+    BloggerService,
+    NewsService
   ],
   // Our list of styles in our component. We may add more to compose many styles together
   styleUrls: ['./home.component.css'],
@@ -28,6 +30,7 @@ export class HomeComponent {
       from: {name : 'test'},
       title: 'test title',
       publishTime: new Date('1/1/16'),
+      hasRead:false
     },
   ];
   // Set our default values
@@ -35,7 +38,7 @@ export class HomeComponent {
   token = null;
   // TypeScript public modifiers
   constructor(public appState: AppState, public title: Title,
-    public bloggerservice: BloggerService,public dialog: MdDialog) {
+    public bloggerservice: BloggerService,public newsService :NewsService,public dialog: MdDialog) {
   }
 
   ngOnInit() {
@@ -49,7 +52,7 @@ export class HomeComponent {
     // });
   }
 
- OpenLoginDialog(){
+  openLoginDialog(){
     let dialogRef = this.dialog.open(LoginDialogComponent);
    }
 
@@ -64,5 +67,18 @@ export class HomeComponent {
       console.log('getBloggerNews:',data.data);
       this.news=data.data;
     });
+  }
+
+  toggleNewsState(p){
+    // 切换状态
+    for (var i = 0; i < this.news.length; i++) {
+      if(this.news[i].from._id == p.from._id){
+        this.news[i].hasRead = !p.hasRead;
+      }
+    }
+    this.newsService.toggleReadState(p.from._id, p.hasRead).subscribe(data => {
+      console.log('toggleNewsState:',data.data);
+       debugger;
+    })
   }
 }

@@ -1,5 +1,5 @@
 <div class="card-container">
-   <button (click)="OpenLoginDialog()"  color="warn"
+   <button (click)="openLoginDialog()"  color="warn"
       md-raised-button>登录</button>
   <h1 x-large class="sample-content">首页</h1>
 
@@ -13,7 +13,7 @@
         <h4 md-line>{{new.title}} <a md-line href="{{new.link}}">地址</a></h4>
         <p md-line> 作者:{{new.from.name}} </p>
         <p md-line> 发布时间:{{new.publishTime | date}} </p>
-        <md-checkbox [checked]="new.hasRead">已读</md-checkbox>
+        <md-checkbox [checked]="new.hasRead" (click)="toggleNewsState(new)">已读</md-checkbox>
       </md-list-item>
       <md-divider></md-divider>
     </md-list>
