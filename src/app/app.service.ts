@@ -21,6 +21,13 @@ export class AppState {
     throw new Error('do not mutate the `.state` directly');
   }
 
+  get token() {
+    return localStorage.getItem("token");
+  }
+  set token(value) {
+    localStorage.setItem("token",value);
+  }
+
 
   get(prop?: any) {
     // use our state getter for the clone

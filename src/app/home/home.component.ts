@@ -69,16 +69,19 @@ export class HomeComponent {
     });
   }
 
+  /*
+   切换阅读状态
+   */
   toggleNewsState(p){
+    p.hasRead = !p.hasRead;
     // 切换状态
-    for (var i = 0; i < this.news.length; i++) {
-      if(this.news[i].from._id == p.from._id){
-        this.news[i].hasRead = !p.hasRead;
-      }
-    }
+    // for (var i = 0; i < this.news.length; i++) {
+    //   if(this.news[i].from._id == p.from._id){
+    //     this.news[i].hasRead = !p.hasRead;
+    //   }
+    // }
     this.newsService.toggleReadState(p.from._id, p.hasRead).subscribe(data => {
       console.log('toggleNewsState:',data.data);
-       debugger;
     })
   }
 }
