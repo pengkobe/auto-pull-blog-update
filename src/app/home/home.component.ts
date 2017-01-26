@@ -27,7 +27,7 @@ import { LoginDialogComponent } from './login';
 export class HomeComponent {
   news = [
     {
-      from: {name : 'test'},
+      from: {name : 'test',_id:''},
       title: 'test title',
       publishTime: new Date('1/1/16'),
       hasRead:false
@@ -43,13 +43,6 @@ export class HomeComponent {
 
   ngOnInit() {
     console.log('hello `Home` component');
-    // this.title.getData().subscribe(data => {
-    //   this.token = data.data.token;
-    //   console.log(data.data.token);
-    //   this.title.getBloggerNews(this.token).subscribe(bloggernews => {
-    //     console.log(bloggernews);
-    //   });
-    // });
   }
 
   openLoginDialog(){
@@ -70,18 +63,15 @@ export class HomeComponent {
   }
 
   /*
-   切换阅读状态
+   * 设置 已读/未读
    */
   toggleNewsState(p){
-    p.hasRead = !p.hasRead;
-    // 切换状态
-    // for (var i = 0; i < this.news.length; i++) {
-    //   if(this.news[i].from._id == p.from._id){
-    //     this.news[i].hasRead = !p.hasRead;
-    //   }
-    // }
-    this.newsService.toggleReadState(p.from._id, p.hasRead).subscribe(data => {
-      console.log('toggleNewsState:',data.data);
-    })
+    var that = this;
+    setTimeout(function(){
+      p.hasRead = !p.hasRead;
+      that.newsService.toggleReadState(p.from._id, p.hasRead).subscribe(data => {
+        console.log('toggleNewsState:',data.data);
+      })
+    },10);
   }
 }

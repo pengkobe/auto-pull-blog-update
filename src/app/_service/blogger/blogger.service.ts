@@ -44,7 +44,6 @@ export class BloggerService {
    */
   getBloggerNews() {
     return this.http.get('http://localhost:3001/blognews').map(res => res.json());
-
     // let headers = new Headers();
     // headers.append('Authorization', 'dsd ' + token);
     // return this.http.get('http://localhost:3001/blognews', {
