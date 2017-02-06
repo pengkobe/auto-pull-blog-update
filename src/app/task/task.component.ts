@@ -31,10 +31,7 @@ export class TaskComponent {
 
   ngOnInit() {
     console.log('hello `task` component');
-    // 加载博主列表
-    this.bloggerservice.getBloggers().subscribe(data => {
-      this.bloggers = data.data;
-    });
+    this.loadBloggers();
   }
 
   addBlogger(){
@@ -45,14 +42,22 @@ export class TaskComponent {
     // });
 
     let dialogRef = this.dialog.open(AddFriendDialogComponent);
-    // dialogRef.afterClosed().subscribe(result => {
-    // });
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadBloggers();
+    });
   }
 
   startTasks() {
     console.log("startTasks!!!!");
     this.taskservice.startTasks().subscribe(data => {
       console.log("startTasks:",data.data);
+    });
+  }
+
+  // 加载博主列表
+  loadBloggers(){
+    this.bloggerservice.getBloggers().subscribe(data => {
+      this.bloggers = data.data;
     });
   }
 
