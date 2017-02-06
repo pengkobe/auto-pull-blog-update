@@ -36,8 +36,8 @@ async function create(ctx, next){
 }
 
 
-async function bloggerList(){
-  const tag = this.query.tag,
+async function bloggerList(ctx, next){
+  const tag = ctx.query.tag,
     queryOpt = {};
   if(tag !== undefined){
     queryOpt.url= {"$all":[tag]}
@@ -48,7 +48,7 @@ async function bloggerList(){
     .sort({ createTime: -1})
     .exec().catch(err => {
     utils.logger.error(err);
-    this.throw(500,'内部错误')
+    ctx.throw(500,'内部错误')
   })
   const resultArr = [];
   if(bloggerArr.length){
@@ -58,32 +58,32 @@ async function bloggerList(){
       utils.print(blogger);
     })
   }
-  this.status = 200;
-  this.body = {
+  ctx.status = 200;
+  ctx.body = {
     success:true,
     data:resultArr
   };
 }
 
 
-async function modify(){
-  const id = this.params.id;
+async function modify(ctx, next){
+  const id = ctx.params.id;
   const modifyOption = ctx.request.body;
   modifyOption.lastEditTime = new Date();
   modifyOption.bloggerPublished = false;
   let result = await Blogger.findByIdAndUpdate(id,{$set:modifyOption},{new:true}).populate('url').exec()
     .catch(err => {
       if(err.name === 'CastError'){
-        this.throw(400,'id不存在');
+        ctx.throw(400,'id不存在');
       }else{
         utils.logger.error(err);
-        this.throw(500,'内部错误')
+        ctx.throw(500,'内部错误')
       }
     });
   result = result.toObject();
   utils.print(result);
-  this.status = 200;
-  this.body = {
+  ctx.status = 200;
+  ctx.body = {
     success:true,
     data:result
   }
@@ -92,24 +92,24 @@ async function modify(){
 /**
  * delete
  */
-async function deleteBlogger(){
-  const id = this.params.id;
+async function deleteBlogger(ctx, next){
+  const id = ctx.params.id;
   const blogger = await Blogger.findOne({_id:id})
     .select('name')
     .exec().catch(err => {
       utils.logger.error(err);
-      this.throw(500,'内部错误')
+      ctx.throw(500,'内部错误')
     })
   if(null === blogger){
-    this.throw(400,'id不存在');
+    ctx.throw(400,'id不存在');
   }
 
   const result = await Blogger.remove({_id:id}).exec().catch(err => {
     utils.logger.error(err);
-    this.throw(500,'内部错误')
+    ctx.throw(500,'内部错误')
   });
-  this.status = 200;
-  this.body = {
+  ctx.status = 200;
+  ctx.body = {
     success:true,
   }
 }
