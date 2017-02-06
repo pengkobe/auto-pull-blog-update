@@ -43,6 +43,7 @@ export class HomeComponent {
 
   ngOnInit() {
     console.log('hello `Home` component');
+    this.loadBloggerNews();
   }
 
   openLoginDialog(){
