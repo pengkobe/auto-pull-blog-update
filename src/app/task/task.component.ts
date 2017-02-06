@@ -16,7 +16,12 @@ import { AddFriendDialogComponent } from './addfriend';
   templateUrl: './task.component.html'
 })
 export class TaskComponent {
-  
+  bloggers=[{
+    name:'yipeng',
+    createTime:'2017-01-01 10:00',
+    url:'https://yipeng.info'
+  }];
+
 
   // TypeScript public modifiers
   constructor(public taskservice: TaskService, public bloggerservice: BloggerService,
@@ -26,6 +31,10 @@ export class TaskComponent {
 
   ngOnInit() {
     console.log('hello `task` component');
+    // 加载博主列表
+    this.bloggerservice.getBloggers().subscribe(data => {
+      this.bloggers = data.data;
+    });
   }
 
   addBlogger(){
@@ -34,7 +43,7 @@ export class TaskComponent {
     // this.bloggerservice.addBlogger().subscribe(data => {
     //   console.log('addBlogger:',data.data);
     // });
-    
+
     let dialogRef = this.dialog.open(AddFriendDialogComponent);
     // dialogRef.afterClosed().subscribe(result => {
     // });
@@ -46,7 +55,7 @@ export class TaskComponent {
       console.log("startTasks:",data.data);
     });
   }
- 
+
 }
 
 

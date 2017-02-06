@@ -7,7 +7,6 @@ export class BloggerService {
   constructor(public http: Http) {
   }
 
-
   /**
    * [postBlogger 添加博主]
    * @param  {[Object]} model [博主实体对象]
@@ -37,6 +36,13 @@ export class BloggerService {
     return this.http.post('http://localhost:3001/bloggers', creds, {
       headers: headers
     }).map(res => res.json());
+  }
+
+  /**
+   * 获取博主列表
+   */
+  getBloggers() {
+    return this.http.get('http://localhost:3001/bloggers').map(res => res.json());
   }
 
    /**
