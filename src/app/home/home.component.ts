@@ -27,6 +27,7 @@ import { LoginDialogComponent } from './login';
 export class HomeComponent {
   news = [
     {
+      _id:'345423423423423',
       from: {name : 'test',_id:''},
       title: 'test title',
       publishTime: new Date('1/1/16'),
@@ -70,7 +71,7 @@ export class HomeComponent {
     var that = this;
     setTimeout(function(){
       p.hasRead = !p.hasRead;
-      that.newsService.toggleReadState(p.from._id, p.hasRead).subscribe(data => {
+      that.newsService.toggleReadState(p._id, p.hasRead).subscribe(data => {
         console.log('toggleNewsState:',data.data);
       })
     },10);

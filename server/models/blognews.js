@@ -56,10 +56,10 @@ BlogNewsSchema.path('publishTime').get(function (v) {
  * @param {Object} from 博主编号
  * @param {Object} state 状态[ 0:未读 | 1:已读 ]
  */
-BlogNewsSchema.statics.updateReadState = async function (from, state) {
+BlogNewsSchema.statics.updateReadState = async function (_id, state) {
     var that = this;
     return new Promise(async function (resolve, reject) {
-        var query = { from: from };
+        var query = { _id: _id };
         var news = await that.findOne(query).exec().catch(err => {
             utils.logger.error(err);
         });

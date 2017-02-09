@@ -37,7 +37,8 @@ module.exports = async function runTask(resolve, reject) {
             // 获取欧文
             $('li.post').each(function (i, ele) {
                 let title = $('a>span', ele).text();
-                let link = 'https://yuguo.us/' + $('a', ele).attr('href');
+                let rawLink =  $('a', ele).attr('href');
+                let link = rawLink.indexOf("http") == -1 ? ('https://yuguo.us/' + $('a', ele).attr('href')):rawLink ;
                 let date = $('a>time', ele).attr("datetime");
 
                 if (!blogmodel.length || blogmodel.length == 0) {

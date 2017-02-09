@@ -15,8 +15,8 @@ module.exports.init = function (router) {
 async function loadBlognews(ctx, next) {
     let blognews = await Blognews.find()
         .populate('from')
-        .sort({ publishTime: -1,hasRead:1 })
-        .select('from title link pullTime publishTime hasRead')
+        .sort({ hasRead:1,publishTime: -1 })
+        .select('_id from title link pullTime publishTime hasRead')
         .limit(10)
         .skip(0)
         .exec().catch(err => {
@@ -24,7 +24,7 @@ async function loadBlognews(ctx, next) {
             ctx.throw(500, '内部错误');
         })
     if (blognews.length) {
-        delete blognews._id;
+        // delete blognews._id;
         ctx.status = 200;
         ctx.body = {
             success: true,
@@ -39,9 +39,9 @@ async function loadBlognews(ctx, next) {
  * 更新阅读状态
  */
 async function updateReadState(ctx, next) {
-    const from = ctx.request.body.from;
+    const _id = ctx.request.body.from;
     const state = ctx.request.body.state;
-    let result = await Blognews.updateReadState(from, state);
+    let result = await Blognews.updateReadState(_id, state);
     ctx.status = 200;
     ctx.body = {
         success: true,
