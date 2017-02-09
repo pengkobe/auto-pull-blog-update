@@ -55,7 +55,7 @@ module.exports =  async function runTask(resolve, reject) {
                 }
 
                 // 时间对比 new Date("2016-11-01")
-                if (new Date(date) > blogmodel[0].lastUpdateTime) {
+                if (new Date(date) > blogmodel[0].lastUpdateTime || !blogmodel[0].lastUpdateTime) {
                     newsArray.push({
                         from: blogmodel[0]._id,
                         pullTime: new Date(),

@@ -15,7 +15,7 @@ module.exports.init = function (router) {
 async function loadBlognews(ctx, next) {
     let blognews = await Blognews.find()
         .populate('from')
-        .sort({ pullTime: -1 })
+        .sort({ publishTime: -1,hasRead:1 })
         .select('from title link pullTime publishTime hasRead')
         .limit(10)
         .skip(0)

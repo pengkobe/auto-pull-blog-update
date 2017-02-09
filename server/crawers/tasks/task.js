@@ -9,8 +9,8 @@ const eventproxy = require('eventproxy');
 const evtProxyObj = eventproxy();
 
 // 任务列表
-var yinwang = require('yinwang.org.js');
-var yuguo = require('yuguo.us.js');
+var yinwang = require('./yinwang.org.js');
+var yuguo = require('./yuguo.us.js');
 
 // 计时器
 let schedule_task = null;
@@ -49,8 +49,20 @@ module.exports = async function () {
         });
     });
 
-    return new Promise((resolve, reject) => {
+
+    // 第一次时自动运行一次
+    var yuguo_data = await new Promise((resolve, reject) => {
         yuguo(resolve, reject);
-        // yinwang(resolve, reject);
+    });
+    var yinwang_data = await new Promise((resolve, reject) => {
+        yinwang(resolve, reject);
+    });
+
+     return new Promise((resolve, reject) => {
+         if(yuguo_data && yinwang_data ){
+            resolve([].concat(yuguo_data).concat(yinwang_data));
+         }else{
+            reject("task err..");
+         }
     });
 }
