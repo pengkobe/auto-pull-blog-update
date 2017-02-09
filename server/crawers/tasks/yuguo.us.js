@@ -3,7 +3,6 @@
 */
 const cheerio = require('cheerio');
 const superagent = require('superagent');
-const schedule = require('node-schedule');
 
 const eventproxy = require('eventproxy');
 const evtProxyObj = eventproxy();
@@ -14,37 +13,7 @@ const Blognews_2 = require('../../models/blognews');
 
 const page = 'https://yuguo.us/';
 
-// 计时器
-let schedule_task = null;
-// github: https://github.com/node-schedule/node-schedule
-// *    *    *    *    *    *
-// ┬    ┬    ┬    ┬    ┬    ┬
-// │    │    │    │    │    |
-// │    │    │    │    │    └ day of week (0 - 7) (0 or 7 is Sun)
-// │    │    │    │    └───── month (1 - 12)
-// │    │    │    └────────── day of month (1 - 31)
-// │    │    └─────────────── hour (0 - 23)
-// │    └──────────────────── minute (0 - 59)
-// └───────────────────────── second (0 - 59, OPTIONAL)
-
-
-module.exports = async function () {
-    if (schedule_task) {
-        schedule_task.cancel();
-    }
-    // 55 55 23
-    schedule_task = schedule.scheduleJob('55 55 * * * *', function () {
-        runTask(function (param) {
-            console.log('完美运行一次:', new Date());
-            console.log('docs:', param);
-        }, function (param) {
-            console.log('失败运行一次:', new Date());
-            console.log('失败原因:', param);
-        })
-    });
-
-    // 地址
-    async function runTask(resolve, reject) {
+module.exports = async function runTask(resolve, reject) {
         superagent.get(page).end(async function (err, sres) {
 
             // 获取最新博文时间
@@ -115,7 +84,4 @@ module.exports = async function () {
         });
     }
 
-    return new Promise((resolve, reject) => {
-        runTask(resolve, reject);
-    });
-}
+
