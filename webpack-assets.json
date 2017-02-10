@@ -1,0 +1,11 @@
+{
+  "vendor": {
+    "js": "/my-web-crawler/vendor.bundle.js"
+  },
+  "main": {
+    "js": "/my-web-crawler/main.bundle.js"
+  },
+  "polyfills": {
+    "js": "/my-web-crawler/polyfills.bundle.js"
+  }
+}
