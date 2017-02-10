@@ -8,3 +8,6 @@
 "github-deploy:prod": "webpack --config config/webpack.github-deploy.js --progress --profile --env.githubProd",
 "github-deploy": "npm run github-deploy:dev",
 ```
+
+## 部署到本机服务器
+可以使用 scp 命令。
