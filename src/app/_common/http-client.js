@@ -1,7 +1,3 @@
-/**
- * 参考自:http://stackoverflow.com/questions/34464108/angular2-set-headers-for-every-request
- */
-
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { AppState } from '../app.service';

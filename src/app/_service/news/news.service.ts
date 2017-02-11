@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { HttpClient } from '../../_common/http-client.js';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class NewsService {
-  constructor(public http: Http) {
+  constructor(public http: HttpClient) {
   }
 
 

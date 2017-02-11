@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
+import { HttpClient } from '../../_common/http-client';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class BloggerService {
-  constructor(public http: Http) {
+  constructor(public http: HttpClient) {
   }
 
   /**
@@ -50,10 +51,5 @@ export class BloggerService {
    */
   getBloggerNews() {
     return this.http.get('http://localhost:3001/blognews').map(res => res.json());
-    // let headers = new Headers();
-    // headers.append('Authorization', 'dsd ' + token);
-    // return this.http.get('http://localhost:3001/blognews', {
-    //   headers: headers
-    // }).map(res => res.text());   // 2
   }
 }

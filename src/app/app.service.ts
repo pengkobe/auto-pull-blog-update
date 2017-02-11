@@ -7,6 +7,7 @@ export type InternalStateType = {
 @Injectable()
 export class AppState {
   _state: InternalStateType = { };
+  _token: string;
 
   constructor() {
 
@@ -22,9 +23,14 @@ export class AppState {
   }
 
   get token() {
-    return localStorage.getItem("token");
+    if(this._token){
+      return this._token;
+    }else{
+      return localStorage.getItem("token");
+    }
   }
   set token(value) {
+    this._token = value;
     localStorage.setItem("token",value);
   }
 
