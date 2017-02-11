@@ -79,9 +79,6 @@ module.exports = async function runTask(resolve, reject) {
                     this.throw(500, 'Blogger.update错误');
                 });
 
-            // ===== 用于抓取内容（TODO）
-            // evtProxyObj.emit('yiwang_indexpage_finished', 'get yinwang.org successful');
-            // =====
         });
     }
 

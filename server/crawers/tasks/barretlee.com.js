@@ -15,21 +15,21 @@ const page = 'http://www.barretlee.com/entry/';
 
 module.exports = async function runTask(resolve, reject) {
         superagent.get(page).end(async function (err, sres) {
-            
+
             // 获取最新博文时间
             let blogmodel = await Blogger.find({ name: 'barretlee' })
                 .exec().catch(err => {
                     utils.logger.error(err);
                     this.throw(500, '内部错误')
                 });
-          
+
             // 常规的错误处理
             if (err) {
                 console.log('get barretlee.com err!\n', err);
                 reject(err);
                 return next(err);
             }
-       
+
             // 提取作者博文链接，注意去重
             let $ = cheerio.load(sres.text);
             let newsArray = [];
@@ -44,9 +44,9 @@ module.exports = async function runTask(resolve, reject) {
                 let rawLink =  $(ele).attr('href');
                 let link = rawLink.indexOf("http") == -1 ? ('http://www.barretlee.com/entry/' + rawLink):rawLink ;
                 let patt = /\d{4}\/\d{1,2}\/\d{0,2}/g;
-                
+
                 let date = patt.exec(link)[0];
-                
+
                 if (!blogmodel.length || blogmodel.length == 0) {
                     reject("no blogger!");
                     return next(err);
@@ -84,10 +84,6 @@ module.exports = async function runTask(resolve, reject) {
                     utils.logger.error(err);
                     this.throw(500, 'Blogger.update错误');
                 });
-
-            // ===== 用于抓取内容（TODO）
-            // evtProxyObj.emit('yiwang_indexpage_finished', 'get yinwang.org successful');
-            // =====
         });
     }
 

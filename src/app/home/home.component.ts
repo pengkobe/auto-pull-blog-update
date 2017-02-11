@@ -23,6 +23,7 @@ import { LoginDialogComponent } from './login';
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
+  hasNotLogin = true;
   news = [
     {
       _id:'345423423423423',

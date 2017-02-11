@@ -22,7 +22,7 @@ export class LoginDialogComponent {
    }
 
    login(){
-     this.service.getData(this.usermodel.username,this.usermodel.password).subscribe(data => {
+     this.service.login(this.usermodel.username,this.usermodel.password).subscribe(data => {
         console.log('login:',data);
         // 全局设置token
         if(data && data.success && data.data ){
