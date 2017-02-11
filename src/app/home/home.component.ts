@@ -24,6 +24,7 @@ import { LoginDialogComponent } from './login';
 })
 export class HomeComponent {
   hasNotLogin = true;
+  name="";
   news = [
     {
       _id:'345423423423423',
@@ -43,11 +44,22 @@ export class HomeComponent {
 
   ngOnInit() {
     console.log('hello `Home` component');
+    if(this.appState.get("name")){
+      this.hasNotLogin = false;
+      this.name = this.appState.get("name");
+    }
     this.loadBloggerNews();
   }
 
   openLoginDialog(){
     let dialogRef = this.dialog.open(LoginDialogComponent);
+    dialogRef.afterClosed().subscribe(result => {
+      if(this.appState.get("name")){
+        this.hasNotLogin = false;
+        this.name = this.appState.get("name");
+      }
+      this.loadBloggerNews();
+    });
    }
 
   submitState(value: string) {

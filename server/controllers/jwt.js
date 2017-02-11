@@ -13,14 +13,14 @@ async function create(ctx, next) {
     const username = ctx.request.body.username,
         password = ctx.request.body.password;
     let user = {
-        username: username,
-        password: password,
+        username: "py",
+        password: "123",
     };
     if (user !== null) {
         if (user.password === password) {
             const token = jwt.sign({
-                uid: user._id,
-                name: user.name,
+                uid: "uuidmock",
+                name: user.username,
                 exp: Math.floor(Date.now() / 1000) + 24 * 60 * 60//1 hours
             }, cert);
             utils.print(token);
@@ -28,8 +28,8 @@ async function create(ctx, next) {
             ctx.body = {
                 success: true,
                 data: {
-                    uid: user._id,
-                    name: user.name,
+                    uid: 'uuidmock',
+                    name: user.username,
                     token,
                 }
             }

@@ -27,6 +27,7 @@ export class LoginDialogComponent {
         // 全局设置token
         if(data && data.success && data.data ){
            this.appState.set('token', data.data.token);
+           this.appState.set('name', data.data.name);
         }
         this.dialogRef.close('1');
         alert("登录成功！");

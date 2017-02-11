@@ -1,6 +1,7 @@
 <div class="card-container">
     <button *ngIf="hasNotLogin"
     (click)="openLoginDialog()" color="warn" md-raised-button >登录</button>
+    <div *ngIf="name != ''" style="display: inline-block;"><span>你好，</span>{{name}}</div>
     <button (click)="loadBloggerNews()" md-raised-button color="primary">加载博主新闻</button>
     <div>
         <md-list>
