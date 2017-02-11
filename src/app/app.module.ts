@@ -20,6 +20,9 @@ import { AboutComponent } from './about';
 import { NoContentComponent } from './no-content';
 import { XLarge } from './home/x-large';
 
+// ----- service
+import { HttpClient } from './_common/http-client';
+
 // -----
 import { TaskComponent } from './task';
 import { AddFriendDialogComponent } from './task/addfriend';
@@ -28,7 +31,8 @@ import { LoginDialogComponent } from './home/login';
 // Application wide providers
 const APP_PROVIDERS = [
   ...APP_RESOLVER_PROVIDERS,
-  AppState
+  AppState,
+  HttpClient
 ];
 
 type StoreType = {

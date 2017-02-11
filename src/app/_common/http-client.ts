@@ -5,21 +5,23 @@ import { AppState } from '../app.service';
 @Injectable()
 export class HttpClient {
 
-    constructor(private http: Http) {}
+    constructor(private http: Http,public appstate: AppState) {}
 
-    createAuthorizationHeader(headers: Headers, appstate: AppState) {
-        var token = appstate.token;
+    createAuthorizationHeader(headers: Headers) {
+        var token = this.appstate.token;
         if (!token) {
             alert("请先登录！");
             return;
         } else {
-            headers.append('Authorization', 'dsd ' + token);
+            //headers.append('Authorization', 'dsd ' + token);
         }
     }
 
-    get(url, headers) {
+    get(url, headers?) {
         if (!headers) {
             headers = new Headers();
+        }else{
+            headers = headers.headers;
         }
         this.createAuthorizationHeader(headers);
         return this.http.get(url, {
@@ -27,8 +29,12 @@ export class HttpClient {
         });
     }
 
-    post(url, data) {
-        let headers = new Headers();
+    post(url, data,headers?) {
+         if (!headers) {
+            headers = new Headers();
+        }else{
+            headers = headers.headers;
+        }
         this.createAuthorizationHeader(headers);
         return this.http.post(url, data, {
             headers: headers
