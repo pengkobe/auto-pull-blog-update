@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 import { AppState } from '../app.service';
 import { BloggerService } from '../_service/blogger';
 import { NewsService } from '../_service/news';
-import { Title } from './title';
 import { XLarge } from './x-large';
 import { MdDialog,MdDialogRef } from '@angular/material';
 import { LoginDialogComponent } from './login';
@@ -15,7 +14,6 @@ import { LoginDialogComponent } from './login';
   selector: 'home',  // <home></home>
   // We need to tell Angular's Dependency Injection which providers are in our app.
   providers: [
-    Title,
     BloggerService,
     NewsService
   ],
@@ -38,7 +36,7 @@ export class HomeComponent {
   localState = { value: '' };
   token = null;
   // TypeScript public modifiers
-  constructor(public appState: AppState, public title: Title,
+  constructor(public appState: AppState,
     public bloggerservice: BloggerService,public newsService :NewsService,public dialog: MdDialog) {
   }
 

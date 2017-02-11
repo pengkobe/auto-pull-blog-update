@@ -1,12 +1,12 @@
 import { Component} from '@angular/core';
 import { MdDialogRef } from '@angular/material';
-import { Title } from '../title';
+import { LoginService } from '../login_service';
 import { AppState } from '../../app.service';
 
 @Component({
   selector: 'logindialog',
   providers: [
-    Title
+    LoginService
   ],
   styleUrls: ['./login.component.css'],
   templateUrl: './login.component.html',
@@ -18,7 +18,7 @@ export class LoginDialogComponent {
    }
 
    constructor(public dialogRef: MdDialogRef<LoginDialogComponent>,
-    public service:Title,public appState: AppState) {
+    public service:LoginService,public appState: AppState) {
    }
 
    login(){

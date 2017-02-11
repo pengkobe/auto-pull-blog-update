@@ -13,7 +13,7 @@ export class HttpClient {
             alert("请先登录！");
             return;
         } else {
-            //headers.append('Authorization', 'dsd ' + token);
+            headers.append('Authorization', 'dsd ' + token);
         }
     }
 
