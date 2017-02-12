@@ -3,11 +3,11 @@ const utils = require('../utils/index');
 const Blogger = require('../models/blogger.js');
 const mw = require('../middlewares/index.js');
 module.exports.init = router => {
-  router.post('/bloggers', create);
-  router.patch('/bloggers/:id',  modify)
-  router.get('/bloggers',  bloggerList);
-  router.get('/bloggers/:id',  bloggerDetail)
-  router.delete('/bloggers/:id', deleteBlogger)
+  router.post('/bloggers',mw.verify_token, create);
+  router.patch('/bloggers/:id', mw.verify_token, modify)
+  router.get('/bloggers',mw.verify_token,  bloggerList);
+  router.get('/bloggers/:id', mw.verify_token, bloggerDetail)
+  router.delete('/bloggers/:id',mw.verify_token, deleteBlogger)
 }
 
 

@@ -3,8 +3,8 @@
 ### node 插件
 1. superagent
 2. cheerio
-3. eventproxy( todo )
-4. node-schedule，运行定时任务( todo )
+3. node-schedule
+4. eventproxy( todo )
 
 ### 功能点
 1. 首页，展示博主最新博文

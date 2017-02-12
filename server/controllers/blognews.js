@@ -5,8 +5,8 @@ const Blognews = require('../models/blognews');
 const mw = require('../middlewares/index.js');
 module.exports.init = function (router) {
     // mw.verify_token,
-    router.get('/blognews', loadBlognews);
-    router.post('/updateReadState',updateReadState);
+    router.get('/blognews',mw.verify_token, loadBlognews);
+    router.post('/updateReadState',mw.verify_token,updateReadState);
 }
 
 /**
