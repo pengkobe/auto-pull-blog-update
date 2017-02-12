@@ -71,7 +71,7 @@ module.exports = async function () {
     var barretlee_data = await new Promise((resolve, reject) => {
         barretlee(resolve, reject);
     });
-    console.log('barretlee task...',barretlee_data);
+    // console.log('barretlee task...',barretlee_data);
 
      return new Promise((resolve, reject) => {
          var dataArr = [] ;

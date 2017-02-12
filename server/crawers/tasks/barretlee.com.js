@@ -42,7 +42,7 @@ module.exports = async function runTask(resolve, reject) {
                 }
                 console.log('"ul[itemscope] > title:', title);
                 let rawLink =  $(ele).attr('href');
-                let link = rawLink.indexOf("http") == -1 ? ('http://www.barretlee.com/entry/' + rawLink):rawLink ;
+                let link = rawLink.indexOf("http") == -1 ? ('http://www.barretlee.com' + rawLink):rawLink ;
                 let patt = /\d{4}\/\d{1,2}\/\d{0,2}/g;
 
                 let date = patt.exec(link)[0];
@@ -55,7 +55,7 @@ module.exports = async function runTask(resolve, reject) {
                 }
 
                 // 时间对比 new Date("2016-11-01")
-                if (new Date(date) > blogmodel[0].lastUpdateTime || !blogmodel[0].lastUpdateTime) {
+                if (!blogmodel[0].lastUpdateTime  ||  new Date(date) > new Date(blogmodel[0].lastUpdateTime)) {
                     newsArray.push({
                         from: blogmodel[0]._id,
                         pullTime: new Date(),
