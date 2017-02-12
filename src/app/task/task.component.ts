@@ -19,7 +19,7 @@ export class TaskComponent {
   bloggers=[{
     name:'yipeng',
     createTime:'2017-01-01 10:00',
-    url:'https://yipeng.info'
+    url:'http://115.29.51.196'
   }];
 
 
