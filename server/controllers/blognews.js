@@ -17,7 +17,7 @@ async function loadBlognews(ctx, next) {
         .populate('from')
         .sort({ hasRead:1,publishTime: -1 })
         .select('_id from title link pullTime publishTime hasRead')
-        .limit(10)
+        .limit(50)
         .skip(0)
         .exec().catch(err => {
             utils.logger.error(err);
