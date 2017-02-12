@@ -8,7 +8,7 @@
             <h3 md-subheader class="task-news-title">新闻列表</h3>
             <md-list-item *ngFor="let new of news">
                 <md-icon md-list-avatar>folder</md-icon>
-                <h4 md-line> <a md-line href="{{new.link}}">{{new.title}}</a></h4>
+                <h4 md-line> <a md-line href="{{new.link}}" target="_blank">{{new.title}}</a></h4>
                 <p md-line> by:{{new.from.name}} </p>
                 <p md-line> {{new.publishTime | date}} </p>
                 <md-checkbox class="read-state-checkbox" [checked]="new.hasRead" (click)="toggleNewsState(new)">{{new.hasRead? "已读":"未读"}}</md-checkbox>
