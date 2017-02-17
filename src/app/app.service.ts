@@ -47,6 +47,10 @@ export class AppState {
     return this._state[prop] = value;
   }
 
+  clearLocalStorage(){
+    localStorage.clear();
+  }
+
 
   private _clone(object: InternalStateType) {
     // simple object clone
