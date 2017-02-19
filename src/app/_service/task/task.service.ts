@@ -12,7 +12,7 @@ export class TaskService {
    * 开启后台任务
    */
   startTasks() {
-    return this.http.get('http://115.29.51.196:3001/begintasks').map(res => res.json());
+    return this.http.get('begintasks').map(res => res.json());
   }
 
 }

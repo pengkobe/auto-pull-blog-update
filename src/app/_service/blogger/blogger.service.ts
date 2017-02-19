@@ -20,7 +20,7 @@ export class BloggerService {
     let creds = 'name=' + name + '&url=' + url + '&taskjs=' + taskjs;
     let headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    return this.http.post('http://115.29.51.196:3001/bloggers', creds, {
+    return this.http.post('bloggers', creds, {
       headers: headers
     }).map(res => res.json());
   }
@@ -34,7 +34,7 @@ export class BloggerService {
     let creds = 'name=' + name + '&url=' + url + '&taskjs=' + taskjs;
     let headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    return this.http.post('http://115.29.51.196:3001/bloggers', creds, {
+    return this.http.post('bloggers', creds, {
       headers: headers
     }).map(res => res.json());
   }
@@ -43,13 +43,13 @@ export class BloggerService {
    * 获取博主列表
    */
   getBloggers() {
-    return this.http.get('http://115.29.51.196:3001/bloggers').map(res => res.json());
+    return this.http.get('bloggers').map(res => res.json());
   }
 
    /**
    * 获取新闻列表
    */
   getBloggerNews() {
-    return this.http.get('http://115.29.51.196:3001/blognews').map(res => res.json());
+    return this.http.get('blognews').map(res => res.json());
   }
 }

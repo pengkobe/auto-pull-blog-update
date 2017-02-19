@@ -17,7 +17,7 @@ export class NewsService {
     let creds = 'state=' + state + '&from=' + from;
     let headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    return this.http.post('http://115.29.51.196:3001/updateReadState', creds, {
+    return this.http.post('updateReadState', creds, {
       headers: headers
     }).map(res => res.json());
   }

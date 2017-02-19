@@ -23,10 +23,11 @@ export class HttpClient {
         }else{
             headers = headers.headers;
         }
+        url = this.getFullUrl(url);
         this.createAuthorizationHeader(headers);
         return this.http.get(url, {
             headers: headers
-        });
+        }).catch(error => console.error(error));;
     }
 
     post(url, data,headers?) {
@@ -35,9 +36,15 @@ export class HttpClient {
         }else{
             headers = headers.headers;
         }
+        url = this.getFullUrl(url);
         this.createAuthorizationHeader(headers);
         return this.http.post(url, data, {
             headers: headers
-        });
+        }).catch(error => console.error(error));
+    }
+
+    getFullUrl(url){
+        // http://115.29.51.196:3001/
+        return "http://localhost:3001/"+url;
     }
 }
