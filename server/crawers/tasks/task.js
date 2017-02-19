@@ -32,7 +32,7 @@ module.exports = async function () {
         schedule_task.cancel();
     }
     // 55 55 23
-    schedule_task = schedule.scheduleJob('55 55 * * * *', function () {
+    schedule_task = schedule.scheduleJob('55 55 23 * * *', function () {
         yuguo(function (param) {
             console.log('yuguo完美运行一次:', new Date());
             console.log('docs:', param);
