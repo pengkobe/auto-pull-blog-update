@@ -12,13 +12,13 @@ module.exports = async function(ctx, next) {
     let tokenContent;
     try {
         tokenContent = await jwt.co_verify(token, config.jwt.cert)();
-        console.log("Authorization tokenContent", tokenContent);
+        console.log("Authorization tokenContent:", tokenContent);
     } catch (err) {
         ctx.status = 401;
         if ('TokenExpiredError' === err.name) {
             ctx.throw(401, 'token expired');
         }
-        ctx.throw(401, 'invalid token')
+        ctx.throw(401, 'invalid token');
     }
     utils.print('鉴权通过');
     ctx.token = tokenContent;

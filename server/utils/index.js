@@ -37,6 +37,7 @@ Date.prototype.format = function (fmt) {
     };
 
     if (/(y+)/.test(fmt))
+        // 替换匹配字符串
         fmt = fmt.replace(RegExp.$1, (this.getFullYear() + '').substr(4 - RegExp.$1.length));
     for (var k in o)
         if (new RegExp('(' + k + ')').test(fmt))

@@ -22,11 +22,11 @@ app.use(convert(logger()));
 app.use(require('koa-static')(__dirname + '/public'));
 
 app.use(views(__dirname + '/views', {
-  extension: 'jade'
+    extension: 'jade'
 }));
 
 const config = require('./config/index'),
-  mongoose = require('mongoose');
+    mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 mongoose.connect(config.mongoConfig.url, config.mongoConfig.opts);
 
@@ -38,19 +38,19 @@ app.context.config = config;
 /**
  * 鉴权
  */
-jwt.co_verify = function (jwtString, secretOrPublicKey, options) {
-  return function (cb) {
-    jwt.verify(jwtString, secretOrPublicKey, options, cb);
-  }
-}
-// 允许跨域访问
+jwt.co_verify = function(jwtString, secretOrPublicKey, options) {
+        return function(cb) {
+            jwt.verify(jwtString, secretOrPublicKey, options, cb);
+        }
+    }
+    // 允许跨域访问
 app.use(cors());
 // logger
-app.use(async (ctx, next) => {
-  const start = new Date();
-  await next();
-  const ms = new Date() - start;
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
+app.use(async(ctx, next) => {
+    const start = new Date();
+    await next();
+    const ms = new Date() - start;
+    console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
 });
 
 index.init(router);
@@ -58,11 +58,23 @@ controllers.init(router);
 app.use(router.routes(), router.allowedMethods());
 
 //router.use('/', index.routes(), index.allowedMethods());
-onerror(app);
-app.on('error', function (err, ctx) {
-  console.log(err);
-  logger.error('server error', err, ctx);
+// 处理各类异常并返回
+onerror(app
+  ,{
+  all:function(err){
+    this.type = 'json';
+    this.body={
+      success:false,
+      message:err
+    };
+    // 必须转换为 JSON 格式
+    this.body = JSON.stringify(this.bo);
+  }
+}
+);
+app.on('error', function(err, ctx) {
+    console.log('server error:', ctx);
+    //logger.error('server error', err, ctx);
 });
-
 
 module.exports = app;
