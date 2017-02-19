@@ -22,7 +22,7 @@ async function create(ctx, next) {
                 uid: "uuidmock",
                 name: user.username,
                 // exp: Math.floor(Date.now() / 1000) + 24 * 60 * 60//24 hours
-            }, cert,, { expiresIn: '7d' });
+            }, cert,{ expiresIn: '7d' });
             utils.print(token);
             ctx.status = 200;
             ctx.body = {

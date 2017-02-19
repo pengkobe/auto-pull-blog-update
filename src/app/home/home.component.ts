@@ -72,7 +72,16 @@ export class HomeComponent {
     this.bloggerservice.getBloggerNews().subscribe(data => {
       console.log('getBloggerNews:',data.data);
       this.news=data.data;
-    });
+    },
+    err => {
+        if(err.status == 401){ // 登录过期
+          this.appState.clearLocalStorage();
+          this.hasNotLogin = true;
+          this.name = "";
+        }
+        console.log('xxxx',err);
+     }
+    );
   }
 
   /*

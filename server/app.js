@@ -65,15 +65,16 @@ onerror(app
     this.type = 'json';
     this.body={
       success:false,
+      data:[],
       message:err
     };
     // 必须转换为 JSON 格式
-    this.body = JSON.stringify(this.bo);
+    this.body = JSON.stringify(this.body);
   }
 }
 );
 app.on('error', function(err, ctx) {
-    console.log('server error:', ctx);
+    console.log('server error:', err);
     //logger.error('server error', err, ctx);
 });
 
