@@ -17,10 +17,13 @@
 5. 一定要在入口模块中添加？在引用组件中添加行不通？
 
 ## 版本问题
-现在最新版为: 2.0.0-beta.1,而我之前装的是 2.0.0-alpha.10 
+现在最新版为: 2.0.0-beta.1,而我之前装的是 2.0.0-alpha.10
 ### Can't bind to 'mdMenuTriggerFor' since it isn't a known property of 'button'
-github ISSUE:https://github.com/angular/material2/issues/2478  
+github ISSUE:https://github.com/angular/material2/issues/2478
 
 
 ### 'md-input-container' is not a known element:
 github ISSUE:https://github.com/angular/material2/issues/2267
+
+### koa2
+koa2 发生错误并不会停止运行，而是会什么都不做，有时候需要我手动添加 try catch 才能发现问题
