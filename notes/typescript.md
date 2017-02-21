@@ -5,7 +5,22 @@
 * any : 只要为元素指定了any类型,则可以对其任意赋值
 
 ## 强大特性
-* subscribe
+* rxjs
+
+## http
+interceptor
+```javascript
+interceptor():RequestOptions{
+			const opts:RequestOptions = new RequestOptions()
+			opts.headers = this.headers
+			if (Cookie.load('token') && !opts.headers.get('Authorization')) {
+				opts.headers.append('Authorization',
+					'Bearer ' + Cookie.load('token').replace(/(^\")|(\"$)/g, ''))
+			}
+			opts.withCredentials = true
+			return opts
+		}
+```
 
 ## 争议
 @ruanyf发表微博表示typescript并无优势，只是相对JS增加了静态类型。

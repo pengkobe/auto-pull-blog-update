@@ -156,4 +156,4 @@ export class AppModule {
 *《Angular 2.x 从0到1》
 https://gold.xitu.io/user/578e6f3c0a2b580068609665
 * 博客园博主这个系列教程不错: http://www.cnblogs.com/haogj/
-
+* https://github.com/jackhutu/jackblog-ionic2
