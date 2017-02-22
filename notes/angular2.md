@@ -50,6 +50,14 @@
   ```
 * @Component,用于组件
 * @Injectable,用于service，可作为 constructor 函数参数注入
+* @Pipe，在angular1的版本中有“过滤器-filter”的概念，在angular2的版本中换成了pipe（管道）
+  ```javascript
+  import {Injectable, Inject, Pipe} from 'angular2/core'
+  @Pipe({ name: 'customTime' })
+  export class CustomTimePipe {
+
+  }
+  ```
 
 
 ## 路由
