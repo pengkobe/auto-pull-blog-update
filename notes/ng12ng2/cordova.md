@@ -9,7 +9,8 @@ ionic2 引进了 ionic-native,去掉了以前的构建方式，当前插件的�
 
 
 ## ionic-native
-http://ionicframework.com/docs/v2/native/
+文档:http://ionicframework.com/docs/v2/native/  
+* import { Keyboard } from 'ionic-native';
 
 
 ## 案例

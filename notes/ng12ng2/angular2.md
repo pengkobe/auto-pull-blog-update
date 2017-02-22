@@ -9,7 +9,7 @@
      import { DOM } from 'angular2/src/platform/dom/dom_adapter';
      DOM.addClass(DOM.query("body"), 'fixed');
      ```
-     - directive中这样用
+     - directive中这样用?
      ```javascript
      this.el.nativeElement.style.color=color;
      ```
@@ -35,6 +35,11 @@ Angular2 : http://plnkr.co/edit/Fs4oR956gd6gQmHdFhHS?p=info
 * 选择器类型更多了.
 * 不要在考虑隔离作用域.
 * “Transclusion” 的作用体现出来了.
+
+
+### directive
+参考：http://blog.csdn.net/shenlei19911210/article/details/53218074  
+elem.nativeElement 对象到底是什么，需要整清楚
 
 
 ## 细节项目
