@@ -2,14 +2,13 @@
 > 可以创建自己的标签，想想都兴奋，不过更兴奋的构建复杂应用的成本将会更低
 
 ### 创建自定义标签
-registerElement用于创建自定义的HTML元素  
-
+registerElement用于创建自定义的HTML元素
 ```javascript
-var YiPengElement = document.registerElement('yi-peng');
-document.body.appendChild(new YiPengElement());
-```  
+    var YiPengElement = document.registerElement('yi-peng');
+    document.body.appendChild(new YiPengElement());
+```
 
-接下来就可以在*body*中添加标签了，注意*-*字符必不可少   
+接下来就可以在*body*中添加标签了，注意*-*字符必不可少
 
 ```html
 <yi-peng></yi-peng>
@@ -24,12 +23,12 @@ XTreehouseProto.hello = function() {
     alert('Hello!');
 }
 // step 3
-Object.defineProperty(XTreehouseProto, 'badges', { 
+Object.defineProperty(XTreehouseProto, 'badges', {
     value: 20,
     writable : true
 });
 // step 4
-var XTreehouseElement = document.registerElement('x-treehouse',  { 
+var XTreehouseElement = document.registerElement('x-treehouse',  {
     prototype: XTreehouseProto
 });
 // step 5
@@ -43,9 +42,9 @@ var badges = xtreehouse.badges;
 
 ### 继承现有元素
 ```javascript
-// step 1 
+// step 1
 var ThumbImageProto = Object.create(HTMLImageElement.prototype);
-// step 2 
+// step 2
 ThumbImageProto.createdCallback = function() {
     this.width = '100';
     this.height = '100';
@@ -74,7 +73,7 @@ XTreehouseProto.attachedCallback = function() {}
 XTreehouseProto.detachedCallback = function() {}
 XTreehouseProto.attributeChangedCallback = function(attrName, oldValue, newValue) {}
 
-var XTreehouse = document.registerElement('x-treehouse',  
+var XTreehouse = document.registerElement('x-treehouse',
 { prototype: XTreehouseProto });
 ```
 
@@ -115,7 +114,7 @@ XProductProto.createdCallback = function() {
 var XProduct = document.registerElement('x-product', {
     prototype: XProductProto
 });
-```  
+```
 当然，你需要加点css来使得其更加好看
 
 ```css
@@ -142,7 +141,7 @@ x-product::shadow .product-name {
     color: #08C;
     border-top: 1px solid #EEE;
     font-weight: bold;
-   
+
 ```
 
 ### 后话
