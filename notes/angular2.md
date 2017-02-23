@@ -5,6 +5,13 @@
 文档(中文翻译) http://www.cnblogs.com/haogj/p/5059170.html
 脚手架：https://github.com/AngularClass/angular2-webpack-starter
 
+## 优点
+* Angular 2 提供了统一的API用来注入服务、指令，和HTML元素。所有这些内容都会被注入到组件的构造函数里面。所以，Angular 2里面需要学习的API更少。同时你的组件会变得更加容易测试
+* 它允许你依赖于接口编程，而不是具体类型。
+* 它可以让你的代码更加松耦合。
+* 它提升了可测试性。
+* Angular 2采用了统一的API来给组件注入依赖。
+* Angular 2中的DI机制更加强大。
 
 ## material2
 地址: https://github.com/angular/material2
@@ -157,5 +164,5 @@ export class AppModule {
 *《Angular 2.x 从0到1》
 https://gold.xitu.io/user/578e6f3c0a2b580068609665
 * 博客园博主这个系列教程不错: http://www.cnblogs.com/haogj/
-* [【翻译】对比Angular1和Angular2中的依赖注入](https://my.oschina.net/mumu/blog/775695?utm_source=tuicool)
+
 
