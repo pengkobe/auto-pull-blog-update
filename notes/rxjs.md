@@ -108,8 +108,67 @@ suggestion1Stream.subscribe(function(suggestion) {
 });
 ```
 
+## Subject
+Subject是一类特殊的Observable，它可以向多个Observer多路推送数值。
+普通的Observable并不具备多路推送的能力（每一个Observer都有自己独立的执行环境），而Subject可以共享一个执行环境。
+使用方式1:
+```javascript
+var observable = Rx.Observable.from([1, 2, 3]);
+// 你可以传递Subject来订阅observabl
+observable.subscribe(subject); 
+```
+### 特性
+* Subject的内部实现中，并不会在被订阅（ subscribe ）后创建新的执行环境。
+  它仅仅会把新的Observer注册在由它本身维护的Observer列表中，这和其他语言、库中的 addListener 机制类似。  
+* Subject同样也是一个由 next(v) ， error(e) ，和 complete() 这些方法组成的对象。调用 next(theValue) 方法后，
+  Subject会向所有已经在其上注册的Observer多路推送 theValue 。
+
+### 多路推送的Observable
+multicast 方法返回一个类似于Observable的可观察对象，但是在其被订阅后，它会表现Subject的特性。
+```javascript
+var source = Rx.Observable.from([1, 2, 3]);
+var subject = new Rx.Subject();
+var multicasted = source.multicast(subject);
+
+// 通过`subject.subscribe({...})`订阅Subject的Observer：
+multicasted.subscribe({
+  next: (v) => console.log('observerA: ' + v)
+});
+multicasted.subscribe({
+  next: (v) => console.log('observerB: ' + v)
+});
+
+// 让Subject从数据源订阅开始生效：
+multicasted.connect();
+```
+
+### 引用计数
+refCount 使得多路推送的Observable在被订阅后自动执行，在所有观察者取消订阅后，停止执行。
+
+### BehaviorSubject
+BehaviorSubject 是Subject的一个衍生类，具有“最新的值”的概念。它总是保存最近向数据消费者发送的值，
+当一个Observer订阅后，它会即刻从 BehaviorSubject 收到“最新的值”。
+```javascript
+
+subject.next(1);
+subject.next(2);
+// 执行到这里会输出2
+subject.subscribe({
+  next: (v) => console.log('observerB: ' + v)
+});
+subject.next(3);
+```
+
+### ReplaySubject
+如同于 BehaviorSubject 是 Subject 的子类。通过 ReplaySubject 可以向新的订阅者推送旧数值，
+就像一个录像机 ReplaySubject 可以记录Observable的一部分状态（过去时间内推送的值）。
+
+### AsyncSubject
+AsyncSubject是Subject的另外一个衍生类，Observable仅会在执行完成后，推送执行环境中的最后一个值。
+
 
 ## 参考
 * [RxJS 教程](https://segmentfault.com/a/1190000004293922) by  caolixiang
 https://gist.github.com/staltz/868e7e9bc2a7b8c1f754  
 * [Rx--隐藏在Angular 2.x中利剑](https://gold.xitu.io/post/5860f4f461ff4b006ce9255f)
+* [RxJS 核心概念之Subject](http://www.open-open.com/lib/view/open1462525661610.html)

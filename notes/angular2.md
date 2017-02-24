@@ -58,6 +58,14 @@
   ```
 * @Component,用于组件
 * @Injectable,用于service，可作为 constructor 函数参数注入
+* @Pipe，在angular1的版本中有“过滤器-filter”的概念，在angular2的版本中换成了pipe（管道）
+  ```javascript
+  import {Injectable, Inject, Pipe} from 'angular2/core'
+  @Pipe({ name: 'customTime' })
+  export class CustomTimePipe {
+
+  }
+  ```
 
 
 ## 路由
@@ -164,5 +172,4 @@ export class AppModule {
 *《Angular 2.x 从0到1》
 https://gold.xitu.io/user/578e6f3c0a2b580068609665
 * 博客园博主这个系列教程不错: http://www.cnblogs.com/haogj/
-
-
+* https://github.com/jackhutu/jackblog-ionic2
