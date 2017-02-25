@@ -24,3 +24,18 @@ ng g c myCmp
 
 ## 脑图
 汤桂川发布的,看着可以对照技能,练完就是专家了。
+
+
+## 核心架构思想
+* DI(来自spring)，可在 构造器中注入，并可带public修饰符，这特性很好。
+  + 注射器(父子通信),@Injectable 是 @Component 的子类
+  + 每个组件上都有一个 @Inject 实例
+
+## UI Compoent
+* primeNG
+* ionic 都熟悉吧？
+* 推荐开源的 ng-admin
+
+## 怎么部署至 tomcat
+前端路由处理404
+
