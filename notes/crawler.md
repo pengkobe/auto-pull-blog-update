@@ -18,6 +18,32 @@
    - 上线代码
 
 
+## 文件结构
+```
+├─app
+│--- xx.module.ts           // 入口模块定义
+│--- xx.routes.ts           // 路由
+│  ├─ sub-module            // 子模块目录
+│  │  ├─ components/            // 组件
+│  │  ├─ model/                 // 子模块Model
+│  │  ├─ services/              // 子模块服务
+│  │  ├─ sub.module.ts          // 子模块入口
+│  │  ├─ sub.routes.ts          // 子模块路由
+│  │  └─...
+│  ├─home               //这是首页组件
+│  │  ├─online-contact
+│  │  └─social-channel
+│  ├─manage                         //这是管理员后台组件
+│  │  ├─comment-table
+│  │  ├─manage-main
+│  │  ├─post-table
+│  │  │  └─services
+│  │  ├─sys-param
+│  │  └─user-table
+```
+
+
+
 ### 更多
 可以直接使用node爬虫插件:Crawler：https://github.com/bda-research/node-crawler
 
