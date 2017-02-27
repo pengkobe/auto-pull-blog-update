@@ -25,24 +25,19 @@
 │--- xx.routes.ts           // 路由
 │  ├─ sub-module            // 子模块目录
 │  │  ├─ components/            // 组件
+│  │  │  ├─ com1/
+│  │  │  │  ├─ com.service.ts
+│  │  │  │  ├─ ...
 │  │  ├─ model/                 // 子模块Model
 │  │  ├─ services/              // 子模块服务
 │  │  ├─ sub.module.ts          // 子模块入口
 │  │  ├─ sub.routes.ts          // 子模块路由
 │  │  └─...
-│  ├─home               //这是首页组件
-│  │  ├─online-contact
-│  │  └─social-channel
-│  ├─manage                         //这是管理员后台组件
-│  │  ├─comment-table
-│  │  ├─manage-main
-│  │  ├─post-table
-│  │  │  └─services
-│  │  ├─sys-param
-│  │  └─user-table
 ```
 
-
+## 路由
+* 懒加载模块+子路由构建，不需要一次性全部定义完成。
+* 解决了权限控制的烦心事?
 
 ### 更多
 可以直接使用node爬虫插件:Crawler：https://github.com/bda-research/node-crawler
