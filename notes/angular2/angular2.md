@@ -75,6 +75,22 @@
 * router:Router:可用于页面跳转```this.router:Router.navigateByUrl("posts/page/"+event.page);```
 * activeRoute: ActivatedRoute:可用于获取路由参数```this.activeRoute.params.subscribe(params => {});```
 * loadchildren:懒加载
+* RouteSnapshot:直接查看示例好了
+  ```javascript
+   let activatedRouteSnapshot:ActivatedRouteSnapshot=this.activatedRoute.snapshot;
+   let routerState: RouterState = this.router.routerState;
+   let routerStateSnapshot: RouterStateSnapshot = routerState.snapshot;
+
+   console.log(activatedRouteSnapshot);
+   console.log(routerState);
+   console.log(routerStateSnapshot);
+
+   // 如果是从/login这个URL进行的登录，什么都不做
+   if(routerStateSnapshot.url.indexOf("/login")==-1){
+       alert("用户登录成功，可以隐藏登录面板了！");
+   }
+  ```
+  ionic2 使用 DeepLinker
 
 ## Angular Core
 * ApplicationRef

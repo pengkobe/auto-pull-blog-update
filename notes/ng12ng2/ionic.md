@@ -19,6 +19,11 @@
 ## 事件
 参考链接：http://ionicframework.com/docs/v2/api/util/Events/    
 ```javascript
+// 引入
+import {Events} from 'ionic-angular'
+// DI
+public events: Events
+// 使用
 events.publish('user:created', user, Date.now());
 events.subscribe('user:created', (user, time) => {
   // user and time are the same arguments passed in `events.publish(user, time)`
