@@ -70,7 +70,7 @@
 
 ## 路由
 本案例使用 @angular/router
-* routerLink：用于指定路由，如```posttable/page/1```
+* routerLink：用于指定路由，如```posttable/page/1```,[RouteLink]=['path',param1]
 * router-outlet：用于路由加载组件区域，```(activate)='onActivate($event)' (deactivate)='onDeactivate($event)'```
 * router:Router:可用于页面跳转```this.router:Router.navigateByUrl("posts/page/"+event.page);```
 * activeRoute: ActivatedRoute:可用于获取路由参数```this.activeRoute.params.subscribe(params => {});```
