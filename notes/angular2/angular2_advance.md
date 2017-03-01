@@ -19,6 +19,25 @@ Query会解决开发者在Angular 1中面临的以下问题：
 可以做懒加载,可以结合路由(path/loadchildren)使用，打包到一个js。
 
 
+## 怎样使用外部库 
+以 echarts 为例,首先使用 npm 安装 echarts，接着可以封装成指令进行使用( 参考自 NiceFish )
+```javascript
+import * as echarts from 'echarts';
+
+@Directive({
+    selector: 'echart'
+})
+export class EChartOptionDirective1 implements OnInit {
+    @Input('option') option: any;
+
+    constructor(private el: ElementRef) {}
+
+    public ngOnInit(): void {
+        echarts.init(this.el.nativeElement).setOption(this.option);
+    }
+}
+```
+
 
 ## 参考
 * [【翻译】对比Angular1和Angular2中的依赖注入](https://my.oschina.net/mumu/blog/775695?utm_source=tuicool)

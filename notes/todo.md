@@ -8,6 +8,7 @@
 * 可以动态添加任务
 * 修正一天只能爬一次的bug
 * 根据 Jackblog App ionic2.0 版重新设计下前端service
+* 给 webpack 挖点坑
 
 ## Done
 * 设置阅读状态为：已读
