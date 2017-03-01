@@ -2,7 +2,7 @@
 > 多看十万个为什么，可以理解更具体！
 
 ## Query
-Query会解决开发者在Angular 1中面临的以下问题：
+Query会解决开发者在 Angular 1 中面临的以下问题：
 * pane总是有顺序的。
 * 当发生变化的时候，QueryList会通知tab组件。
 * Pane没有必要知道Tab的存在。这样Pane组件会更容易测试和复用。
