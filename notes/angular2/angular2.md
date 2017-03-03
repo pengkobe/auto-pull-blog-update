@@ -66,6 +66,7 @@
 
   }
   ```
+* @ViewChild("scrollObj") private scrollContainer: ElementRef;用于获取子元素
 
 
 ## 路由
