@@ -41,7 +41,7 @@ module.exports = async function runTask(resolve, reject) {
         // 提取作者博文链接，注意去重
         let $ = cheerio.load(sres.text);
         let newsArray = [];
-        // 获取欧文
+        // 获取
         $('.list-group-item').each(function (i, ele) {
             let title = $('a', ele).text();
             let link = $('a', ele).attr('href');

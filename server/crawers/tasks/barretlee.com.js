@@ -47,7 +47,7 @@ module.exports = async function runTask(resolve, reject) {
             if (title == "更多文章...") {
                 return;
             }
-            console.log('"ul[itemscope] > title:', title);
+            //console.log('"ul[itemscope] > title:', title);
             let rawLink = $(ele).attr('href');
             let link = rawLink.indexOf("http") == -1 ? ('http://www.barretlee.com' + rawLink) : rawLink;
             let patt = /\d{4}\/\d{1,2}\/\d{0,2}/g;
