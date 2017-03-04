@@ -56,6 +56,8 @@ module.exports = async function () {
             console.log('barretlee失败运行一次:', new Date());
             console.log('barretlee失败原因:', param);
         });
+
+
     });
 
 
