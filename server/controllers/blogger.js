@@ -14,14 +14,20 @@ module.exports.init = router => {
 async function create(ctx, next){
   const name = ctx.request.body.name,
     createTime = new Date(),
+    taskjs = ctx.request.body.taskjs,
     url = ctx.request.body.url;
   if(name === ''){
     ctx.throw(400,'博主姓名不能为空！')
   }
+  if(taskjs === ''){
+    ctx.throw(400,'代码不能为空！')
+  }
+
   let blogger = new Blogger({
     name,
     createTime,
-    url
+    url,
+    taskjs
   });
   blogger = await blogger.save().catch(err => {
     utils.logger.error(err);
