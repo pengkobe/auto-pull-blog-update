@@ -16,7 +16,7 @@ describe('App', () => {
     ]}));
 
   it('should have a url', inject([ AppComponent ], (app: AppComponent) => {
-    expect(app.url).toEqual('http://115.29.51.196');
+    expect(app.url).toEqual('yipeng.info');
   }));
 
 });

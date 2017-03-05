@@ -20,7 +20,7 @@ import { AppState } from './app.service';
 export class AppComponent {
   angularclassLogo = 'assets/img/angularclass-avatar.png';
   name = 'a web crawler';
-  url = 'http://115.29.51.196';
+  url = 'yipeng.info';
 
   constructor(
     public appState: AppState) {

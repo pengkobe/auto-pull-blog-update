@@ -4,7 +4,7 @@
 
 ## How to use
 ### for the one who have no JS programming experience
-you can submit your requirement to me.($5 per one).
+you can submit your requirement to me.($5 per blogger, have not that much requirements).
 
 ### for the one who knows JS
 you can simply submit your code to me.

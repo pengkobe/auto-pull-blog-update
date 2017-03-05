@@ -7,6 +7,7 @@ const superagent = require('superagent');
 const utils = require('../../utils/index');
 const Blogger = require('../../models/blogger');
 const Blognews_2 = require('../../models/blognews');
+// http://nodejs.cn/api/vm
 const vm = require('vm');
 const util = require('util');
 
