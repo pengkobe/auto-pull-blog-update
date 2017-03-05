@@ -25,7 +25,7 @@ import { HttpClient } from './_common/http-client';
 
 // -----
 import { TaskComponent } from './task';
-import { AddFriendDialogComponent } from './task/addfriend';
+import { AddBloggerDialogComponent } from './task/addblogger';
 import { LoginDialogComponent } from './home/login';
 
 // Application wide providers
@@ -47,7 +47,7 @@ type StoreType = {
 @NgModule({
   bootstrap: [AppComponent],
   entryComponents: [
-    AddFriendDialogComponent,
+    AddBloggerDialogComponent,
     LoginDialogComponent
   ],
   declarations: [
@@ -57,7 +57,7 @@ type StoreType = {
     NoContentComponent,
     XLarge,
     TaskComponent,
-    AddFriendDialogComponent,
+    AddBloggerDialogComponent,
     LoginDialogComponent
   ],
   imports: [ // import Angular's modules

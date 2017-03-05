@@ -3,7 +3,7 @@ import { MdDialog,MdDialogRef } from '@angular/material';
 
 import { TaskService } from '../_service/task';
 import { BloggerService } from '../_service/blogger';
-import { AddFriendDialogComponent } from './addfriend';
+import { AddBloggerDialogComponent } from './addblogger';
 
 
 @Component({
@@ -41,7 +41,7 @@ export class TaskComponent {
     //   console.log('addBlogger:',data.data);
     // });
 
-    let dialogRef = this.dialog.open(AddFriendDialogComponent);
+    let dialogRef = this.dialog.open(AddBloggerDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       this.loadBloggers();
     });

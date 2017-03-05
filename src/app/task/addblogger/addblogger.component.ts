@@ -3,20 +3,20 @@ import { MdDialogRef } from '@angular/material';
 import { BloggerService } from '../../_service/blogger';
 
 @Component({
-  selector: 'addfrienddialog',
+  selector: 'addbloggerdialog',
   providers: [
     BloggerService
   ],
-  styleUrls: ['./addfriend.component.css'],
-  templateUrl: './addfriend.component.html',
+  styleUrls: ['./addblogger.component.css'],
+  templateUrl: './addblogger.component.html',
 })
-export class AddFriendDialogComponent {
+export class AddBloggerDialogComponent {
    model = {
     name:'',
     url:'',
     taskjs:''
    }
-   constructor(public dialogRef: MdDialogRef<AddFriendDialogComponent>,
+   constructor(public dialogRef: MdDialogRef<AddBloggerDialogComponent>,
     public service:BloggerService) {
 
    }
@@ -31,7 +31,7 @@ export class AddFriendDialogComponent {
    }
 
    ngOnInit() {
-     console.log('hello `addfrienddialog` component');
+     console.log('hello `addbloggerdialog` component');
    }
 }
 
