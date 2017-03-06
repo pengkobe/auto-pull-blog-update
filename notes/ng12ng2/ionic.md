@@ -3,7 +3,7 @@
 
 ## 细节项
 * @Page,升级后不见了。
-* $ionicConfigProvider不见了，代替它的为:http://ionicframework.com/docs/v2/api/config/Config/  
+* $ionicConfigProvider不见了，代替它的为:http://ionicframework.com/docs/v2/api/config/Config/
   ```javascript
   IonicModule.forRoot(MyApp, {
       backButtonText: 'Go Back',
@@ -17,7 +17,8 @@
   ```
 
 ## 事件
-参考链接：http://ionicframework.com/docs/v2/api/util/Events/    
+参考链接：http://ionicframework.com/docs/v2/api/util/Events/
+
 ```javascript
 // 引入
 import {Events} from 'ionic-angular'
@@ -32,6 +33,8 @@ events.subscribe('user:created', (user, time) => {
 ```
 
 ## 路由
+注意: ionic2 并不是 ng2 的路由
+
 ```javascript
 // 导入
  imports: [
@@ -40,7 +43,7 @@ events.subscribe('user:created', (user, time) => {
     })
   ]
 // ROUTES
-[ { path: 'home',  component: HomePage }]
+[ { name: 'home',  component: HomePage, segment: 'home' }]
 // 使用
 import { NavController } from 'ionic-angular';
 this.navCtrl.push(AboutPage, {});

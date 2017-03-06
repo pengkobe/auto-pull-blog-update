@@ -19,8 +19,9 @@ Query会解决开发者在 Angular 1 中面临的以下问题：
 可以做懒加载,可以结合路由(path/loadchildren)使用，打包到一个js。
 
 
-## 怎样使用外部库 
-以 echarts 为例,首先使用 npm 安装 echarts，接着可以封装成指令进行使用( 参考自 NiceFish )
+## 怎样使用外部库
+### echarts
+首先使用 npm 安装 echarts，接着可以封装成指令进行使用( 参考自 NiceFish )
 ```javascript
 import * as echarts from 'echarts';
 
@@ -37,6 +38,13 @@ export class EChartOptionDirective1 implements OnInit {
     }
 }
 ```
+### jquery
+1. 在 index.html 中引入 jquery 文件
+2. 在 ts 文件中声明: ```declare var $: any;```
+3. 直接可使用
+
+### 使用后续添加在 window 上的变量
+```declare var 变量名: any;```
 
 
 ## 参考
