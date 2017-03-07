@@ -5,5 +5,5 @@ module.exports = async function() {
     if (data && data.length > 0) {
         console.log('crawler task ret:', data[0]);
     }
-    return {data};
+    return data;
 }

@@ -1,5 +1,5 @@
 /**
- * 抓取提交的任务
+ * 批量从数据库执行任务
  */
 const cheerio = require('cheerio');
 const superagent = require('superagent');
@@ -7,13 +7,15 @@ const superagent = require('superagent');
 const utils = require('../../utils/index');
 const Blogger = require('../../models/blogger');
 const Blognews_2 = require('../../models/blognews');
-// http://nodejs.cn/api/vm
+
+// 参考: http://nodejs.cn/api/vm
 const vm = require('vm');
 const util = require('util');
+let taskNum = 0;
 
 
 module.exports = async function runTasksFromDB(resolve, reject) {
-    console.log('iamhere0:');
+    taskNum = 0;
     let blogmodel = await Blogger.find({})
         .exec().catch(err => {
             utils.logger.error(err);
@@ -24,10 +26,10 @@ module.exports = async function runTasksFromDB(resolve, reject) {
         reject("no blogger!");
         return next(err);
     }
-    console.log('iamhere1:');
     for (let m in blogmodel) {
         if (blogmodel[m].taskjs != "" && blogmodel[m].taskjs.indexOf(".js") == -1) {
-            console.log('iamhere2:' + blogmodel[m].name);
+            // 任务数+1
+            taskNum += 1;
             let model = blogmodel[m];
 
             superagent.get(model.url).end(async function(err, sres) {
