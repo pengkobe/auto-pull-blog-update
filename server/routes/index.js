@@ -39,4 +39,23 @@ module.exports.init = function(router) {
             };
         }
     });
+
+    /**
+     * 查看任务开启状态
+     */
+    router.get('/taskstate', async function(ctx, next) {
+        if (global.taskStarted == true) {
+            ctx.status = 200;
+            ctx.body = {
+                success: true,
+                started: true
+            };
+        } else {
+            ctx.status = 200;
+            ctx.body = {
+                success: true,
+                started: false
+            };
+        }
+    });
 }

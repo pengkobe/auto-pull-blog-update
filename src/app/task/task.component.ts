@@ -22,6 +22,8 @@ export class TaskComponent {
     url:'http://115.29.51.196'
   }];
 
+  taskHasStarted:Boolean = false;
+
 
   // TypeScript public modifiers
   constructor(public taskservice: TaskService, public bloggerservice: BloggerService,
@@ -32,6 +34,7 @@ export class TaskComponent {
   ngOnInit() {
     console.log('hello `task` component');
     this.loadBloggers();
+    this.loadTaskState();
   }
 
   addBlogger(){
@@ -58,6 +61,12 @@ export class TaskComponent {
   loadBloggers(){
     this.bloggerservice.getBloggers().subscribe(data => {
       this.bloggers = data.data;
+    });
+  }
+
+  loadTaskState(){
+    this.taskservice.taskState().subscribe(data =>{
+      this.taskHasStarted = data.started
     });
   }
 

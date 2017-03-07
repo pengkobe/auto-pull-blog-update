@@ -15,4 +15,8 @@ export class TaskService {
     return this.http.get('begintasks').map(res => res.json());
   }
 
+  taskState() {
+    return this.http.get('taskstate').map(res => res.json());
+  }
+
 }
