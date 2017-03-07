@@ -1,6 +1,13 @@
 # ionic
 由于项目基于 ionic，这里需对 ionic 基于 angular2 做的升级进行一些记录
 
+
+## ionic2 文档
+* native：http://ionicframework.com/docs/v2/native/transfer/
+* Component：http://ionicframework.com/docs/v2/components/#grid
+* Api :http://ionicframework.com/docs/v2/api/platform/Platform/
+
+
 ## 细节项
 * @Page,升级后不见了。
 * $ionicConfigProvider不见了，代替它的为:http://ionicframework.com/docs/v2/api/config/Config/

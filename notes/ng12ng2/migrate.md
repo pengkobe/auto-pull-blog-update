@@ -9,6 +9,8 @@
 * 看文档，看了示例之后在来看，会好很多，https://angular.cn/docs/ts/latest/tutorial/
 * 去 showcase 找找案例，网址: http://showcase.ionicframework.com/apps/top
 * CSDN 上有中文文档可下载
+* ionic论坛可以解答你的很多疑惑: https://forum.ionicframework.com
+
 
 ## 项目结构不同点
 * 不再可以自定义 gulp 任务了，官方解释了为了其自身构建更好的工具
