@@ -8,18 +8,12 @@ import { MdDialog,MdDialogRef } from '@angular/material';
 import { LoginDialogComponent } from './login';
 
 @Component({
-  // The selector is what angular internally uses
-  // for `document.querySelectorAll(selector)` in our index.html
-  // where, in this case, selector is the string 'home'
-  selector: 'home',  // <home></home>
-  // We need to tell Angular's Dependency Injection which providers are in our app.
+  selector: 'home',
   providers: [
     BloggerService,
     NewsService
   ],
-  // Our list of styles in our component. We may add more to compose many styles together
   styleUrls: ['./home.component.css'],
-  // Every Angular template is first compiled by the browser before Angular runs it's compiler
   templateUrl: './home.component.html'
 })
 export class HomeComponent {
@@ -34,12 +28,13 @@ export class HomeComponent {
       hasRead:false
     },
   ];
-  // Set our default values
   localState = { value: '' };
   token = null;
-  // TypeScript public modifiers
+
   constructor(public appState: AppState,
-    public bloggerservice: BloggerService,public newsService :NewsService,public dialog: MdDialog) {
+    public bloggerservice: BloggerService,
+    public newsService :NewsService,
+    public dialog: MdDialog) {
   }
 
   ngOnInit() {
@@ -51,6 +46,9 @@ export class HomeComponent {
     this.loadBloggerNews();
   }
 
+  /**
+   * [openLoginDialog 登录提示框]
+   */
   openLoginDialog(){
     let dialogRef = this.dialog.open(LoginDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
@@ -68,8 +66,11 @@ export class HomeComponent {
     this.localState.value = '';
   }
 
+  /**
+   * [loadBloggerNews 加载新闻列表]
+   */
    loadBloggerNews(){
-    this.bloggerservice.getBloggerNews().subscribe(data => {
+    this.newsService.getBloggerNews().subscribe(data => {
       console.log('getBloggerNews:',data.data);
       this.news=data.data;
     },
@@ -84,8 +85,9 @@ export class HomeComponent {
     );
   }
 
-  /*
-   * 设置 已读/未读
+  /**
+   * [toggleNewsState 设置阅读状态]
+   * @param  {[Object]} p [新闻Model]
    */
   toggleNewsState(p){
     var that = this;

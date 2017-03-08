@@ -25,26 +25,24 @@ export class TaskComponent {
   taskHasStarted:Boolean = false;
 
 
-  // TypeScript public modifiers
-  constructor(public taskservice: TaskService, public bloggerservice: BloggerService,
+  constructor(public taskservice: TaskService,
+     public bloggerservice: BloggerService,
     public dialog: MdDialog) {
 
   }
 
   ngOnInit() {
     console.log('hello `task` component');
+    // 订阅
+    this.bloggerservice.blogerList.subscribe(data => {
+         this.bloggers = data.data;
+    });
     this.loadBloggers();
-    this.bloggerservice.getBloggers();
     this.loadTaskState();
   }
 
   addBlogger(){
     console.log("addBlogger!!!!");
-    // 模拟数据
-    // this.bloggerservice.addBlogger().subscribe(data => {
-    //   console.log('addBlogger:',data.data);
-    // });
-
     let dialogRef = this.dialog.open(AddBloggerDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       this.loadBloggers();
@@ -58,11 +56,8 @@ export class TaskComponent {
     });
   }
 
-  // 加载博主列表
   loadBloggers(){
-    this.bloggerservice.blogerList.subscribe(data => {
-         this.bloggers = data.data;
-    });
+    this.bloggerservice.getBloggers();
   }
 
   loadTaskState(){

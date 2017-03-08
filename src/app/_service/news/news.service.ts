@@ -22,4 +22,11 @@ export class NewsService {
     }).map(res => res.json());
   }
 
+  /**
+   * 获取新闻列表
+   */
+  getBloggerNews() {
+    return this.http.get('blognews').map(res => res.json());
+  }
+
 }

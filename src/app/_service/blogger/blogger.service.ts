@@ -57,10 +57,5 @@ export class BloggerService {
     });
   }
 
-   /**
-   * 获取新闻列表
-   */
-  getBloggerNews() {
-    return this.http.get('blognews').map(res => res.json());
-  }
+
 }
