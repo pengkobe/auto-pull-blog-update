@@ -34,6 +34,7 @@ export class TaskComponent {
   ngOnInit() {
     console.log('hello `task` component');
     this.loadBloggers();
+    this.bloggerservice.getBloggers();
     this.loadTaskState();
   }
 
@@ -59,8 +60,8 @@ export class TaskComponent {
 
   // 加载博主列表
   loadBloggers(){
-    this.bloggerservice.getBloggers().subscribe(data => {
-      this.bloggers = data.data;
+    this.bloggerservice.blogerList.subscribe(data => {
+         this.bloggers = data.data;
     });
   }
 

@@ -2,10 +2,18 @@ import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { HttpClient } from '../../_common/http-client';
 import { Observable } from 'rxjs';
+import { Subject } from 'rxjs/Subject';
+import { Blogger } from 'blogger.service';
 
 @Injectable()
 export class BloggerService {
+  public subject: Subject<Blogger> = new Subject<Blogger>();
+
   constructor(public http: HttpClient) {
+  }
+
+   public get blogerList():Observable<User>{
+      return this.subject.asObservable();
   }
 
   /**
@@ -43,7 +51,10 @@ export class BloggerService {
    * 获取博主列表
    */
   getBloggers() {
-    return this.http.get('bloggers').map(res => res.json());
+    return this.http.get('bloggers')
+    .map(res => res.json()).subscribe(data =>{
+        this.subject.next(Object.assign({},data));
+    });
   }
 
    /**
