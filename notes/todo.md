@@ -5,11 +5,11 @@
 * 尝试下用指令写一个组件
 * 改装成 PWA (听说有个 webpack 插件，装上运行就行)
 * 修正一天只能爬一次的bug
-* 根据 Jackblog App ionic2.0 版重新设计下前端service
-* 给 webpack 挖点坑
+* 给 webpack 挖点坑（自动部署项目到俺的服务器）
 
 ## Doing
 * 结束任务，可以开始任务，也可以结束任务( 显示任务数,当前运行时间 )
+* 根据 Jackblog App ionic2.0 版重新设计下前端service
 
 ## Done
 * 设置阅读状态为：已读
