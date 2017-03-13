@@ -88,3 +88,4 @@ exports.getWebpackConfigModule = getWebpackConfigModule;
 exports.getRepoName = getRepoName;
 exports.safeUrl = safeUrl;
 exports.replaceHtmlWebpackPlugin = replaceHtmlWebpackPlugin;
+
