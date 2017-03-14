@@ -1,11 +1,11 @@
 {
   "vendor": {
-    "js": "/my-web-crawler/vendor.2eaa7fdc332a05da3fc2.bundle.js"
+    "js": "/my-web-crawler/vendor.eaa70e3ef6a9e8dc1709.bundle.js"
   },
   "main": {
-    "js": "/my-web-crawler/main.7035ca9e67532a7c2554.bundle.js"
+    "js": "/my-web-crawler/main.adcb35fda809ca88c7d6.bundle.js"
   },
   "polyfills": {
-    "js": "/my-web-crawler/polyfills.a8b6c6d6f960bbaa8775.bundle.js"
+    "js": "/my-web-crawler/polyfills.9597efa6056672a415e0.bundle.js"
   }
 }
