@@ -15,13 +15,14 @@ let taskNum = 0;
 
 
 module.exports = async function runTasksFromDB(resolve, reject) {
+   
     taskNum = 0;
     let blogmodel = await Blogger.find({})
         .exec().catch(err => {
             utils.logger.error(err);
             this.throw(500, '内部错误')
         });
-
+    
     if (!blogmodel.length || blogmodel.length == 0) {
         reject("no blogger!");
         return next(err);
@@ -103,5 +104,8 @@ module.exports = async function runTasksFromDB(resolve, reject) {
                 }
             });
         }
+    }
+    if(taskNum == 0){
+        resolve([]);
     }
 }
