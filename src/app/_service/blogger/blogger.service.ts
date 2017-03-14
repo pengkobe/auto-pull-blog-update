@@ -7,12 +7,12 @@ import { Blogger } from 'blogger.service';
 
 @Injectable()
 export class BloggerService {
-  public subject: Subject<Blogger> = new Subject<Blogger>();
+  public subject: Subject<any> = new Subject<any>();
 
   constructor(public http: HttpClient) {
   }
 
-   public get blogerList():Observable<User>{
+   public get blogerList():Observable<any>{
       return this.subject.asObservable();
   }
 
