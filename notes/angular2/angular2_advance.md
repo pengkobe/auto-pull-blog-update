@@ -18,9 +18,19 @@ Query会解决开发者在 Angular 1 中面临的以下问题：
 ## NgModule
 可以做懒加载,可以结合路由(path/loadchildren)使用，打包到一个js。
 
+##  @types
+参考1: http://www.cnblogs.com/haogj/p/6194472.html  
+参考2:http://www.typescriptlang.org/docs/handbook/tsconfig-json.html  
+基于 Typescript 开发的时候，很麻烦的一个问题就是类型定义。导致在编译的时候，经常会看到一连串的找不到类型的提示。
+解决的方式经过了许多的变化，从 DefinitelyTyped 到 typings。最后是 @types。在 Typescript 2.0 之后，推荐使用 @types 方式。
+### DefinitelyTyped
+DefinitelyTyped 包含大量的高质量的 TypeScript 类型定义。
+
+
 
 ## 怎样使用外部库
 ### echarts
+
 首先使用 npm 安装 echarts，接着可以封装成指令进行使用( 参考自 NiceFish )
 ```javascript
 import * as echarts from 'echarts';
@@ -38,6 +48,11 @@ export class EChartOptionDirective1 implements OnInit {
     }
 }
 ```
+此外你也可以使用 echarts 开发成员网红羡辙提供的教程：  
+http://zhangwenli.com/blog/2016/08/24/using-echarts-with-typescript/
+
+
+
 ### jquery
 1. 在 index.html 中引入 jquery 文件
 2. 在 ts 文件中声明: ```declare var $: any;```
