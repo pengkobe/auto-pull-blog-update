@@ -6,8 +6,8 @@ const path = require('path');
 const helpers = require('./helpers');
 const serverDeploy = require('./deploy');
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
-// https://www.npmjs.com/package/sftp-webpack-plugin
-const SftpWebpackPlugin = require('sftp-webpack-plugin')
+// https://www.npmjs.com/package/scp2
+var scpUtil = require('scp2');
 
 module.exports = function (options) {
     const webpackConfigFactory = serverDeploy.getWebpackConfigModule(options); // the settings that are common to prod and dev
@@ -37,7 +37,7 @@ module.exports = function (options) {
         plugins: [
             function () {
                 this.plugin('done', function (stats) {
-                    console.log('Starting deployment to Server.');
+
 
                     const logger = function (msg) {
                         console.log(msg);
@@ -47,18 +47,22 @@ module.exports = function (options) {
                     // but, as of now, it also ignores "vendors*" files.
                     // This means vendor.bundle.js or vendor.[chunk].bundle.js will return 404.
                     // this is the fix for now.
-                    fs.writeFileSync(path.join(webpackConfig.output.path, '.nojekyll'), '');
-
+                    setTimeout(function () {
+                        fs.writeFileSync(path.join(webpackConfig.output.path, '.nojekyll'), '');
+                        console.log('Starting deployment to Server.');
+                        // 上传至服务器
+                        scpUtil.scp(webpackConfig.output.path, {
+                            host: '',
+                            username: '',
+                            password: '',
+                            path: '/mnt/testupload/'
+                        }, function (err) {
+                            console.log(err);
+                        });
+                    }, 2000
+                    )
                 });
-            },
-            new SftpWebpackPlugin({
-                port: '22',
-                host: '',
-                username: 'root',
-                password: '',
-                from: './dist',
-                to: '/mnt/testupload/'
-            })
+            }
         ]
     });
 };
