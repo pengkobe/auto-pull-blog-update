@@ -6,10 +6,14 @@ const helpers = require('../helpers');
 //const REPO_NAME_RE = /Push {2}URL: https:\/\/github\.com\/.*\/(.*)\.git/;
 const REPO_NAME_RE = /Push {2}URL: git@github\.com:pengkobe\/(.*)\.git/;
 
+/**
+ * 获取 webpack 配置文件
+ * @param {*} options 
+ */
 function getWebpackConfigModule(options) {
-  if (options.githubDev) {
+  if (options.dev) {
     return require('../webpack.dev.js');
-  } else if (options.githubProd) {
+  } else if (options.prod) {
     return require('../webpack.prod.js');
   } else {
     throw new Error('Invalid compile option.');
@@ -17,23 +21,18 @@ function getWebpackConfigModule(options) {
 }
 
 /**
- * [getRepoName 获取Github Repo URL]
- * @param {*} remoteName 
+ * 
+ * @param {*}  
  */
-function getRepoName(remoteName) {
-  remoteName = remoteName || 'origin';
+function getServerURL() {
 
-  var stdout = execSync('git remote show ' + remoteName),
-      match = REPO_NAME_RE.exec(stdout);
-  console.log("match:",match);
-  console.log("remoteName:",REPO_NAME_RE);
-  if (!match) {
-    throw new Error('Could not find a repository on remote ' + remoteName);
-  } else {
-    return match[1];
-  }
 }
 
+/**
+ * [ stripTrailing 字符串截取 ]
+ * @param {*} str 字符串
+ * @param {*} char 开始字符
+ */
 function stripTrailing(str, char) {
 
   if (str[0] === char) {
@@ -62,19 +61,13 @@ function safeUrl(url) {
   return stripped ? stripped + '/' : '';
 }
 
-function replaceHtmlWebpackPlugin(plugins, ghRepoName) {
+
+function replaceHtmlWebpackPlugin(plugins) {
   for (var i=0; i<plugins.length; i++) {
     if (plugins[i] instanceof HtmlWebpackPlugin) {
       // remove the old instance of the html plugin
       const htmlPlug = plugins.splice(i, 1)[0];
-      const METADATA = webpackMerge(htmlPlug.options.metadata, {
-        /**
-         * Prefixing the REPO name to the baseUrl for router support.
-         * This also means all resource URIs (CSS/Images/JS) will have this prefix added by the browser
-         * unless they are absolute (start with '/'). We will handle it via `output.publicPath`
-         */
-        baseUrl: '/' + ghRepoName + '/' + safeUrl(htmlPlug.options.metadata.baseUrl)
-      });
+      const METADATA = htmlPlug.options.metadata;
 
       // add the new instance of the html plugin.
       plugins.splice(i, 0, new HtmlWebpackPlugin({
@@ -89,7 +82,7 @@ function replaceHtmlWebpackPlugin(plugins, ghRepoName) {
   }
 }
 exports.getWebpackConfigModule = getWebpackConfigModule;
-exports.getRepoName = getRepoName;
+exports.getServerURL = getServerURL;
 exports.safeUrl = safeUrl;
 exports.replaceHtmlWebpackPlugin = replaceHtmlWebpackPlugin;
 
