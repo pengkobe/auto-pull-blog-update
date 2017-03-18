@@ -49,18 +49,22 @@ module.exports = function (options) {
                     // this is the fix for now.
                     setTimeout(function () {
                         fs.writeFileSync(path.join(webpackConfig.output.path, '.nojekyll'), '');
-                        console.log('Starting deployment to Server.');
+                        console.log('Starting deployment to Server：' + webpackConfig.output.path);
                         // 上传至服务器
-                        scpUtil.scp(webpackConfig.output.path, {
-                            host: '',
-                            username: '',
-                            password: '',
-                            path: '/mnt/testupload/'
-                        }, function (err) {
+                        // scp ./dist/* root@115.29.51.196:/mnt/testupload/
+                        var localpath = webpackConfig.output.path + '/*.js';
+                        // scpUtil.scp(localpath, {
+                        //     host: '115.29.51.196',
+                        //     username: 'root',
+                        //     password: 'pwd',
+                        //     path: '/mnt/testupload/'
+                        // }, function (err) {
+                        //     console.log(err);
+                        // });
+                        scpUtil.scp(localpath, 'root:pwd@115.29.51.196:/mnt/testupload/', function (err) {
                             console.log(err);
-                        });
-                    }, 2000
-                    )
+                        })
+                    }, 2000)
                 });
             }
         ]
