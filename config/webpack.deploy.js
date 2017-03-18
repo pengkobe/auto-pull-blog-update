@@ -6,12 +6,8 @@ const path = require('path');
 const helpers = require('./helpers');
 const serverDeploy = require('./deploy');
 const webpackMerge = require('webpack-merge'); // used to merge webpack configs
-
-/**
- * Webpack Constants
- */
-const GIT_REMOTE_NAME = 'origin';
-const COMMIT_MESSAGE = 'Updates';
+// https://www.npmjs.com/package/sftp-webpack-plugin
+const SftpWebpackPlugin = require('sftp-webpack-plugin')
 
 module.exports = function (options) {
     const webpackConfigFactory = serverDeploy.getWebpackConfigModule(options); // the settings that are common to prod and dev
@@ -41,17 +37,10 @@ module.exports = function (options) {
         plugins: [
             function () {
                 this.plugin('done', function (stats) {
-                    console.log('Starting deployment to GitHub.');
+                    console.log('Starting deployment to Server.');
 
                     const logger = function (msg) {
                         console.log(msg);
-                    };
-
-                    const options = {
-                        logger: logger,
-                        remote: GIT_REMOTE_NAME,
-                        message: COMMIT_MESSAGE,
-                        dotfiles: true // for .nojekyll
                     };
 
                     // Since GitHub moved to Jekyll 3.3, their server ignores the "node_modules" and "vendors" folder by default.
@@ -64,9 +53,9 @@ module.exports = function (options) {
             },
             new SftpWebpackPlugin({
                 port: '22',
-                host: 'host',
+                host: '',
                 username: 'root',
-                password: 'password',
+                password: '',
                 from: './dist',
                 to: '/mnt/testupload/'
             })
