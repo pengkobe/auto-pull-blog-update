@@ -38,7 +38,6 @@ module.exports = function (options) {
             function () {
                 this.plugin('done', function (stats) {
 
-
                     const logger = function (msg) {
                         console.log(msg);
                     };
@@ -50,20 +49,15 @@ module.exports = function (options) {
                     setTimeout(function () {
                         fs.writeFileSync(path.join(webpackConfig.output.path, '.nojekyll'), '');
                         console.log('Starting deployment to Server：' + webpackConfig.output.path);
-                        // 上传至服务器
-                        // scp ./dist/* root@115.29.51.196:/mnt/testupload/
-                        var localpath = webpackConfig.output.path + '/*.js';
-                        // scpUtil.scp(localpath, {
-                        //     host: '115.29.51.196',
-                        //     username: 'root',
-                        //     password: 'pwd',
-                        //     path: '/mnt/testupload/'
-                        // }, function (err) {
-                        //     console.log(err);
-                        // });
-                        scpUtil.scp(localpath, 'root:pwd@115.29.51.196:/mnt/testupload/', function (err) {
+                        var localpath = webpackConfig.output.path;
+                        scpUtil.scp(localpath, {
+                            host: 'ip',
+                            username: 'root',
+                            password: 'pwd',
+                            path: '/path/to/deploy'
+                        }, function (err) {
                             console.log(err);
-                        })
+                        });
                     }, 2000)
                 });
             }

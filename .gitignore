@@ -63,3 +63,5 @@ npm-debug.log
 *.swp
 
 .vscode
+
+config/webpack.deploy.js
