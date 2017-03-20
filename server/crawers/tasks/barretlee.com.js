@@ -26,6 +26,7 @@ module.exports = async function runTask(resolve, reject) {
         let blogmodel = await Blogger.find({ name: 'barretlee' })
             .exec().catch(err => {
                 utils.logger.error(err);
+                reject(err);
                 this.throw(500, '内部错误')
             });
 
@@ -71,6 +72,7 @@ module.exports = async function runTask(resolve, reject) {
         Blognews_2.create(newsArray, function (err) {
             if (err) {
                 reject("store article err！");
+                reject(err);
                 return next(err);
             }
             var docs = Array.prototype.slice.call(arguments, 1);
@@ -82,6 +84,7 @@ module.exports = async function runTask(resolve, reject) {
         await Blogger.update({ _id: blogger._id }, blogger)
             .exec().catch(err => {
                 utils.logger.error(err);
+                reject(err);
                 this.throw(500, 'Blogger.update错误');
             });
     });
