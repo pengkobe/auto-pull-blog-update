@@ -4,7 +4,7 @@ const Blogger = require('../models/blogger.js');
 const mw = require('../middlewares/index.js');
 module.exports.init = router => {
   router.post('/bloggers',mw.verify_token, create);
-  router.patch('/bloggers/:id', mw.verify_token, modify)
+  router.patch('/editBlogger/:id', mw.verify_token, modify)
   router.get('/bloggers',mw.verify_token,  bloggerList);
   router.get('/bloggers/:id', mw.verify_token, bloggerDetail)
   router.delete('/bloggers/:id',mw.verify_token, deleteBlogger)
@@ -75,9 +75,8 @@ async function bloggerList(ctx, next){
 async function modify(ctx, next){
   const id = ctx.params.id;
   const modifyOption = ctx.request.body;
-  modifyOption.lastEditTime = new Date();
-  modifyOption.bloggerPublished = false;
-  let result = await Blogger.findByIdAndUpdate(id,{$set:modifyOption},{new:true}).populate('url').exec()
+  modifyOption.lastUpdateTime = new Date();
+  let result = await Blogger.findByIdAndUpdate(id,{$set:modifyOption},{new:true}).exec()
     .catch(err => {
       if(err.name === 'CastError'){
         ctx.throw(400,'id不存在');

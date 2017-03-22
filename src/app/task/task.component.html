@@ -7,15 +7,18 @@
 <div>
     <md-list>
         <h3 md-subheader class="task-news-title">博主列表</h3>
-        <md-list-item *ngFor="let b of bloggers" class="md-list-item-blogger">
-            <md-icon md-list-avatar>folder</md-icon>
-            <h4 md-line>
-                <a md-line href="{{b.url}}">{{b.name}}</a>
-                <a md-button (click)="editBlogger(b)">编辑</a>
-            </h4>
-            <p md-line> {{b.createTime | date}} </p>
-
-            <div *ngIf="b.isShow">
+        <md-list-item *ngFor="let b of bloggers">
+            <div md-line *ngIf="!b.isShow" class="md-list-item-blogger">
+                <md-icon md-list-avatar>folder</md-icon>
+                <h4 md-line>
+                    <a md-line href="{{b.url}}">{{b.name}}</a>
+                </h4>
+                <h4 md-line>
+                    <a md-button (click)="editBlogger(b)">编辑</a>
+                </h4>
+                <p md-line> {{b.createTime | date}} </p>
+            </div>
+            <div *ngIf="b.isShow" class="md-list-item-blogger-edit">
                 <div md-dialog-content>
                     <md-input-container>
                         <input md-input placeholder="博主姓名" [(ngModel)]="b.name">

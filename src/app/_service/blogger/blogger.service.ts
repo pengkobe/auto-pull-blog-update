@@ -49,15 +49,14 @@ export class BloggerService {
    * @return {[Observable]}   [后台返回数据]
    */
   editBlogger(model) {
-    return;
     const _id = model._id;
     const name = model.name;
     const url = model.url;
     const taskjs = model.taskjs;
-    let creds = '_id=' + _id + '&name=' + name + '&url=' + url + '&taskjs=' + taskjs;
+    let creds = 'name=' + name + '&url=' + url + '&taskjs=' + taskjs;
     let headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    return this.http.post('editBlogger', creds, {
+    return this.http.post('editBlogger/'+_id, creds, {
       headers: headers
     }).map(res => res.json());
   }

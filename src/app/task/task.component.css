@@ -4,6 +4,14 @@
   top:10px;*/
 }
 
-.md-list-item-blogger .md-list-item{
-  height:auto !important;
+.md-list-item-blogger{
+  display: flex;
+}
+
+.md-list-item-blogger-edit{
+
+}
+
+.md-list-item{
+  height: auto !important;
 }
