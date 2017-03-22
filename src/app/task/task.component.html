@@ -7,12 +7,31 @@
 <div>
     <md-list>
         <h3 md-subheader class="task-news-title">博主列表</h3>
-        <md-list-item *ngFor="let b of bloggers">
+        <md-list-item *ngFor="let b of bloggers" class="md-list-item-blogger">
             <md-icon md-list-avatar>folder</md-icon>
             <h4 md-line>
                 <a md-line href="{{b.url}}">{{b.name}}</a>
+                <a md-button (click)="editBlogger(b)">编辑</a>
             </h4>
             <p md-line> {{b.createTime | date}} </p>
+
+            <div *ngIf="b.isShow">
+                <div md-dialog-content>
+                    <md-input-container>
+                        <input md-input placeholder="博主姓名" [(ngModel)]="b.name">
+                    </md-input-container>
+                    <md-input-container>
+                        <input md-input placeholder="URL" [(ngModel)]="b.url">
+                    </md-input-container>
+                    <md-input-container>
+                        <textarea md-input placeholder="任务JS" [(ngModel)]="b.taskjs" minRows=8></textarea>
+                    </md-input-container>
+                </div>
+                <div class="submit-botton-group" md-dialog-actions>
+                    <button md-raised-button (click)="editBlogger(b)">提交</button>
+                    <button md-button (click)="cancelEditBlogger(b)">取消</button>
+                </div>
+            </div>
         </md-list-item>
         <md-divider></md-divider>
     </md-list>

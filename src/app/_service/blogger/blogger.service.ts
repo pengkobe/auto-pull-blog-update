@@ -12,39 +12,8 @@ export class BloggerService {
   constructor(public http: HttpClient) {
   }
 
-   public get blogerList():Observable<any>{
-      return this.subject.asObservable();
-  }
-
-  /**
-   * [postBlogger 添加博主]
-   * @param  {[Object]} model [博主实体对象]
-   * @return {[Observable]}   [后台返回数据]
-   */
-  postBlogger(model){
-    const name = model.name;
-    const url = model.url;
-    const taskjs  = model.taskjs;
-    let creds = 'name=' + name + '&url=' + url + '&taskjs=' + taskjs;
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    return this.http.post('bloggers', creds, {
-      headers: headers
-    }).map(res => res.json());
-  }
-  /**
-   * 获取Token
-   */
-  addBlogger() {
-    const name = 'yinwang';
-    const url = 'http://yinwang.org';
-    const taskjs  = 'yinwang.org.js';
-    let creds = 'name=' + name + '&url=' + url + '&taskjs=' + taskjs;
-    let headers = new Headers();
-    headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    return this.http.post('bloggers', creds, {
-      headers: headers
-    }).map(res => res.json());
+  public get blogerList(): Observable<any> {
+    return this.subject.asObservable();
   }
 
   /**
@@ -52,10 +21,60 @@ export class BloggerService {
    */
   getBloggers() {
     return this.http.get('bloggers')
-    .map(res => res.json()).subscribe(data =>{
-        this.subject.next(Object.assign({},data));
-    });
+      .map(res => res.json()).subscribe(data => {
+        this.subject.next(Object.assign({}, data));
+      });
   }
 
+  /**
+   * [postBlogger 添加博主]
+   * @param  {[Object]} model [博主实体对象]
+   * @return {[Observable]}   [后台返回数据]
+   */
+  postBlogger(model) {
+    const name = model.name;
+    const url = model.url;
+    const taskjs = model.taskjs;
+    let creds = 'name=' + name + '&url=' + url + '&taskjs=' + taskjs;
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    return this.http.post('bloggers', creds, {
+      headers: headers
+    }).map(res => res.json());
+  }
+
+  /**
+   * [editBlogger 修改博主信息]
+   * @param  {[Object]} model [博主实体对象]
+   * @return {[Observable]}   [后台返回数据]
+   */
+  editBlogger(model) {
+    return;
+    const _id = model._id;
+    const name = model.name;
+    const url = model.url;
+    const taskjs = model.taskjs;
+    let creds = '_id=' + _id + '&name=' + name + '&url=' + url + '&taskjs=' + taskjs;
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    return this.http.post('editBlogger', creds, {
+      headers: headers
+    }).map(res => res.json());
+  }
+
+  /**
+   * 添加 blogger ( for test)
+   */
+  // addBlogger() {
+  //   const name = 'yinwang';
+  //   const url = 'http://yinwang.org';
+  //   const taskjs  = 'yinwang.org.js';
+  //   let creds = 'name=' + name + '&url=' + url + '&taskjs=' + taskjs;
+  //   let headers = new Headers();
+  //   headers.append('Content-Type', 'application/x-www-form-urlencoded');
+  //   return this.http.post('bloggers', creds, {
+  //     headers: headers
+  //   }).map(res => res.json());
+  // }
 
 }
