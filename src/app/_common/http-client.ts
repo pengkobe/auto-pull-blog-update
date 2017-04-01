@@ -43,6 +43,19 @@ export class HttpClient {
         });
     }
 
+    patch(url, data,headers?) {
+         if (!headers) {
+            headers = new Headers();
+        }else{
+            headers = headers.headers;
+        }
+        url = this.getFullUrl(url);
+        this.createAuthorizationHeader(headers);
+        return this.http.patch(url, data, {
+            headers: headers
+        });
+    }
+
     getFullUrl(url){
         // http://115.29.51.196:3001/
         return "http://localhost:3001/"+url;
