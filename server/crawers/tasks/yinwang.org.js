@@ -1,5 +1,5 @@
 /**
-* 抓取 yinwang.org
+* 抓取 yinwang.org( 已废弃 )
 */
 const cheerio = require('cheerio');
 const superagent = require('superagent');

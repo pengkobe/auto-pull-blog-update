@@ -1,6 +1,7 @@
 /**
  * 批量从数据库执行任务
  */
+
 const cheerio = require('cheerio');
 const superagent = require('superagent');
 
@@ -8,14 +9,14 @@ const utils = require('../../utils/index');
 const Blogger = require('../../models/blogger');
 const Blognews_2 = require('../../models/blognews');
 
-// 参考: http://nodejs.cn/api/vm
+// 沙箱参考: http://nodejs.cn/api/vm
 const vm = require('vm');
 const util = require('util');
 let taskNum = 0;
 
 
 module.exports = async function runTasksFromDB(resolve, reject) {
-
+    // 重启服务，任务置为 0
     taskNum = 0;
     let blogmodel = await Blogger.find({})
         .exec().catch(err => {
@@ -29,10 +30,8 @@ module.exports = async function runTasksFromDB(resolve, reject) {
     }
     for (let m in blogmodel) {
         if (blogmodel[m].taskjs != "" && blogmodel[m].taskjs.indexOf(".js") == -1) {
-            // 任务数+1
             taskNum += 1;
             let model = blogmodel[m];
-
             superagent.get(model.url).end(async function (err, sres) {
                 try {
                     // 常规的错误处理
@@ -58,13 +57,13 @@ module.exports = async function runTasksFromDB(resolve, reject) {
 
                     // eval(model.taskjs);
                     var vmRet = vm.runInNewContext(model.taskjs, sandbox);
-                    //console.log('iamhere3xx:' + util.inspect(sandbox));
+                    //console.log('inspect sandbox:' + util.inspect(sandbox));
 
                     let __pulldata___ = sandbox.__pulldata___;
                     let newsArray = [];
                     for (let i = 0; i < __pulldata___.length; i++) {
-                        // 时间对比 new Date("2016-11-01")
-                        if (!model.lastUpdateTime || new Date(__pulldata___[i]._publishTime_) > new Date(model.lastUpdateTime)) {
+                        if (!model.lastUpdateTime || 
+                            new Date(__pulldata___[i]._publishTime_) > new Date(model.lastUpdateTime)) {
                             newsArray.push({
                                 from: model._id,
                                 pullTime: new Date(),
@@ -76,11 +75,12 @@ module.exports = async function runTasksFromDB(resolve, reject) {
                         }
                     }
 
+                    // 无更新
                     if (newsArray.length == 0) {
                         resolve([]);
                     }
 
-                    console.log(' tasks_from_db: 存入数据库  前!\n', err);
+                   
                     // 存入数据库
                     Blognews_2.create(newsArray, function (err) {
                         if (err) {
@@ -91,7 +91,7 @@ module.exports = async function runTasksFromDB(resolve, reject) {
                         resolve(docs);
                     });
 
-                    // 更新最后拉取时间
+                    // 更新最后更新时间
                     model.lastUpdateTime = new Date();
                     await model.update({ _id: model._id }, model)
                         .exec().catch(err => {
@@ -107,6 +107,8 @@ module.exports = async function runTasksFromDB(resolve, reject) {
             });
         }
     }
+
+    // 任务数为 0， 直接返回 []
     if (taskNum == 0) {
         resolve([]);
     }

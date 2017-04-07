@@ -93,10 +93,12 @@ module.exports = async function() {
     });
 
     console.log('yuguo task', yuguo_data);
+
     // let yinwang_data = await new Promise((resolve, reject) => {
     //     yinwang(resolve, reject);
     // });
     // console.log('yinwang task', yinwang_data);
+
     let barretlee_data = await new Promise((resolve, reject) => {
         barretlee(resolve, reject);
     });
@@ -107,9 +109,11 @@ module.exports = async function() {
         if (yuguo_data) {
             dataArr = dataArr.concat(yuguo_data);
         }
+        
         // if(yinwang_data){
         //     dataArr = dataArr.concat(yinwang_data);
         // }
+
         if (barretlee_data) {
             dataArr = dataArr.concat(barretlee_data);
         }
