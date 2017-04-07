@@ -15,3 +15,9 @@
 .md-list-item{
   height: auto !important;
 }
+.textarea-taskjs{
+  width: 300px;
+  height: 280px;
+  color: forestgreen;
+  margin-top: 20px;
+}
