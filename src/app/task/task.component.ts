@@ -39,7 +39,7 @@ export class TaskComponent {
     console.log('hello `task` component');
     // 订阅
     this.bloggerservice.blogerList.subscribe(data => {
-      var data = data.data;
+      data = data.data;
       for (let i = 0; i < data.length; i++) {
         data.isShow = false;
       }

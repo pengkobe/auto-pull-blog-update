@@ -50,7 +50,7 @@ async function bloggerList(ctx, next){
   }
   utils.print(queryOpt);
   const bloggerArr = await Blogger.find(queryOpt)
-    .select('name createTime url ')
+    .select('name createTime url taskjs')
     .sort({ createTime: -1})
     .exec().catch(err => {
     utils.logger.error(err);
