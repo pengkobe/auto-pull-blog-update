@@ -19,7 +19,7 @@ module.exports = async function runTask(resolve, reject) {
         if (err) {
             console.log('get yuguo.us err!\n', err);
             reject(err);
-            return next(err);
+            return ;
         }
 
         // 获取最新博文时间
@@ -31,7 +31,7 @@ module.exports = async function runTask(resolve, reject) {
 
         if (!blogmodel.length || blogmodel.length == 0) {
             reject("no blogger!");
-            return next(err);
+            return ;
         } else {
             //console.log('yuguo.lastUpdateTime:', new Date(date) > blogmodel[0].lastUpdateTime);
         }
@@ -67,7 +67,7 @@ module.exports = async function runTask(resolve, reject) {
         Blognews_2.create(newsArray, function (err) {
             if (err) {
                 reject("store article err！");
-                return next(err);
+                return ;
             }
             var docs = Array.prototype.slice.call(arguments, 1);
             resolve(docs);

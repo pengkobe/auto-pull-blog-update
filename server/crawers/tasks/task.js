@@ -55,16 +55,7 @@ module.exports = async function() {
             console.log('yuguo失败原因:', param);
         });
 
-
-
-        // yinwang(function (param) {
-        //     console.log('yinwang完美运行一次:', new Date());
-        //     console.log('docs:', param);
-        // }, function (param) {
-        //     console.log('yinwang失败运行一次:', new Date());
-        //     console.log('yinwang失败原因:', param);
-        // });
-
+      
         barretlee(function(param) {
             console.log('barretlee完美运行一次:', new Date());
             console.log('docs:', param);
@@ -76,7 +67,6 @@ module.exports = async function() {
     });
 
     // 第一次时自动运行一次
-
     let tasks_from_db_data = await new Promise((resolve, reject) => {
         console.log('>>> task');
         try {
@@ -86,23 +76,21 @@ module.exports = async function() {
             console.log(e);
         }
     });
-
     console.log('tasks_from_db task', tasks_from_db_data);
+
     let yuguo_data = await new Promise((resolve, reject) => {
         yuguo(resolve, reject);
+    }).then(function(){},function(err){
+        console.log('task.js:yuguo_data',err);
     });
-
     console.log('yuguo task', yuguo_data);
-
-    // let yinwang_data = await new Promise((resolve, reject) => {
-    //     yinwang(resolve, reject);
-    // });
-    // console.log('yinwang task', yinwang_data);
 
     let barretlee_data = await new Promise((resolve, reject) => {
         barretlee(resolve, reject);
+    }).then(function(){},function(err){
+        console.log('task.js:barretlee_data',err);
     });
-    // console.log('barretlee task...',barretlee_data);
+    console.log('barretlee task...',barretlee_data);
 
     return new Promise((resolve, reject) => {
         let dataArr = [];
@@ -110,10 +98,6 @@ module.exports = async function() {
             dataArr = dataArr.concat(yuguo_data);
         }
         
-        // if(yinwang_data){
-        //     dataArr = dataArr.concat(yinwang_data);
-        // }
-
         if (barretlee_data) {
             dataArr = dataArr.concat(barretlee_data);
         }

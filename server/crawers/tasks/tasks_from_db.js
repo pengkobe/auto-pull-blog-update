@@ -26,7 +26,6 @@ module.exports = async function runTasksFromDB(resolve, reject) {
 
     if (!blogmodel.length || blogmodel.length == 0) {
         reject("no blogger!");
-        return next(err);
     }
     for (let m in blogmodel) {
         if (blogmodel[m].taskjs != "" && blogmodel[m].taskjs.indexOf(".js") == -1) {
@@ -38,7 +37,7 @@ module.exports = async function runTasksFromDB(resolve, reject) {
                     if (err) {
                         console.log('get ' + model.name + ' err!\n', err);
                         reject(err);
-                        return next(err);
+                        return ;
                     }
                     // 提取作者博文链接，注意去重
                     let $ = cheerio.load(sres.text);
@@ -85,7 +84,6 @@ module.exports = async function runTasksFromDB(resolve, reject) {
                     Blognews_2.create(newsArray, function (err) {
                         if (err) {
                             reject("store article err！");
-                            return next(err);
                         }
                         var docs = Array.prototype.slice.call(arguments, 1);
                         resolve(docs);
