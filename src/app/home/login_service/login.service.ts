@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { Observable } from 'rxjs';
+import { AppState } from '../../app.service';
 
 @Injectable()
 export class LoginService {
-  value = 'Angular 2';
-  constructor(public http: Http) {
+  constructor(public http: Http ,public appState : AppState) {
 
   }
   /**
@@ -16,7 +16,8 @@ export class LoginService {
     let creds = 'username=' + username + '&password=' + password + '&extra=color';
     let headers = new Headers();
     headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    return this.http.post('http://115.29.51.196:3001/tokens', creds, {
+    var bUrl = this.appState.backendUrl;
+    return this.http.post( bUrl+ 'tokens', creds, {
       headers: headers
     }).map(res => res.json());
   }

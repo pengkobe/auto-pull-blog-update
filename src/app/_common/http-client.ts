@@ -57,7 +57,6 @@ export class HttpClient {
     }
 
     getFullUrl(url){
-        // http://115.29.51.196:3001/
-        return "http://localhost:3001/"+url;
+        return this.appstate.backendUrl +url;
     }
 }
