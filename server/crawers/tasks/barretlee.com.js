@@ -27,7 +27,6 @@ module.exports = async function runTask(resolve, reject) {
             .exec().catch(err => {
                 utils.logger.error(err);
                 reject(err);
-                this.throw(500, '内部错误')
             });
 
         if (!blogmodel.length || blogmodel.length == 0) {
@@ -85,7 +84,6 @@ module.exports = async function runTask(resolve, reject) {
             .exec().catch(err => {
                 utils.logger.error(err);
                 reject(err);
-                this.throw(500, 'Blogger.update错误');
             });
     });
 }

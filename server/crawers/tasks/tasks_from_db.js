@@ -21,7 +21,6 @@ module.exports = async function runTasksFromDB(resolve, reject) {
     let blogmodel = await Blogger.find({})
         .exec().catch(err => {
             utils.logger.error(err);
-            this.throw(500, '内部错误')
         });
 
     if (!blogmodel.length || blogmodel.length == 0) {
@@ -37,7 +36,7 @@ module.exports = async function runTasksFromDB(resolve, reject) {
                     if (err) {
                         console.log('get ' + model.name + ' err!\n', err);
                         reject(err);
-                        return ;
+                        return;
                     }
                     // 提取作者博文链接，注意去重
                     let $ = cheerio.load(sres.text);
@@ -61,7 +60,7 @@ module.exports = async function runTasksFromDB(resolve, reject) {
                     let __pulldata___ = sandbox.__pulldata___;
                     let newsArray = [];
                     for (let i = 0; i < __pulldata___.length; i++) {
-                        if (!model.lastUpdateTime || 
+                        if (!model.lastUpdateTime ||
                             new Date(__pulldata___[i]._publishTime_) > new Date(model.lastUpdateTime)) {
                             newsArray.push({
                                 from: model._id,
@@ -79,7 +78,7 @@ module.exports = async function runTasksFromDB(resolve, reject) {
                         resolve([]);
                     }
 
-                   
+
                     // 存入数据库
                     Blognews_2.create(newsArray, function (err) {
                         if (err) {
@@ -91,13 +90,12 @@ module.exports = async function runTasksFromDB(resolve, reject) {
 
                     // 更新最后更新时间
                     model.lastUpdateTime = new Date();
-                    await model.update({ _id: model._id }, model)
-                        .exec().catch(err => {
+                    Blogger.update({ _id: model._id }, { $set: { lastUpdateTime: new Date() } }, (err) => {
+                        if (err) {
                             utils.logger.error(err);
                             reject("Blogger.update错误！");
-                            this.throw(500, 'Blogger.update错误');
-                        });
-
+                        }
+                    });
                 } catch (e) {
                     reject(e);
                     console.log(e);

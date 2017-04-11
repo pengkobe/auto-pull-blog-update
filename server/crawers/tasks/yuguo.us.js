@@ -26,7 +26,6 @@ module.exports = async function runTask(resolve, reject) {
         let blogmodel = await Blogger.find({ name: 'yuguo' })
             .exec().catch(err => {
                 utils.logger.error(err);
-                this.throw(500, '内部错误')
             });
 
         if (!blogmodel.length || blogmodel.length == 0) {
@@ -78,9 +77,7 @@ module.exports = async function runTask(resolve, reject) {
         await Blogger.update({ _id: blogger._id }, blogger)
             .exec().catch(err => {
                 utils.logger.error(err);
-                this.throw(500, 'Blogger.update错误');
             });
-
     });
 }
 
