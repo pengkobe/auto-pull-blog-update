@@ -17,11 +17,11 @@ import { AddBloggerDialogComponent } from './addblogger';
 })
 export class TaskComponent {
   bloggers = [{
-    isShow:false,
+    isShow: false,
     name: 'yipeng',
     createTime: '2017-01-01 10:00',
     url: 'http://115.29.51.196',
-    taskjs:''
+    taskjs: ''
   }];
 
   editingBlogger = {};
@@ -50,7 +50,7 @@ export class TaskComponent {
   }
 
   addBlogger() {
-    console.log("addBlogger!!!!");
+    console.log('addBlogger!!!!');
     let dialogRef = this.dialog.open(AddBloggerDialogComponent);
     dialogRef.afterClosed().subscribe(result => {
       this.loadBloggers();
@@ -66,17 +66,17 @@ export class TaskComponent {
   }
 
   submitEditedBlogger(model) {
-    console.log("editBlogger!!!!");
+    console.log('editBlogger!!!!');
     this.bloggerservice.editBlogger(model).subscribe(data => {
       console.log('editBlogger:', data);
-      alert("修改成功！");
-    });;
+      alert('修改成功！');
+    });
   }
 
   startTasks() {
-    console.log("startTasks!!!!");
+    console.log('startTasks!!!!');
     this.taskservice.startTasks().subscribe(data => {
-      console.log("startTasks:", data.data);
+      console.log('startTasks:', data.data);
     });
   }
 
@@ -86,7 +86,7 @@ export class TaskComponent {
 
   loadTaskState() {
     this.taskservice.taskState().subscribe(data => {
-      this.taskHasStarted = data.started
+      this.taskHasStarted = data.started;
     });
   }
 

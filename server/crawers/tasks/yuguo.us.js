@@ -19,7 +19,7 @@ module.exports = async function runTask(resolve, reject) {
         if (err) {
             console.log('get yuguo.us err!\n', err);
             reject(err);
-            return ;
+            return;
         }
 
         // 获取最新博文时间
@@ -30,11 +30,11 @@ module.exports = async function runTask(resolve, reject) {
 
         if (!blogmodel.length || blogmodel.length == 0) {
             reject("no blogger!");
-            return ;
+            return;
         } else {
             //console.log('yuguo.lastUpdateTime:', new Date(date) > blogmodel[0].lastUpdateTime);
         }
-        let blogger =  blogmodel[0];
+        let blogger = blogmodel[0];
 
         // 提取作者博文链接，注意去重
         let $ = cheerio.load(sres.text);
@@ -46,7 +46,6 @@ module.exports = async function runTask(resolve, reject) {
             let rawLink = $('a', ele).attr('href');
             let link = rawLink.indexOf("http") == -1 ? ('https://yuguo.us/' + $('a', ele).attr('href')) : rawLink;
             let date = $('a>time', ele).attr("datetime");
-
 
 
             // 时间对比 new Date("2016-11-01")
@@ -66,7 +65,7 @@ module.exports = async function runTask(resolve, reject) {
         Blognews_2.create(newsArray, function (err) {
             if (err) {
                 reject("store article err！");
-                return ;
+                return;
             }
             var docs = Array.prototype.slice.call(arguments, 1);
             resolve(docs);
