@@ -9,10 +9,10 @@ import { ActivatedRoute } from '@angular/router';
     <h1>About</h1>
     <div>
       <h3>
-        yipeng.info@gmail.com
+        <a href="https://yipeng.info" target="_blank">yipeng.info</a>@gmail.com
       </h3>
     </div>
-    <pre>this.localState = {{ localState | json }}</pre>
+    <pre>{{ localState | json }}</pre>
   `
 })
 export class AboutComponent {
