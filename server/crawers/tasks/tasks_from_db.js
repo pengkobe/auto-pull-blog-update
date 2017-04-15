@@ -76,6 +76,7 @@ module.exports = async function runTasksFromDB(resolve, reject) {
                     // 无更新
                     if (newsArray.length == 0) {
                         resolve([]);
+                        return;
                     }
 
 
