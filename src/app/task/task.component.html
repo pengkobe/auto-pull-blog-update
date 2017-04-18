@@ -21,10 +21,10 @@
             <div *ngIf="b.isShow" class="md-list-item-blogger-edit">
                 <div md-dialog-content>
                     <md-input-container>
-                        <input md-input placeholder="博主姓名" [(ngModel)]="b.name">
+                        <input md-input placeholder="博主姓名" [(ngModel)]="b.name" required>
                     </md-input-container>
                     <md-input-container>
-                        <input md-input placeholder="URL" [(ngModel)]="b.url">
+                        <input md-input placeholder="URL" [(ngModel)]="b.url" required>
                     </md-input-container>
                     <md-input-container>
                         <textarea class="textarea-taskjs" md-input placeholder="任务JS" [(ngModel)]="b.taskjs" minRows=8></textarea>

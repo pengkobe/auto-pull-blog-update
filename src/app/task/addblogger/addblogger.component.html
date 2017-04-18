@@ -1,13 +1,13 @@
 <h1 md-dialog-title>添加博主</h1>
 <div md-dialog-content>
   <md-input-container>
-    <input md-input placeholder="博主姓名" [(ngModel)]="model.name">
+    <input md-input placeholder="博主姓名" [(ngModel)]="model.name" required>
   </md-input-container>
  <md-input-container>
-    <input md-input placeholder="URL" [(ngModel)]="model.url">
+    <input md-input placeholder="URL" [(ngModel)]="model.url" required>
   </md-input-container>
  <md-input-container>
-    <textarea md-input placeholder="任务JS" [(ngModel)]="model.taskjs" minRows=8 ></textarea>
+    <textarea md-input placeholder="任务JS" [(ngModel)]="model.taskjs" class="textarea-add-taskjs"  minRows=8 ></textarea>
   </md-input-container>
 </div>
 <div class="submit-botton-group" md-dialog-actions>

@@ -18,6 +18,7 @@
 .textarea-taskjs{
   width: 300px;
   height: 280px;
-  color: forestgreen;
+  color: #43f543;
+  background: #000;
   margin-top: 20px;
 }

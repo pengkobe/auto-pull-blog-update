@@ -6,3 +6,7 @@ md-input-container{
   margin-top:40px;
   text-align: center;
 }
+.textarea-add-taskjs{
+  color: #43f543;
+  background: #000;
+}
