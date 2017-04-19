@@ -1,0 +1,1 @@
+webpackJsonp([1],{854:function(e,a){e.exports=[{res:"dev based on angular2-webpack-starter"}]}});
