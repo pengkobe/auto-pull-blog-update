@@ -16,7 +16,7 @@ export class AppState {
   get backendUrl() {
     // http://localhost:3001/
     // http://115.29.51.196:3001/
-    return "http://115.29.51.196:3001/";
+    return "http://localhost:3001/";
   }
 
   // already return a clone of the current state
