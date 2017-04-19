@@ -7,15 +7,15 @@
 <div>
     <ul>
         <h3 md-subheader class="task-news-title">博主列表</h3>
-        <li *ngFor="let b of bloggers">
+        <li *ngFor="let b of bloggers" class="blogger-list-li">
             <div md-line *ngIf="!b.isShow" class="md-list-item-blogger">
-                <md-icon md-list-avatar>folder</md-icon>
+                <!--<md-icon md-list-avatar>folder</md-icon>-->
                 <h4 md-line>
                     <a md-line href="{{b.url}}">{{b.name}}</a>
                 </h4>
-                <p md-line> {{b.createTime | date}} </p>
+                <p md-line>(创建日期: {{b.createTime | date: 'yyyy-MM-dd'}} )</p>
                 <h4 md-line>
-                    <a md-button (click)="editBlogger(b)">编辑</a>
+                    <a md-button (click)="editBlogger(b)" class="edit-blogger-a">编辑</a>
                 </h4>
             </div>
             <div *ngIf="b.isShow" class="md-list-item-blogger-edit">
@@ -34,7 +34,7 @@
                         </md-input-container>
                     </div>
                     <div class="submit-botton-group" md-dialog-actions>
-                        <button md-raised-button type="submit">提交</button>
+                        <button md-raised-button type="submit" color="accent" >提交</button>
                         <button md-button (click)="cancelEditBlogger(b)">取消</button>
                     </div>
                 </form>

@@ -22,3 +22,10 @@
   background: #000;
   margin-top: 20px;
 }
+.edit-blogger-a{
+   color: #543;
+}
+.blogger-list-li{
+  border-bottom: solid #777 ;
+  padding-bottom: 20px;
+}
