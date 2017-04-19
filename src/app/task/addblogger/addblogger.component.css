@@ -7,6 +7,10 @@ md-input-container{
   text-align: center;
 }
 .textarea-add-taskjs{
+  height: 275px;
   color: #43f543;
   background: #000;
+}
+.text-danger{
+  color: red;
 }

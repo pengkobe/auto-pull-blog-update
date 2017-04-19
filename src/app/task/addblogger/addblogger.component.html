@@ -1,16 +1,25 @@
 <h1 md-dialog-title>添加博主</h1>
-<div md-dialog-content>
-  <md-input-container>
-    <input md-input placeholder="博主姓名" [(ngModel)]="model.name" required>
-  </md-input-container>
- <md-input-container>
-    <input md-input placeholder="URL" [(ngModel)]="model.url" required>
-  </md-input-container>
- <md-input-container>
-    <textarea md-input placeholder="任务JS" [(ngModel)]="model.taskjs" class="textarea-add-taskjs"  minRows=8 ></textarea>
-  </md-input-container>
-</div>
-<div class="submit-botton-group" md-dialog-actions>
-  <button md-raised-button (click)="postBlogger()">提交</button>
-  <button md-button (click)="dialogRef.close('0')">取消</button>
-</div>
+<form #form="ngForm" (ngSubmit)="form.form.valid && postBlogger()" novalidate  role="form">
+  <div md-dialog-content>
+
+    <md-input-container>
+      <input name="name" #name="ngModel" md-input placeholder="博主姓名" [(ngModel)]="model.name" required type="text">
+      <div *ngIf="form.submitted && !name.valid" class="text-danger">博主姓名必须输入！</div>
+    </md-input-container>
+
+    <md-input-container>
+      <input name="url" #url="ngModel" md-input placeholder="URL" [(ngModel)]="model.url" required type="text">
+      <div *ngIf="form.submitted && !url.valid" class="text-danger">URL必须输入！</div>
+    </md-input-container>
+
+    <md-input-container>
+      <textarea name="taskjs" #taskjs="ngModel" md-input placeholder="任务JS" [(ngModel)]="model.taskjs" class="textarea-add-taskjs"
+        minRows=8></textarea>
+    </md-input-container>
+
+  </div>
+  <div class="submit-botton-group" md-dialog-actions>
+    <button md-raised-button type="submit">提交</button>
+    <button md-button (click)="dialogRef.close('0')">取消</button>
+  </div>
+</form>

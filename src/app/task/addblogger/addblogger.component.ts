@@ -22,7 +22,6 @@ export class AddBloggerDialogComponent {
    }
 
    postBlogger(){
-     //return;
      this.service.postBlogger(this.model).subscribe(data => {
         console.log('postBlogger:',data);
         this.dialogRef.close('1');
