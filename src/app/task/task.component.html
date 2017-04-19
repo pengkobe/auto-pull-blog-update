@@ -19,22 +19,27 @@
                 </h4>
             </div>
             <div *ngIf="b.isShow" class="md-list-item-blogger-edit">
-                <div md-dialog-content>
-                    <md-input-container>
-                        <input md-input placeholder="博主姓名" [(ngModel)]="b.name" required>
-                    </md-input-container>
-                    <md-input-container>
-                        <input md-input placeholder="URL" [(ngModel)]="b.url" required>
-                    </md-input-container>
-                    <md-input-container>
-                        <textarea class="textarea-taskjs" md-input placeholder="任务JS" [(ngModel)]="b.taskjs" minRows=8></textarea>
-                    </md-input-container>
-                </div>
-                <div class="submit-botton-group" md-dialog-actions>
-                    <button md-raised-button (click)="submitEditedBlogger(b)">提交</button>
-                    <button md-button (click)="cancelEditBlogger(b)">取消</button>
-                </div>
+                <form #form="ngForm" (ngSubmit)="form.form.valid && submitEditedBlogger(b)" novalidate role="form">
+                    <div md-dialog-content>
+                        <md-input-container>
+                            <input name="name" #name="ngModel" md-input placeholder="博主姓名" [(ngModel)]="b.name" required>
+                            <div *ngIf="form.submitted && !name.valid" class="text-danger">博主姓名必须输入！</div>
+                        </md-input-container>
+                        <md-input-container>
+                            <input name="url" #url="ngModel" md-input placeholder="URL" [(ngModel)]="b.url" required>
+                            <div *ngIf="form.submitted && !url.valid" class="text-danger">URL必须输入！</div>
+                        </md-input-container>
+                        <md-input-container>
+                            <textarea name="taskjs" #taskjs="ngModel" class="textarea-taskjs" md-input placeholder="任务JS" [(ngModel)]="b.taskjs" minRows=8></textarea>
+                        </md-input-container>
+                    </div>
+                    <div class="submit-botton-group" md-dialog-actions>
+                        <button md-raised-button type="submit">提交</button>
+                        <button md-button (click)="cancelEditBlogger(b)">取消</button>
+                    </div>
+                </form>
             </div>
+
         </li>
         <md-divider></md-divider>
     </ul>

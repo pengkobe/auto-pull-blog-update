@@ -17,3 +17,7 @@ footer{
 main{
   margin: 50px 15% 0% 15%;
 }
+
+.text-danger{
+  color: red;
+}

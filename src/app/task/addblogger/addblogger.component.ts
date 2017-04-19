@@ -21,6 +21,9 @@ export class AddBloggerDialogComponent {
 
    }
 
+   /**
+    * 添加博主
+    */
    postBlogger(){
      this.service.postBlogger(this.model).subscribe(data => {
         console.log('postBlogger:',data);
