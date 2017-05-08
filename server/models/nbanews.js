@@ -1,20 +1,20 @@
-"use strict"
+"use strict";
 
 /**
  * NBA实时比分拉取
  */
 
-const mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
-const NBANewsSchema = new Schema({
+const mongoose = require("mongoose"), Schema = mongoose.Schema;
+const NBANewsSchema = new Schema(
+  {
     // 比赛开始时间
     time: {
-        type: Date
+      type: Date
     },
     // 阶段( 0 : 未开始 )
     state: {
-        type: Number,
-        default: 0
+      type: Number,
+      default: 0
     },
 
     // 客队
@@ -39,15 +39,27 @@ const NBANewsSchema = new Schema({
     live: String,
 
     lastEditTime: {
-        type: Date,
-        default: Date.now
-    },
-}, { versionKey: false });
+      type: Date,
+      default: Date.now
+    }
+  },
+  { versionKey: false }
+);
 
-NBANewsSchema.set('toJSON', { getters: true, virtuals: true });
-NBANewsSchema.set('toObject', { getters: true, virtuals: true });
-NBANewsSchema.path('time').get(function (v) {
-    return new Date(v).format('yyyy-MM-dd hh:mm:ss');
+NBANewsSchema.set("toJSON", { getters: true, virtuals: true });
+NBANewsSchema.set("toObject", { getters: true, virtuals: true });
+NBANewsSchema.path("time").get(function(v) {
+  var date = null;
+  if (v) {
+    date = new Date(v);
+    date.setHours(date.getHours() + 8);
+    date.format("yyyy-MM-dd hh:mm:ss");
+    return;
+  } else {
+    date = new Date();
+    date.setHours(date.getHours() + 8);
+    return new Date().format("yyyy-MM-dd hh:mm:ss");
+  }
 });
-const nbanews = mongoose.model('nbanews', NBANewsSchema);
+const nbanews = mongoose.model("nbanews", NBANewsSchema);
 module.exports = nbanews;
