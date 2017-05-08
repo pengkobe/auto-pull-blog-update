@@ -49,15 +49,11 @@ const NBANewsSchema = new Schema(
 NBANewsSchema.set("toJSON", { getters: true, virtuals: true });
 NBANewsSchema.set("toObject", { getters: true, virtuals: true });
 NBANewsSchema.path("time").get(function(v) {
-  var date = null;
+ var date = null;
   if (v) {
     date = new Date(v);
-    date.setHours(date.getHours() + 8);
-    date.format("yyyy-MM-dd hh:mm:ss");
-    return;
+    return date.format("yyyy-MM-dd hh:mm:ss");
   } else {
-    date = new Date();
-    date.setHours(date.getHours() + 8);
     return new Date().format("yyyy-MM-dd hh:mm:ss");
   }
 });
