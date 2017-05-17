@@ -13,7 +13,7 @@ module.exports.init = router => {
 
 async function create(ctx, next){
   const name = ctx.request.body.name,
-    createTime = new Date(),
+    createTime = Date.now,
     taskjs = ctx.request.body.taskjs,
     url = ctx.request.body.url;
   if(name === ''){
@@ -45,7 +45,7 @@ async function create(ctx, next){
 async function bloggerList(ctx, next){
   const tag = ctx.query.tag,
     queryOpt = {};
-  if(tag !== undefined){
+  if(tag){
     queryOpt.url= {"$all":[tag]}
   }
   utils.print(queryOpt);
@@ -75,7 +75,7 @@ async function bloggerList(ctx, next){
 async function modify(ctx, next){
   const id = ctx.params.id;
   const modifyOption = ctx.request.body;
-  modifyOption.lastUpdateTime = new Date();
+  modifyOption.lastUpdateTime = Date.now;
   let result = await Blogger.findByIdAndUpdate(id,{$set:modifyOption},{new:true}).exec()
     .catch(err => {
       if(err.name === 'CastError'){

@@ -25,6 +25,7 @@ module.exports = async function runTask(resolve, reject) {
 
         // 获取最新博文时间
         let blogmodel = await Blogger.find({ name: 'yinwang' })
+        .select('name createTime url taskjs lastUpdateTime')
             .exec().catch(err => {
                 utils.logger.error(err);
             });

@@ -89,5 +89,5 @@ BlogNewsSchema.statics.updateReadState = async function(_id, state) {
   });
 };
 
-const blognews = mongoose.model("blognews", BlogNewsSchema);
-module.exports = blognews;
+const blognewsModel = mongoose.model("blognews", BlogNewsSchema);
+module.exports = blognewsModel;

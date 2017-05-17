@@ -26,6 +26,7 @@ module.exports = async function runTask(resolve, reject) {
     let blogmodel = await Blogger.find({
         name: 'yuguo'
       })
+      .select('name createTime url taskjs lastUpdateTime')
       .exec().catch(err => {
         utils.logger.error(err);
       });

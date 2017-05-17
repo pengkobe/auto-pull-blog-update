@@ -23,12 +23,12 @@ const BloggerSchema = new Schema(
     // 创建时间
     createTime: {
       type: Date,
-      default: new Date()
+      default: Date.now
     },
     // 最近一次更新
     lastUpdateTime: {
       type: Date,
-      default: new Date()
+      default: Date.now
     }
   },
   { versionKey: false }
@@ -54,5 +54,5 @@ BloggerSchema.path("lastUpdateTime").get(function(v) {
     return new Date().format("yyyy-MM-dd hh:mm:ss");
   }
 });
-const blogger = mongoose.model("blogger", BloggerSchema);
-module.exports = blogger;
+const bloggerModel = mongoose.model("blogger", BloggerSchema);
+module.exports = bloggerModel;
