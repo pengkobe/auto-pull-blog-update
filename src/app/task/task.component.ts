@@ -25,9 +25,7 @@ export class TaskComponent {
   }];
 
   editingBlogger = {};
-
   taskHasStarted: Boolean = false;
-
 
   constructor(public taskservice: TaskService,
     public bloggerservice: BloggerService,
@@ -77,6 +75,7 @@ export class TaskComponent {
     console.log('startTasks!!!!');
     this.taskservice.startTasks().subscribe(data => {
       console.log('startTasks:', data.data);
+      this.taskHasStarted = true;
     });
   }
 
