@@ -40,6 +40,25 @@ module.exports.init = function(router) {
         }
     });
 
+
+    /**
+     * 重新加载爬虫
+     */
+    router.get('/reloadtasks', async function(ctx, next) {
+            console.log('i am reloadtasks!get');
+            let info = await crawers();
+            console.log('i am reloadtasks!body');
+            ctx.status = 200;
+            global.taskStarted = true;
+            ctx.body = {
+                success: true,
+                started: false,
+                data: info
+            };
+    });
+
+    
+
     /**
      * 查看任务开启状态
      */

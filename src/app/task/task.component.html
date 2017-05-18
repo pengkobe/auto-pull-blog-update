@@ -2,6 +2,7 @@
     <button (click)="addBlogger()" color="accent" md-raised-button>模拟添加博主</button>
     <button (click)="startTasks()" color="warn" md-raised-button *ngIf="!taskHasStarted">开启任务</button>
     <md-chip color="primary" selected="true" *ngIf="taskHasStarted">任务已经全部启动！</md-chip>
+    <button (click)="reloadTasks()" color="warn" md-raised-button *ngIf="taskHasStarted">重新抓取</button>
 </div>
 <!-- 博主列表 -->
 <div>

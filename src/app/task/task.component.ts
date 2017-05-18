@@ -78,6 +78,7 @@ export class TaskComponent {
       this.taskHasStarted = true;
     });
   }
+  
 
   loadBloggers() {
     this.bloggerservice.getBloggers();
@@ -86,6 +87,14 @@ export class TaskComponent {
   loadTaskState() {
     this.taskservice.taskState().subscribe(data => {
       this.taskHasStarted = data.started;
+    });
+  }
+
+  reloadTasks(){
+     console.log('reloadTasks!!!!');
+    this.taskservice.reloadTasks().subscribe(data => {
+      console.log('reloadTasks:', data.data);
+      alert("重新加载完毕");
     });
   }
 

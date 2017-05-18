@@ -19,4 +19,8 @@ export class TaskService {
     return this.http.get('taskstate').map(res => res.json());
   }
 
+  reloadTasks() {
+    return this.http.get('reloadtasks').map(res => res.json());
+  }
+
 }
