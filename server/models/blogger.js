@@ -31,7 +31,7 @@ const BloggerSchema = new Schema(
       default: Date.now
     }
   },
-  { versionKey: false }
+  { versionKey: true }
 );
 
 BloggerSchema.set("toJSON", { getters: true, virtuals: true });

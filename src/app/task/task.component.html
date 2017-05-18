@@ -14,7 +14,8 @@
                 <h4 md-line>
                     <a md-line href="{{b.url}}">{{b.name}}</a>
                 </h4>
-                <p md-line>(创建日期: {{b.createTime | date: 'yyyy-MM-dd'}} )</p>
+                <p md-line>(创建于: {{b.createTime | date: 'yyyy-MM-dd'}} )</p>
+                 <p md-line style="color:cornflowerblue">[更新于: {{b.lastUpdateTime | date: 'yyyy-MM-dd'}} ]</p>
                 <h4 md-line>
                     <a md-button (click)="editBlogger(b)" class="edit-blogger-a">编辑</a>
                 </h4>
