@@ -6,7 +6,7 @@ module.exports.init = router => {
   router.post('/bloggers',mw.verify_token, create);
   router.post('/editBlogger/:id', mw.verify_token, modify)
   router.get('/bloggers',mw.verify_token,  bloggerList);
-  router.get('/bloggers/:id', mw.verify_token, bloggerDetail)
+  //router.get('/bloggers/:id', mw.verify_token, bloggerDetail)
   router.delete('/bloggers/:id',mw.verify_token, deleteBlogger)
 }
 

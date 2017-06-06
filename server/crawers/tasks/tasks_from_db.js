@@ -68,7 +68,7 @@ module.exports = async function runTasksFromDB(resolve, reject) {
             ) {
               newsArray.push({
                 from: model._id,
-                pullTime: Date.now,
+                pullTime:new Date(),
                 publishTime: new Date(__pulldata___[i]._publishTime_),
                 title: __pulldata___[i]._title_,
                 link: __pulldata___[i]._link_,
@@ -96,10 +96,11 @@ module.exports = async function runTasksFromDB(resolve, reject) {
           // model.lastUpdateTime = new Date();
           Blogger.update(
             { _id: model._id },
-            { $set: { lastUpdateTime: Date.now } },
+            { $set: { lastUpdateTime: new Date() } },
             err => {
               if (err) {
                 utils.logger.error(err);
+                console.log(err);
                 reject("Blogger.update错误！");
               }
             }

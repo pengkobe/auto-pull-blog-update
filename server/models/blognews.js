@@ -38,7 +38,7 @@ const BlogNewsSchema = new Schema(
     }
   },
   {
-    versionKey: true
+    versionKey: false
   }
 );
 

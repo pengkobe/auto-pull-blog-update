@@ -43,7 +43,7 @@ const NBANewsSchema = new Schema(
       default: Date.now
     }
   },
-  { versionKey: true }
+  { versionKey: false }
 );
 
 NBANewsSchema.set("toJSON", { getters: true, virtuals: true });
